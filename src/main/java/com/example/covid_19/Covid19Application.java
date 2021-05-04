@@ -10,4 +10,5 @@ public class Covid19Application {
 		SpringApplication.run(Covid19Application.class, args);
 	}
 
+	// PAweł was here
 }
