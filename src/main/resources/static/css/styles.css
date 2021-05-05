@@ -70,8 +70,9 @@ body {
 .header__textbox {
 	background-color: #cb5151;
 	padding: 0 auto;
-	width: 16.5em;
+	width: 17.5em;
 	height: 2.5em;
+
 }
 
 .header__textbox h1 {
