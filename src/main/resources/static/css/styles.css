@@ -1,52 +1,87 @@
 body {
-    font-family: 'Roboto', sans-serif;
-    font-style: normal;
-    color: #fffdfd;
+	font-family: 'Roboto', sans-serif;
+	font-style: normal;
+	color: #fffdfd;
 }
 
 .wrapper {
-    min-height: 100vh;
-    background-image: url("/images/background.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: right;
+	min-height: 100vh;
+	background-image: url("/images/background.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: right;
+}
+
+.box--shadow {
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.text--shadow {
+	text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.text--bold {
+	font-weight: bold;
 }
 
 .nav-link {
-    font-size: 1.5em;
-    font-weight: bold;
-    letter-spacing: 0.05em;
-    color: #fffdfd !important;
-    text-decoration: none;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	font-size: 1.5em;
+	letter-spacing: 0.05em;
+	color: #fffdfd !important;
+	text-decoration: none;
 }
 
 .nav-link.active {
-    color: #f86060 !important;
+	color: #f86060 !important;
 }
 
 .nav-link:hover {
-    color: #f86060 !important;
+	color: #f86060 !important;
 }
 
 .navbar-dark .navbar-toggler {
-    background-color: #f86060ba !important;
+	background-color: #f86060ba !important;
 }
 
-.textbox{
-    font-size: 1.40rem;
-    color: #fffdfd;
-    text-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
-    font-weight: bold;
-    position: static;
-    margin-top: 30%;
-    margin-right: 32%;
-    text-align: center;
-    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%) ;
-    background: #cb5151;
+.header {
+	color: #fffdfd;
+	padding-top: 20vh;
+	letter-spacing: 0.05em;
 }
-.text{
-    font-size: 3.5rem;
-    color: #fffdfd;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+.button--white {
+	font-size: 24px;
+	font-weight: bold;
+	line-height: 28px;
+	background-color: #ffffff;
+	color: #5c5b5b;
+	padding: 0.4em 0.7em;
+	margin-top: 3.25em;
+	border-radius: 8px;
+	border: none;
+	transition: 200ms ease;
 }
+
+.button--white:hover {
+	transform: translate(0, -2px);
+	box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
+}
+
+.header__textbox {
+	background-color: #cb5151;
+	padding: 0 auto;
+	width: 16.5em;
+	height: 2.5em;
+}
+
+.header__textbox h1 {
+	padding: 5px 25px;
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+.header__text {
+	font-size: 3.75rem;
+	font-weight: 300;
+}
+
