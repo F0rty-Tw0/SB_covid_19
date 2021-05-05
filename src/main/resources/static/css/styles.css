@@ -1,27 +1,30 @@
+body {
+	font-family: 'Roboto', sans-serif;
+	font-style: normal;
+	color: #fffdfd;
+}
+
 .wrapper {
-    min-height: 100vh;
+	min-height: 100vh;
 	background-image: url("/images/background.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
-	background-attachment: fixed;
+	background-position: right;
 }
 
-.container {
-	margin-left: 0 !important;
-}
-
-.container-fluid {
-	width: 60% !important;
-}
-.navbar-brand {
-	font-family: Roboto;
-	font-style: normal;
+.nav-link {
+	font-size: 1.5em;
 	font-weight: bold;
-	font-size: 30px !important;
-	color: #fffdfd;
+    letter-spacing: 0.05em;
+	color: #fffdfd !important;
+	text-decoration: none;
 	text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
-.navbar-brand:hover,
-.navbar-brand:after {
-	color: #cf1313;
+
+.nav-link.active {
+	color: #f86060!important;
+}
+
+.nav-link:hover {
+	color: #f86060!important;
 }
