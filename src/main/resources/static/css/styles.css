@@ -114,6 +114,7 @@
 	height: 10em;
 	color: #FFFFFF;
 	alignment: center;
+	height: 35vh;
 }
 .contact{
 	font-weight: lighter;
@@ -130,17 +131,30 @@
 	font-weight: lighter;
 	text-align: center;
 }
-.table__container {
+.container {
+	margin-bottom: -10vh !important;
 }
-.line {
+.line{
 	/* Line Opening Hours */
-	width: 32vw;
-	height: 	0px;
-	left: 516.51px;
-	top: 662.49px;
-	border: 100px red;
-	transform: rotate(
-			0.15deg
-	)
 
+	position: absolute;
+	width: 31vw;
+	height: 0px;
+
+	border: 1px solid #81DFE8;
+	transform: rotate(0.15deg);
+
+}
+.textcontact {
+	text-align: center;
+	font-size: medium;
+	margin-bottom: 5vh;
+	font-weight: normal;
+}
+.textcontact_underline{
+	margin-top: 4vh;
+	text-align: center;
+	font-size: medium;
+	margin-bottom: 5vh;
+	font-weight: normal;
 }
