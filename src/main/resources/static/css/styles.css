@@ -1,4 +1,4 @@
-body {
+	body {
 	font-family: 'Roboto', sans-serif;
 	font-style: normal;
 	color: #fffdfd;
@@ -87,15 +87,18 @@ body {
 
 
 .col_contact {
-	background-color: red;
+	background: #4A8F92;
+	opacity: 0.8;
 }
 
 .col_booking {
-	background-color: blue;
+	background: #61B6BE;
+	opacity: 0.8;
 }
 
 .col_hours {
-	background-color: green;
+	background: #4A8F92;
+	opacity: 0.8;
 }
 
 /* FIXES THE ROW */
@@ -109,7 +112,35 @@ body {
 
 .col_booking, .col_contact, .col_hours{
 	height: 10em;
+	color: #FFFFFF;
+	alignment: center;
+}
+.contact{
+	font-weight: lighter;
+	text-align: center;
+
+
+}
+.booking{
+	font-weight: lighter;
+	text-align: center;
 }
 
+.hours{
+	font-weight: lighter;
+	text-align: center;
+}
 .table__container {
+}
+.line {
+	/* Line Opening Hours */
+	width: 32vw;
+	height: 	0px;
+	left: 516.51px;
+	top: 662.49px;
+	border: 100px red;
+	transform: rotate(
+			0.15deg
+	)
+
 }
