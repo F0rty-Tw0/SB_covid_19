@@ -1,9 +1,7 @@
-
 body {
 	font-family: 'Roboto', sans-serif;
 	font-style: normal;
 	color: #fffdfd;
-
 }
 
 .wrapper {
@@ -74,7 +72,6 @@ body {
 	padding: 0 auto;
 	width: 16.5em;
 	height: 2.5em;
-
 }
 
 .header__textbox h1 {
@@ -87,17 +84,30 @@ body {
 	font-size: 3.75rem;
 	font-weight: 300;
 }
+
+.col_booking, .col_contact, .col_hours{
+	height: 19.5em;
+}
 .col_contact {
-	background-color:red ;
+	background-color: red;
 }
 
 .col_booking {
-	background-color:blue ;
+	background-color: blue;
 }
 
 .col_hours {
 	background-color: green;
 }
-.table__container{
-	margin-top: 3em;
+
+/* FIXES THE ROW */
+.row {
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	right: 0;
+	margin-right: 0 !important;
+}
+
+.table__container {
 }
