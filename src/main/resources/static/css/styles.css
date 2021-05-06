@@ -85,9 +85,12 @@ body {
 	font-weight: 300;
 }
 
-.col_booking, .col_contact, .col_hours{
-	height: 19.5em;
+.col_booking,
+.col_contact,
+.col_hours {
+	height: 30vh;
 }
+
 .col_contact {
 	background-color: red;
 }
@@ -100,14 +103,16 @@ body {
 	background-color: green;
 }
 
-/* FIXES THE ROW */
-.row {
+.table__container {
 	position: absolute;
-	width: 100%;
-	bottom: 0;
-	right: 0;
-	margin-right: 0 !important;
+	min-width: 100%;
+	bottom: 0px;
 }
 
-.table__container {
+@media screen and (max-width: 768px) {
+	.table__container {
+		position: relative;
+		top: 10vh;
+		bottom: auto;
+	}
 }
