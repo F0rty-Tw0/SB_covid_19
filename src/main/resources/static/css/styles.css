@@ -1,9 +1,13 @@
-	body {
+body {
 	font-family: 'Roboto', sans-serif;
 	font-style: normal;
 	color: #fffdfd;
 }
 
+.hr--bright {
+	height: 2px !important;
+	color: #81dfe8;
+}
 .wrapper {
 	min-height: 100vh;
 	background-image: url("/images/background.jpg");
@@ -85,76 +89,78 @@
 	font-weight: 300;
 }
 
-
-.col_contact {
-	background: #4A8F92;
-	opacity: 0.8;
+.table__contact {
+	background-color: #4a8f92CC;
 }
 
 .col_booking {
-	background: #61B6BE;
-	opacity: 0.8;
+	background-color: #61b6beCC;
 }
 
 .col_hours {
-	background: #4A8F92;
-	opacity: 0.8;
+	background-color: #4a8f92CC;
 }
 
-/* FIXES THE ROW */
-.row {
+.col_booking,
+.table__contact,
+.col_hours {
+	color: #ffffff;
+	height: 25vh;
+}
+
+.table__container {
 	position: absolute;
-	width: 100%;
+	min-width: 100%;
 	bottom: 0;
-	right: 0;
-	margin-right: 0 !important;
 }
 
-.col_booking, .col_contact, .col_hours{
-	height: 10em;
-	color: #FFFFFF;
-	alignment: center;
-	height: 35vh;
+.contact__text,
+.contact__header {
+	font-weight: 300;
 }
-.contact{
+
+.contact__header {
+	font-size: 1.8em;
+	margin-top: 20px;
+}
+
+.contact__text {
+	font-size: 1.1em;
+	line-height: 4vh;
+}
+
+@media screen and (max-width: 768px) {
+	.table__container {
+		position: relative;
+		top: 15vh;
+		bottom: auto;
+	}
+}
+/*
+.booking {
 	font-weight: lighter;
 	text-align: center;
-
-
 }
-.booking{
+
+.hours {
 	font-weight: lighter;
 	text-align: center;
 }
 
-.hours{
-	font-weight: lighter;
-	text-align: center;
-}
-.container {
-	margin-bottom: -10vh !important;
-}
-.line{
-	/* Line Opening Hours */
-
+.line {
 	position: absolute;
 	width: 31vw;
 	height: 0px;
 
-	border: 1px solid #81DFE8;
+	border: 1px solid #81dfe8;
 	transform: rotate(0.15deg);
+}
 
-}
-.textcontact {
-	text-align: center;
-	font-size: medium;
-	margin-bottom: 5vh;
-	font-weight: normal;
-}
-.textcontact_underline{
+.textcontact_underline {
 	margin-top: 4vh;
 	text-align: center;
 	font-size: medium;
 	margin-bottom: 5vh;
 	font-weight: normal;
 }
+*/
