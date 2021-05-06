@@ -85,9 +85,7 @@ body {
 	font-weight: 300;
 }
 
-.col_booking, .col_contact, .col_hours{
-	height: 19.5em;
-}
+
 .col_contact {
 	background-color: red;
 }
@@ -107,6 +105,10 @@ body {
 	bottom: 0;
 	right: 0;
 	margin-right: 0 !important;
+}
+
+.col_booking, .col_contact, .col_hours{
+	height: 10em;
 }
 
 .table__container {
