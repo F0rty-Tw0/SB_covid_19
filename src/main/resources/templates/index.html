@@ -35,7 +35,48 @@
                         <div class="container text-center text--shadow" th:include="components/authentication"></div>
                     </div>
                     <div class="col-md-4 col-sm-12 col_hours">
-                        <h1 class="hours">OPENING HOURS</h1>
+                        <div class="container text-center text--shadow">
+                        <h3 class="table__header">OPENING HOURS</h3>
+                            <hr class="hr--bright">
+
+                            <ul class="list-unstyled">
+                                <li class="opening__hours__list">
+                                    <span class="pull--left">MONDAY-THURSDAY</span>
+                                    <span class="pull--right">08:00 - 22:00</span></li>
+                                <div class="clear" style="clear:both;"></div>
+                                <li class="opening__hours__list">
+
+                                    <span class="pull--left">FRIDAY</span>
+                                    <span class="pull--right">09:00 - 21:00</span></li>
+                                <div class="clear" style="clear:both;"></div>
+                                <li class="opening__hours__list">
+                                    <span class="pull--left">SATURDAY</span>
+                                    <span class="pull--right">10:00 - 20:00</span></li>
+                                <div class="clear" style="clear:both;"></div>
+                                <li class="opening__hours__list">
+                                    <span class="pull--left">SUNDAY</span>
+                                    <span class="pull--right">09:00 - 19:00</span></li>
+                            </ul>
+
+                                    <!--<p class=" hours__text hours__start__text">
+                                        SATURDAY
+                                    </p>
+                                    <p class="hours__text hours__start__text">
+                                        SUNDAY
+                                    </p>
+
+
+
+                                    <p class=" hours__text hours__end__text">
+                                        10:00 - 20:00
+                                    </p>
+                                    <p class="hours__text hours__end__text">
+                                        09:00 - 19:00
+                                    </p>-->
+                                </div>
+                            </div>
+
+                            </div>
                     </div>
                 </div>
             </div>
@@ -44,3 +85,17 @@
     </body>
 
 </html>
+
+<!--
+<div class="container">
+    <p class="float-start hours__text">FRIDAY</p>
+    <p class="float-end hours__text">09:00 - 21:00</p>
+</div>
+<div class="container">
+    <p class="float-start hours__text">SATURDAY</p>
+    <p class="float-end hours__text">10:00 - 20:00</p>
+</div>
+<div class="container">
+    <p class="float-start hours__text">SUNDAY</p>
+    <p class="float-end hours__text">09:00 - 19:00</p>
+</div>-->
