@@ -9,9 +9,9 @@ body {
 	color: #81dfe8;
 }
 
-.hr--dark{
+.hr--dark {
 	height: 2px !important;
-	color: #4A8F92;
+	color: #4a8f92;
 }
 .wrapper {
 	min-height: 100vh;
@@ -98,7 +98,7 @@ body {
 	background-color: #4a8f92CC;
 }
 
-.col_booking {
+.table_booking {
 	background-color: #61b6beCC;
 }
 
@@ -106,7 +106,7 @@ body {
 	background-color: #4a8f92CC;
 }
 
-.col_booking,
+.table_booking,
 .table__contact,
 .col_hours {
 	color: #ffffff;
@@ -119,28 +119,44 @@ body {
 	bottom: 0;
 }
 
-.contact__text,
-.information__header {
+.table__text,
+.table__header {
 	font-weight: 300;
 }
 
-.information__header {
+.table__header {
 	font-size: 1.8em;
 	margin-top: 20px;
 }
 
-.contact__text {
+.table__text {
 	font-size: 1.1em;
-	line-height: 5vh;
+	line-height: 3em;
 }
 
-.button__authentication{
+.form-control {
+	margin-bottom: 10px;
+	border-radius: 8px !important;
+}
+
+.login__form {
+	margin: 0 auto;
+	max-width: 80%;
+}
+
+.login__link {
+	font-weight: bold;
+	color: #ffffff;
+	text-decoration: none;
+	font-size: 18px;
+	margin: 10px;
+}
+.button--dark {
 	font-size: 24px;
 	font-weight: bold;
-	line-height: 28px;
-	background-color: #4A8F92;
-	color: #FFFFFF;
-	padding: 1vh 4vw;
+	background-color: #4a8f92;
+	color: #ffffff;
+	padding: 0.5vh 2vw;
 	border-radius: 8px;
 	border: none;
 	transition: 200ms ease;
@@ -153,50 +169,3 @@ body {
 		bottom: auto;
 	}
 }
-
-.register{
-	float: left;
-	font-weight: 700;
-}
-
-.forgotpw {
-	float: right;
-	font-weight: 700;
-}
-
-.form-control{
-	border-radius: 8px !important;
-
-}
-
-.text--left{
-	float: left;
-}
-/*
-.booking {
-	font-weight: lighter;
-	text-align: center;
-}
-
-.hours {
-	font-weight: lighter;
-	text-align: center;
-}
-
-.line {
-	position: absolute;
-	width: 31vw;
-	height: 0px;
-
-	border: 1px solid #81dfe8;
-	transform: rotate(0.15deg);
-}
-
-.textcontact_underline {
-	margin-top: 4vh;
-	text-align: center;
-	font-size: medium;
-	margin-bottom: 5vh;
-	font-weight: normal;
-}
-*/
