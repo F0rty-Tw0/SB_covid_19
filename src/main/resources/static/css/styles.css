@@ -8,6 +8,11 @@ body {
 	height: 2px !important;
 	color: #81dfe8;
 }
+
+.hr--dark{
+	height: 2px !important;
+	color: #4A8F92;
+}
 .wrapper {
 	min-height: 100vh;
 	background-image: url("/images/background.jpg");
@@ -115,11 +120,11 @@ body {
 }
 
 .contact__text,
-.contact__header {
+.information__header {
 	font-weight: 300;
 }
 
-.contact__header {
+.information__header {
 	font-size: 1.8em;
 	margin-top: 20px;
 }
@@ -127,6 +132,18 @@ body {
 .contact__text {
 	font-size: 1.1em;
 	line-height: 5vh;
+}
+
+.button__authentication{
+	font-size: 24px;
+	font-weight: bold;
+	line-height: 28px;
+	background-color: #4A8F92;
+	color: #FFFFFF;
+	padding: 1vh 4vw;
+	border-radius: 8px;
+	border: none;
+	transition: 200ms ease;
 }
 
 @media screen and (max-width: 768px) {
@@ -137,6 +154,24 @@ body {
 	}
 }
 
+.register{
+	float: left;
+	font-weight: 700;
+}
+
+.forgotpw {
+	float: right;
+	font-weight: 700;
+}
+
+.form-control{
+	border-radius: 8px !important;
+
+}
+
+.text--left{
+	float: left;
+}
 /*
 .booking {
 	font-weight: lighter;
