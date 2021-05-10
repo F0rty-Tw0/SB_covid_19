@@ -14,7 +14,7 @@
 	<name>covid_19</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>15git add README.md</java.version>
+		<java.version>15</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
