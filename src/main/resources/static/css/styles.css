@@ -69,6 +69,7 @@ body {
 	border-radius: 8px;
 	border: none;
 	transition: 200ms ease;
+	margin-top: 0vh !important;
 }
 
 .button--white:hover, .button--dark:hover {
@@ -160,6 +161,7 @@ body {
 	border-radius: 8px;
 	border: none;
 	transition: 200ms ease;
+	margin-bottom: 2vh;
 }
 
 .form-check{
