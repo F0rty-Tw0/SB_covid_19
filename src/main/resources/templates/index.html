@@ -7,7 +7,7 @@
         <div class="wrapper">
             <nav th:include="shared/navbar" class="navbar navbar-expand-lg navbar-dark text-uppercase" />
             <div class="container">
-                <div class="header text--shadow">
+                <div class="header__container text--shadow">
                     <div class="header__textbox box--shadow">
                         <h1>MEDICAL CENTER</h1>
                     </div>
@@ -31,11 +31,11 @@
                                 contact@medicalcenter.com</p>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-12 table_booking">
+                    <div class="col-md-4 col-sm-12 table__booking">
                         <!-- <div class="container text-center text--shadow" th:include="components/authentication"></div> -->
                         <div class="container text-center text--shadow" th:include="components/booking"></div>
                     </div>
-                    <div class="col-md-4 col-sm-12 col_hours">
+                    <div class="col-md-4 col-sm-12 table__hours">
                         <div class="container text--shadow">
                             <h3 class="table__header text-center">OPENING HOURS</h3>
                             <hr class="hr--bright">
