@@ -6,7 +6,8 @@
         <p>CHOOSE YOUR BOOKING</p>
         <div class="col-xl-6">
             <div class="form-check table__header float-xxl-start">
-                <input class="form-check-input" type="radio" name="bookingCheck" id="test" checked>
+                <input required class="form-check-input" type="radio" name="bookingCheck" value="test" id="test"
+                    checked>
                 <label class="form-check-label" for="test">
                     TEST
                 </label>
@@ -14,7 +15,7 @@
         </div>
         <div class="col-xl-6">
             <div class="form-check table__header float-xxl-end">
-                <input class="form-check-input" type="radio" name="bookingCheck" id="vaccine">
+                <input required class="form-check-input" type="radio" name="bookingCheck" value="vaccine" id="vaccine">
                 <label class="form-check-label" for="vaccine">
                     VACCINE
                 </label>
@@ -23,14 +24,14 @@
     </div>
     <div class="row pb-3">
         <div class="col-xl-6">
-            <input class="form-control float-xl-start" type="date" id="bookingdate" name="bookingDate">
+            <input required class="form-control float-xl-start" type="date" id="bookingDate" name="bookingDate">
         </div>
         <div class="col-xl-6">
-            <select class="form-select float-xl-end" aria-label="Default select example">
-                <option selected>Choose time</option>
-                <option value="1">14:30</option>
-                <option value="2">14:45</option>
-                <option value="3">15:00</option>
+            <select required class="form-select float-xl-end" name="time" aria-label="Choose Time">
+                <option value="" disabled selected>Choose Time</option>
+                <option value="14:30">14:30</option>
+                <option value="14:45">14:45</option>
+                <option value="15:00">15:00</option>
             </select>
         </div>
     </div>
