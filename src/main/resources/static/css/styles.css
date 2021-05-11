@@ -166,6 +166,15 @@ body {
 	margin-bottom: 2vh;
 }
 
+.modal-title{
+	color:#5c5b5b;
+}
+
+.btn--green{
+	background-color: #4a8f92 !important;
+	color: #fffdfd !important;
+}
+
 @media screen and (max-width: 768px) {
 	.table__container {
 		position: relative;
