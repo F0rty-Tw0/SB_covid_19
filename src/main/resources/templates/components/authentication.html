@@ -1,34 +1,45 @@
 <h3 class="table__header">LOGIN</h3>
 <hr class="hr--dark">
 <form class="table__form">
-    <input type="email" class="form-control box--shadow" placeholder="email" id="inputEmail">
-    <input type="password" class="form-control box--shadow" placeholder="password" id="inputPassword">
+    <input type="email" class="form-control box--shadow" placeholder="Email" id="inputEmail">
+    <input type="password" class="form-control box--shadow" placeholder="Password" id="inputPassword">
 
     <button type="submit" class="button--dark box--shadow">LOGIN</button>
 </form>
-<a class="float-start login__link" data-bs-toggle="modal" data-bs-target="#registerModal">Register</a>
+
+<a class="float-start login__link no--shadow" data-bs-toggle="modal" data-bs-target="#registerModal">Register</a>
 <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="registerModalLabel">Please type in your information to register</h5>
+                <h5 class="modal-title no--shadow fw-bold" id="registerModalLabel">Please type in your information to
+                    register</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form class="table__form">
-                    <input type="name" class="form-control box--shadow" placeholder="Name" id="inputName">
-                    <input type="cpr" class="form-control box--shadow" placeholder="CPR" id="inputCPR">
+                    <label for="name" class="form-label no--shadow float-start pt-3">Name</label>
+                    <input type="name" class="form-control box--shadow" placeholder="John Doe" id="inputName">
+                    <label for="address" class="form-label no--shadow float-start pt-3">Address</label>
+                    <input type="address" class="form-control box--shadow" placeholder="Halldor Laxness Vej 9, ST TH"
+                        id="inputAddress">
+                    <label for="cpr" class="form-label no--shadow float-start pt-3">CPR</label>
+                    <input type="cpr" class="form-control box--shadow" placeholder="2546884411" id="inputCPR">
+                    <label for="phoneNR" class="form-label no--shadow float-start pt-3">Phone</label>
                     <input type="phoneNR" class="form-control box--shadow" placeholder="+4512345678" id="inputPhoneNR">
-                    <input type="email" class="form-control box--shadow" placeholder="Email" id="inputEmail">
+                    <label for="email" class="form-label no--shadow float-start pt-3">Email</label>
+                    <input type="email" class="form-control box--shadow" placeholder="johndoe@gmail.com"
+                        id="inputEmail">
+                    <label for="password" class="form-label no--shadow float-start pt-3">Password</label>
                     <input type="password" class="form-control box--shadow" placeholder="Password" id="inputPassword">
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn--green">Register</button>
+                <button type="button" class="btn btn-secondary box--shadow" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn button--green box--shadow">Register</button>
             </div>
         </div>
     </div>
 </div>
 
-<a class="float-end login__link" >Forgot Password?</a>
+<a class="float-end login__link no--shadow">Forgot Password?</a>
