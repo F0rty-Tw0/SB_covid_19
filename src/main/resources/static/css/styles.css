@@ -144,7 +144,12 @@ body {
 	line-height: 3em;
 }
 
-.form-control {
+.table__select {
+	font-size: 1.5em;
+}
+
+.form-control,
+.form-select {
 	height: 46px;
 	padding: 0 16px !important;
 	border-radius: 4px !important;
