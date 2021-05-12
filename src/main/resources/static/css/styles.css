@@ -218,6 +218,43 @@ body {
 .modal-title {
 	color: #5c5b5b;
 }
+.gap--1{
+	gap: 1vw;
+}
+
+.column__about, .column__about__margleft,.column__about__marright {
+	background-color: #ffffffCC;
+	border-radius: 8px;
+	min-height: 32vh !important;
+}
+
+.column__about__margleft{
+	margin-left: 1vw;
+}
+.column__about__marright{
+	margin-right: 1vw;
+}
+.row__about{
+	margin-bottom: 3vh !important;
+}
+.img-thumbnail{
+	background: none !important;
+	height: 5.4em;
+	width: 5.4em;
+	border: none !important;
+	margin-top: 5%;
+	margin-bottom: 5%;
+}
+.about__header{
+	color: #333333;
+	font-size: 1.5em;
+}
+.about__text{
+	color: #7E7E7E;
+	font-size: 1.25em;
+
+}
+
 
 @media screen and (max-width: 768px) {
 	.table__container {
@@ -232,3 +269,10 @@ body {
 		padding-top: 5vh;
 	}
 }
+
+@media screen and (min-width: 768px) {
+	.column__about, .column__about__margleft,.column__about__marright {
+		width: 32vw !important;
+	}
+}
+
