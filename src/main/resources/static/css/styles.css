@@ -255,6 +255,29 @@ body {
 
 }
 
+.container__about{
+	background-color: #ffffffcc;
+	width: 40% !important;
+	margin-left: 10em;
+	height: 308px;
+	border-radius: 8px;
+	margin-left: 0% !important;
+
+}
+
+.button__about{
+	/*margin-bottom: 0% !important;*/
+	/*position: absolute !important;*/
+	margin-left: 20vh;
+	margin-top: 3vh !important;
+	width: 20vw !important;
+}
+
+.col__about{
+	font-size: 24px;
+	padding-top: 40px;
+	color: #333333;
+}
 
 @media screen and (max-width: 768px) {
 	.table__container {
