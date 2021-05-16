@@ -65,7 +65,7 @@ body {
 
 .header__container {
 	color: #fffdfd;
-	padding-top: 20vh;
+	margin-top: 20vh;
 	letter-spacing: 0.05em;
 }
 
@@ -128,7 +128,7 @@ body {
 	min-height: 25vh;
 }
 
-.table__about {
+.about__box {
 	background-color: #ffffffcc;
 	border-radius: 8px;
 	min-height: 300px;
@@ -241,16 +241,35 @@ body {
 	margin: 10px 0 10px 0;
 }
 
+.about__container {
+	background-color: #fff;
+	border-radius: 8px;
+	padding: 25px;
+	margin-top: 10vh;
+	max-width: 37em;
+}
+
 @media screen and (max-width: 768px) {
 	.table__container {
 		position: relative;
 		top: 15vh;
 		bottom: auto;
 	}
+	.about__container {
+		margin-top: 5vh;
+	}
 }
 
 @media screen and (max-height: 992px) {
 	.header__container {
-		padding-top: 5vh;
+		margin-top: 5vh;
+	}
+	.about__container {
+		margin-top: 5vh;
+	}
+}
+@media screen and (max-height: 830px) {
+	.about__container {
+		margin-top: 1vh;
 	}
 }
