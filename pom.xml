@@ -14,9 +14,14 @@
 	<name>covid_19</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>15git add README.md</java.version>
+		<java.version>15</java.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>5.0.0-beta2</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
