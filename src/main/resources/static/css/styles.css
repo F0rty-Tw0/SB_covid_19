@@ -250,85 +250,57 @@ body {
 	max-width: 37em;
 }
 
-.test__column {
-	background-color: #61B6BE;
-	border-radius: 8px;
-	min-height: 90vh;
-	font-size: 36px;
-	color: #FFFDFD;
-
-}
-.test__column__small{
-	background-color: #61B6BE;
-	border-radius: 8px;
-	min-height: 30vh;
-	font-size: 36px;
-	color: #FFFDFD;
-
-}
-
-.test__container{
-	margin-left: 15vh;
-	margin-right: 1vh;
-}
-.vaccine__container{
-
-}
 .vaccine__column__left {
-	 background-color: #61B6BE;
-	 border-radius: 8px;
-	 min-height: 90vh;
-	 font-size: 36px;
-	 color: #FFFDFD;
-	 width: 53vw !important;
-	margin-left: -3vw; !important;
-	column-fill: balance;
-
- }
-.vaccine__column__right {
-	background-color: #61B6BE;
+	background-color: #61b6be;
 	border-radius: 8px;
 	min-height: 90vh;
 	font-size: 36px;
-	color: #FFFDFD;
+	color: #fffdfd;
+	width: 53vw !important;
+	margin-left: -3vw !important;
+	column-fill: balance;
+}
+.vaccine__column__right {
+	background-color: #61b6be;
+	border-radius: 8px;
+	min-height: 90vh;
+	font-size: 36px;
+	color: #fffdfd;
 	width: 37vw !important;
 	margin-left: 11vw !important;
 	column-fill: balance;
-
 }
-.vaccine__line{
+.vaccine__line {
 	width: 80%;
 	margin-left: 10%;
 	margin-right: 10%;
 }
-.vaccine__text__bold{
+.vaccine__text__bold {
 	font-size: 0.65em;
 	font-weight: bold;
 	text-align: left;
 	margin-bottom: 3vw;
 }
-.vaccine__text__normal{
-font-size: 0.45em;
+.vaccine__text__normal {
+	font-size: 0.45em;
 	text-align: left;
 	margin-top: -3vw;
 }
-.vaccine__text__container{
+.vaccine__text__container {
 	margin-left: 1vw;
 }
-.button--red{
-	background-color: #CB5151 !important;
-	color: #FFFDFD !important;
+.button--red {
+	background-color: #cb5151 !important;
+	color: #fffdfd !important;
 	width: 80%;
 	font-weight: bold;
-
 }
-.vaccine__button{
+.vaccine__button {
 	margin-bottom: -25%;
 }
-.vaccine__container{
+.vaccine__container {
 	height: max-content;
 }
-
 
 @media screen and (max-width: 768px) {
 	.table__container {
@@ -339,16 +311,17 @@ font-size: 0.45em;
 	.about__container {
 		margin-top: 5vh;
 	}
-	.vaccine__column__left, .vaccine__column__right{
+	.vaccine__column__left,
+	.vaccine__column__right {
 		width: 90% !important;
 		margin-left: 5% !important;
 		margin-bottom: 10vh !important;
 	}
 }
 @media screen and (max-width: 1100px) {
-.vaccine__button{
-	margin-bottom: 2% !important;
-}
+	.vaccine__button {
+		margin-bottom: 2% !important;
+	}
 }
 
 @media screen and (max-height: 992px) {

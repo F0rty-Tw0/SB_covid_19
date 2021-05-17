@@ -20,8 +20,5 @@ public class HomeController {
     public String vaccine(){
         return "vaccine/vaccine";
     }
-    @GetMapping("/test")
-    public String test(){
-        return "test/test";
-    }
+    
 }
