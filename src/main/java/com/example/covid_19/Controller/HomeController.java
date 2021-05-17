@@ -15,4 +15,13 @@ public class HomeController {
     public String about(){
         return "about/about";
     }
+
+    @GetMapping("/vaccine")
+    public String vaccine(){
+        return "vaccine/vaccine";
+    }
+    @GetMapping("/test")
+    public String test(){
+        return "test/test";
+    }
 }
