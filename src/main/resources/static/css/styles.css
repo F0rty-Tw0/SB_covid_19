@@ -1,0 +1,275 @@
+body {
+	font-family: 'Roboto', sans-serif;
+	font-style: normal;
+	background-color: #81dfe8 !important;
+	color: #fffdfd;
+}
+
+.hr--bright {
+	height: 2px !important;
+	color: #81dfe8;
+}
+
+.hr--dark {
+	height: 2px !important;
+	color: #4a8f92;
+}
+
+.modal-title {
+	color: #5c5b5b;
+}
+
+.wrapper {
+	min-height: 100vh;
+	background-image: url("/images/background.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: right;
+}
+
+.box--shadow {
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.text--shadow {
+	text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.no--shadow {
+	text-shadow: none;
+	box-shadow: none;
+}
+
+.text--bold {
+	font-weight: bold;
+}
+
+.nav-link {
+	font-size: 1.5em;
+	letter-spacing: 0.05em;
+	color: #fffdfd !important;
+	text-decoration: none;
+}
+
+.nav-link.active {
+	color: #f86060 !important;
+}
+
+.nav-link:hover {
+	color: #f86060 !important;
+}
+
+.navbar-dark .navbar-toggler {
+	background-color: #f86060ba !important;
+}
+
+.header__container {
+	color: #fffdfd;
+	margin-top: 20vh;
+	letter-spacing: 0.05em;
+}
+
+.button--white {
+	font-size: 24px;
+	font-weight: bold;
+	line-height: 28px;
+	background-color: #ffffff;
+	color: #5c5b5b;
+	padding: 0.4em 0.7em;
+	margin-top: 1.25em;
+	border-radius: 8px;
+	border: none;
+	transition: 200ms ease;
+	margin-top: 0vh !important;
+}
+
+.button--white:hover,
+.button--dark:hover,
+.button--green:hover,
+.btn-secondary:hover {
+	transform: translate(0, -2px);
+	box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
+}
+
+.header__textbox {
+	background-color: #cb5151;
+	padding: 0 auto;
+	width: 16.5em;
+	height: 2.5em;
+}
+
+.header__textbox h1 {
+	padding: 5px 24px;
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+.header__text {
+	font-size: 3.75rem;
+	font-weight: 300;
+}
+
+.table__contact {
+	background-color: #4a8f92CC;
+}
+
+.table__booking {
+	background-color: #61b6beCC;
+}
+
+.table__hours {
+	background-color: #4a8f92CC;
+}
+
+.table__booking,
+.table__contact,
+.table__hours {
+	color: #ffffff;
+	min-height: 25vh;
+}
+
+.about__box {
+	background-color: #ffffffcc;
+	border-radius: 8px;
+	min-height: 300px;
+}
+
+.table__container {
+	position: absolute;
+	min-width: 100%;
+	bottom: 0;
+}
+
+.table__text,
+.table__header {
+	font-weight: 300;
+}
+
+.table__header {
+	font-size: 2.5em;
+	margin-top: 20px;
+}
+
+.table__text {
+	font-size: 1.3em;
+	line-height: 3em;
+}
+
+.table__select {
+	font-size: 1.5em;
+}
+
+.form-control,
+.form-select {
+	height: 46px;
+	padding: 0 16px !important;
+	border-radius: 4px !important;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+.form-label {
+	font-weight: bold;
+	color: #5c5b5b;
+}
+.table__form {
+	margin: 0 auto;
+	max-width: 80%;
+}
+
+.login__link {
+	font-weight: bold;
+	color: #ffffff;
+	text-decoration: none;
+	font-size: 18px;
+	margin: 10px;
+	cursor: pointer;
+}
+
+.login__link:hover {
+	color: #fff;
+}
+
+.login__link::after {
+	opacity: 0;
+	content: '';
+	width: 0px;
+	height: 6px;
+	border-radius: 8px;
+	display: block;
+	background: #fff;
+	transition: 200ms;
+}
+
+.login__link:hover::after {
+	opacity: 1;
+	width: 100%;
+}
+
+.button--dark {
+	font-size: 24px;
+	font-weight: bold;
+	background-color: #4a8f92;
+	color: #ffffff;
+	padding: 0.5vh 2vw;
+	border-radius: 8px;
+	border: none;
+	transition: 200ms ease;
+	margin-bottom: 2vh;
+}
+.button--green {
+	background-color: #4a8f92 !important;
+	color: #fffdfd !important;
+	transition: 200ms ease !important;
+}
+.btn-secondary {
+	transition: 200ms ease !important;
+}
+
+.about__header {
+	font-weight: bold;
+	color: #333333;
+	font-size: 1.5em;
+}
+.about__text {
+	color: #7e7e7e;
+	font-size: 1.25em;
+}
+
+.about__icon {
+	width: 6em;
+	margin: 10px 0 10px 0;
+}
+
+.about__container {
+	background-color: #ffffffcc;
+	border-radius: 8px;
+	padding: 25px;
+	margin-top: 10vh;
+	max-width: 37em;
+}
+
+@media screen and (max-width: 768px) {
+	.table__container {
+		position: relative;
+		top: 15vh;
+		bottom: auto;
+	}
+	.about__container {
+		margin-top: 5vh;
+	}
+}
+
+@media screen and (max-height: 992px) {
+	.header__container {
+		margin-top: 5vh;
+	}
+	.about__container {
+		margin-top: 5vh;
+	}
+}
+@media screen and (max-height: 830px) {
+	.about__container {
+		margin-top: 1vh;
+	}
+}
