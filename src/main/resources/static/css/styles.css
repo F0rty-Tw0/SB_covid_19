@@ -13,13 +13,21 @@ body {
 .hr--dark {
 	height: 2px !important;
 	color: #4a8f92;
-
 }
 
 .modal-title {
 	color: #5c5b5b;
 }
 
+.test__list {
+	line-height: 1.7;
+	font-size: 1.2em;
+	font-weight: 500;
+}
+
+.test__list li {
+	margin-bottom: 2em;
+}
 .wrapper {
 	min-height: 100vh;
 	background-image: url("/images/background.jpg");
@@ -110,15 +118,14 @@ body {
 	font-weight: 300;
 }
 
-.table__contact {
-	background-color: #4a8f92CC;
-}
-
-.table__booking {
+.table__booking,
+.table__test {
+	color: #ffffff;
 	background-color: #61b6beCC;
 }
 
-.table__hours {
+.table__hours,
+.table__contact {
 	background-color: #4a8f92CC;
 }
 
@@ -129,6 +136,15 @@ body {
 	min-height: 25vh;
 }
 
+.table__full {
+	min-height: 60vh;
+	border-radius: 8px;
+}
+
+.table__half {
+	min-height: 30vh;
+	border-radius: 8px;
+}
 .about__box {
 	background-color: #ffffffcc;
 	border-radius: 8px;
@@ -250,62 +266,8 @@ body {
 	max-width: 37em;
 }
 
-.test__column {
-	background-color: #61B6BE;
-	border-radius: 8px;
-	min-height: 790px;
-	font-size: 36px;
-	color: #FFFDFD;
-
-}
-
-.test__column__small{
-	background-color: #61B6BE;
-	border-radius: 8px;
-	min-height: 30vh;
-	font-size: 36px;
-	color: #FFFDFD;
-
-}
-
-.test__container{
-	margin-left: 5vh;
-	margin-right: 5vh;
-	min-width: 100%;
-
-}
-
-.test__image{
-	height: 57vh !important;
-	padding-top: 4vh;
-	padding-bottom: 3vh;
-}
-
-.test__line__dark{
-	height: 2px !important;
-	color: #4a8f92;
-	width: 80%;
-	margin-left:10%;
-}
-
-.test__text__wtk{
-	font-size: 24px;
-	text-align: left;
-	font-weight: lighter;
-}
-
-.test__text__gt{
-	font-size: 24px;
-	text-align: left;
-	padding-top: 4vh;
-	font-weight: lighter;
-}
-
-.test__text__pcr{
-	font-size: 24px;
-	text-align: left;
-	padding-top: 2vh;
-	font-weight: lighter;
+.test__container {
+	margin: 15vh 0;
 }
 
 @media screen and (max-width: 768px) {
