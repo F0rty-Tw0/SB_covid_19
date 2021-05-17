@@ -284,11 +284,41 @@ body {
 	margin: 15vh 0;
 }
 
+.thumbnail__user{
+	width: 7%;
+}
+
+.user__info,
+.user__history{
+	height: 90vh; width:30vw; margin-right: 2.5vw; margin-left: 2.5vw
+}
+
+.user__appointments{
+	height: 42.5vh; width:30vw; margin-bottom: 5vh
+}
+
+.user__vaccination{
+	height: 42.5vh; width:30vw
+}
+
+.user__label{
+	color: #fffdfd;
+	font-size: 1.125em;
+}
+
+.box--green{
+	background-color: #61b6beCC !important;
+	border: none !important;
+	color: white !important;
+
+}
+
 @media screen and (max-width: 768px) {
 	.table__container {
 		position: relative;
 		top: 15vh;
 		bottom: auto;
+
 	}
 	.about__container {
 		margin-top: 5vh;

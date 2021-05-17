@@ -25,4 +25,9 @@ public class HomeController {
     public String vaccine(){
         return "vaccine";
     }
+
+    @GetMapping("/user")
+    public String user(){
+        return "user";
+    }
 }
