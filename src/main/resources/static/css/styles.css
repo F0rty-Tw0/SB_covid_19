@@ -19,13 +19,13 @@ body {
 	color: #5c5b5b;
 }
 
-.test__list {
-	line-height: 1.7;
+.info__list {
+	line-height: 1.5;
 	font-size: 1.2em;
-	font-weight: 500;
+	font-weight: 400;
 }
 
-.test__list li {
+.info__list li {
 	margin-bottom: 2em;
 }
 .wrapper {
