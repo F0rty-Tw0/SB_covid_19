@@ -249,6 +249,21 @@ body {
 	max-width: 37em;
 }
 
+.test__column {
+	background-color: #61B6BE;
+	border-radius: 8px;
+	min-height: 790px;
+	font-size: 36px;
+	color: #FFFDFD;
+
+}
+
+.test__container{
+	margin-left: 15vh;
+	margin-right: 1vh;
+
+}
+
 @media screen and (max-width: 768px) {
 	.table__container {
 		position: relative;
