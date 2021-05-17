@@ -13,6 +13,7 @@ body {
 .hr--dark {
 	height: 2px !important;
 	color: #4a8f92;
+
 }
 
 .modal-title {
@@ -258,10 +259,53 @@ body {
 
 }
 
-.test__container{
-	margin-left: 15vh;
-	margin-right: 1vh;
+.test__column__small{
+	background-color: #61B6BE;
+	border-radius: 8px;
+	min-height: 30vh;
+	font-size: 36px;
+	color: #FFFDFD;
 
+}
+
+.test__container{
+	margin-left: 5vh;
+	margin-right: 5vh;
+	min-width: 100%;
+
+}
+
+.test__image{
+	height: 57vh !important;
+	padding-top: 4vh;
+	padding-bottom: 3vh;
+}
+
+.test__line__dark{
+	height: 2px !important;
+	color: #4a8f92;
+	width: 80%;
+	margin-left:10%;
+}
+
+.test__text__wtk{
+	font-size: 24px;
+	text-align: left;
+	font-weight: lighter;
+}
+
+.test__text__gt{
+	font-size: 24px;
+	text-align: left;
+	padding-top: 4vh;
+	font-weight: lighter;
+}
+
+.test__text__pcr{
+	font-size: 24px;
+	text-align: left;
+	padding-top: 2vh;
+	font-weight: lighter;
 }
 
 @media screen and (max-width: 768px) {

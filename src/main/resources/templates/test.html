@@ -1,27 +1,76 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
-    <head th:include="shared/head"/>
+<head th:include="shared/head"/>
 
 <body>
 
 <div class="wrapper">
     <nav th:include="shared/navbar" class="navbar navbar-expand-lg navbar-dark text-uppercase" />
-    <div class="container test__container text-center text--shadow ">
+    <div class="container test__container text-center ">
         <div class="row test__container">
             <div class=" col-md-4 col-sm-12 ">
-                <div class="col-md-12 test__column box--shadow ">
+                <div class="col-md-12 test__column__small ">
                     <p>WHAT TO KNOW</p>
+                    <hr class="test__line__dark">
+                    <ul class="list">
+                        <li class="test__text__wtk">
+                            <p>The following information will further explain the process of getting tested.</p>
+                        </li>
+                        <li class="test__text__wtk">
+                            <p>Below is a picture of the PCR-test.</p>
+                        </li>
+                        </li>
+                    </ul>
                 </div>
+                <img src="/images/pcrTest.png" class="img-fluid test__image" alt="pcrTest">
             </div>
             <div class="col-md-4 col-sm-12">
-                <div class="col-md-12 test__column mb-4 box--shadow ">
+                <div class="col-md-12 test__column box--shadow ">
                     <p>GETTING TESTED</p>
+                    <hr class="test__line__dark">
+                    <ul class="list">
+                        <li class="test__text__wtk">
+                            <p>In our COVID19-test facility we offer only one type of test, the PCR-test.</p>
+                        </li>
+                        <li class="test__text__gt">
+                            <p>You must book an appointment in due time, in order to get tested.</p>
+                        </li>
+                        <li class="test__text__gt">
+                            <p>It is not allowed to simply walk in without an appointment.</p>
+                        </li>
+                        <li class="test__text__gt">
+                            <p>Remember to wear a facemask or other government approved health safety standard.</p>
+                        </li>
+                        <li class="test__text__gt">
+                            <p>There might be a queue, in this case please wait 5-10 min before entering.</p>
+                        </li>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div class="col-md-4 col-sm-12">
-                <div class="col-md-12 test__column mb-4 box--shadow ">
+                <div class="col-md-12 test__column box--shadow ">
                     <p>PCR TEST</p>
+                    <hr class="test__line__dark">
+                    <ul class="list">
+                        <li class="test__text__wtk">
+                            <p>The PCR test is very sensitive and will turn a positive result after 3-10 days of infection.</p>
+                        </li>
+                        <li class="test__text__pcr">
+                            <p>The PCR test can also be positive for some days till weeks after you are healthy again.</p>
+                        </li>
+                        <li class="test__text__pcr">
+                            <p>The test therefore cannot be used to determine when you are healthy.</p>
+                        </li>
+                        <li class="test__text__pcr">
+                            <p>If you did not have any symptoms, you are then non-contagieous 7 days after the test has come back positive.</p>
+                        </li>
+                        <li class="test__text__pcr">
+                            <p>You do NOT have to be tested again to be declared healthy.</p>
+                        </li>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
