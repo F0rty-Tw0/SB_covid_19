@@ -31,12 +31,4 @@ public class HomeController {
         return "user";
     }
 
-    @GetMapping("/vaccine")
-    public String vaccine(){
-        return "vaccine/vaccine";
-    }
-    @GetMapping("/test")
-    public String test(){
-        return "test/test";
-    }
 }
