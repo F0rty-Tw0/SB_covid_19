@@ -20,7 +20,6 @@ body {
 }
 
 .info__list {
-	line-height: 1.5;
 	font-size: 1.2em;
 	font-weight: 400;
 }
@@ -113,7 +112,8 @@ body {
 .button--white:hover,
 .button--dark:hover,
 .button--green:hover,
-.button--red:hover, .btn-secondary:hover {
+.button--red:hover,
+.btn-secondary:hover {
 	transform: translate(0, -2px);
 	box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
 }
@@ -155,7 +155,12 @@ body {
 }
 
 .table--full {
-	min-height: 60vh;
+	min-height: 51.3em;
+	border-radius: 8px;
+}
+
+.table--half {
+	min-height: 25em;
 	border-radius: 8px;
 }
 
@@ -284,33 +289,18 @@ body {
 	margin: 15vh 0;
 }
 
-.thumbnail__user{
-	width: 7%;
+.user__logo {
+	position: absolute;
+	width: 15vh;
+	top: 5px;
 }
 
-.user__info,
-.user__history{
-	height: 90vh; width:30vw; margin-right: 2.5vw; margin-left: 2.5vw
+.user__thumbnail {
+	margin-left: 5px;
 }
 
-.user__appointments{
-	height: 42.5vh; width:30vw; margin-bottom: 5vh
-}
-
-.user__vaccination{
-	height: 42.5vh; width:30vw
-}
-
-.user__label{
-	color: #fffdfd;
-	font-size: 1.125em;
-}
-
-.box--green{
-	background-color: #61b6beCC !important;
-	border: none !important;
-	color: white !important;
-
+.user__container {
+	margin: 5vh 15px;
 }
 
 @media screen and (max-width: 768px) {
@@ -318,7 +308,6 @@ body {
 		position: relative;
 		top: 15vh;
 		bottom: auto;
-
 	}
 	.about__container {
 		margin-top: 5vh;
