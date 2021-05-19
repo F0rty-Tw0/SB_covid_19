@@ -6,8 +6,7 @@ import com.example.covid_19.Model.User;
 
 public interface UserInterface {
   // CREATE
-
-  public User addUser(User user);
+  public int addUser(User user);
 
   // READ
   public User findUserById(int userId);
@@ -19,8 +18,12 @@ public interface UserInterface {
   public List<User> viewAllUsers();
 
   // UPDATE
-  public User updateUser(int UserId, User user);
+  public int updateUser(User user);
+
+  public int updateUserStatus(User user);
+
+  public int updateUserRole(User user);
 
   // DELETE
-  public User deleteUser(int userId);
+  public int deleteUser(int userId);
 }

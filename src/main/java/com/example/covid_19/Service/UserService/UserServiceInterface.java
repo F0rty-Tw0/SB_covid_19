@@ -5,10 +5,8 @@ import com.example.covid_19.Model.User;
 import java.util.List;
 
 public interface UserServiceInterface {
-
     // CREATE
-
-    public User addUser(User user);
+    public int addUser(User user);
 
     // READ
     public User findUserById(int userId);
@@ -20,8 +18,12 @@ public interface UserServiceInterface {
     public List<User> viewAllUsers();
 
     // UPDATE
-    public User updateUser(int UserId, User user);
+    public int updateUser(User user);
+
+    public int updateUserStatus(User user);
+
+    public int updateUserRole(User user);
 
     // DELETE
-    public User deleteUser(int userId);
+    public int deleteUser(int userId);
 }
