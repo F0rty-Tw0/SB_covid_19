@@ -1,11 +1,9 @@
-package com.example.covid_19.Controller.Repository.BookingRepo;
-
+package com.example.covid_19.Service.BookingService;
+import com.example.covid_19.Model.Booking;
 import java.sql.Date;
 import java.util.List;
 
-import com.example.covid_19.Controller.Model.Booking;
-
-public interface BookingInterface {
+public interface BookingServiceInterface {
     // CREATE
     public Booking addBooking(Booking booking);
 

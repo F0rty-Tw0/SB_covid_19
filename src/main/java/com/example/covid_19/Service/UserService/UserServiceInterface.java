@@ -1,6 +1,6 @@
-package com.example.covid_19.Controller.Service.UserService;
+package com.example.covid_19.Service.UserService;
 
-import com.example.covid_19.Controller.Model.User;
+import com.example.covid_19.Model.User;
 
 import java.util.List;
 
@@ -18,8 +18,10 @@ public interface UserServiceInterface {
     public List<User> findUserByRole(int userRoleId);
 
     public List<User> viewAllUsers();
+
     // UPDATE
     public User updateUser(int UserId, User user);
+
     // DELETE
     public User deleteUser(int userId);
 }
