@@ -1,4 +1,4 @@
-package com.example.covid_19.Controller.Model;
+package com.example.covid_19.Model;
 
 import org.springframework.data.annotation.Id;
 

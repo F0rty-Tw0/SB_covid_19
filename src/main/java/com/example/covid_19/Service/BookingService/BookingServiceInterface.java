@@ -1,5 +1,5 @@
-package com.example.covid_19.Controller.Service.BookingService;
-import com.example.covid_19.Controller.Model.Booking;
+package com.example.covid_19.Service.BookingService;
+import com.example.covid_19.Model.Booking;
 import java.sql.Date;
 import java.util.List;
 

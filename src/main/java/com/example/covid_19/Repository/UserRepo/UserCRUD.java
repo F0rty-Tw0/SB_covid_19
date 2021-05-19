@@ -1,4 +1,4 @@
-package com.example.covid_19.Controller.Repository.UserRepo;
+package com.example.covid_19.Repository.UserRepo;
 
 public class UserCRUD {
   
