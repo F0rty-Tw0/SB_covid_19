@@ -1,6 +1,9 @@
 package com.example.covid_19.Controller.Repository.BookingRepo;
 
 import java.sql.Date;
+import java.util.List;
+
+import com.example.covid_19.Controller.Model.Booking;
 
 public interface BookingInterface {
     // CREATE

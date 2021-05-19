@@ -285,59 +285,6 @@ body {
 	max-width: 37em;
 }
 
-<<<<<<< HEAD
-.vaccine__column__left {
-	background-color: #61b6be;
-	border-radius: 8px;
-	min-height: 90vh;
-	font-size: 36px;
-	color: #fffdfd;
-	width: 53vw !important;
-	margin-left: -3vw !important;
-	column-fill: balance;
-}
-.vaccine__column__right {
-	background-color: #61b6be;
-	border-radius: 8px;
-	min-height: 90vh;
-	font-size: 36px;
-	color: #fffdfd;
-	width: 37vw !important;
-	margin-left: 11vw !important;
-	column-fill: balance;
-}
-.vaccine__line {
-	width: 80%;
-	margin-left: 10%;
-	margin-right: 10%;
-}
-.vaccine__text__bold {
-	font-size: 0.65em;
-	font-weight: bold;
-	text-align: left;
-	margin-bottom: 3vw;
-}
-.vaccine__text__normal {
-	font-size: 0.45em;
-	text-align: left;
-	margin-top: -3vw;
-}
-.vaccine__text__container {
-	margin-left: 1vw;
-}
-.button--red {
-	background-color: #cb5151 !important;
-	color: #fffdfd !important;
-	width: 80%;
-	font-weight: bold;
-}
-.vaccine__button {
-	margin-bottom: -25%;
-}
-.vaccine__container {
-	height: max-content;
-}
-=======
 .info__container {
 	margin: 15vh 0;
 }
@@ -355,7 +302,6 @@ body {
 .user__container {
 	margin: 5vh 15px;
 }
->>>>>>> 5105730c9831bce5a5d93db1fac390b7cea74d60
 
 @media screen and (max-width: 768px) {
 	.table__container {
@@ -366,20 +312,6 @@ body {
 	.about__container {
 		margin-top: 5vh;
 	}
-<<<<<<< HEAD
-	.vaccine__column__left,
-	.vaccine__column__right {
-		width: 90% !important;
-		margin-left: 5% !important;
-		margin-bottom: 10vh !important;
-	}
-}
-@media screen and (max-width: 1100px) {
-	.vaccine__button {
-		margin-bottom: 2% !important;
-	}
-=======
->>>>>>> 5105730c9831bce5a5d93db1fac390b7cea74d60
 }
 
 @media screen and (max-height: 992px) {
