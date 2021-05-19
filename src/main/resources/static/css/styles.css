@@ -19,6 +19,14 @@ body {
 	color: #5c5b5b;
 }
 
+.info__list {
+	font-size: 1.2em;
+	font-weight: 400;
+}
+
+.info__list li {
+	margin-bottom: 2em;
+}
 .wrapper {
 	min-height: 100vh;
 	background-image: url("/images/background.jpg");
@@ -83,10 +91,28 @@ body {
 	margin-top: 0vh !important;
 }
 
+.button--red {
+	font-size: 24px;
+	font-weight: bold;
+	line-height: 28px;
+	background-color: #cb5151;
+	color: #fff;
+	padding: 0.4em 0.7em;
+	margin-top: 1.25em;
+	border-radius: 8px;
+	border: none;
+	transition: 200ms ease;
+	margin-top: 0vh !important;
+}
+
+.vaccine__button {
+	margin-bottom: 0;
+}
+
 .button--white:hover,
-.button--red:hover,
 .button--dark:hover,
 .button--green:hover,
+.button--red:hover,
 .btn-secondary:hover {
 	transform: translate(0, -2px);
 	box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
@@ -110,15 +136,14 @@ body {
 	font-weight: 300;
 }
 
-.table__contact {
-	background-color: #4a8f92CC;
-}
-
-.table__booking {
+.table__booking,
+.table__info {
+	color: #ffffff;
 	background-color: #61b6beCC;
 }
 
-.table__hours {
+.table__hours,
+.table__contact {
 	background-color: #4a8f92CC;
 }
 
@@ -127,6 +152,16 @@ body {
 .table__hours {
 	color: #ffffff;
 	min-height: 25vh;
+}
+
+.table--full {
+	min-height: 51.3em;
+	border-radius: 8px;
+}
+
+.table--half {
+	min-height: 25em;
+	border-radius: 8px;
 }
 
 .about__box {
@@ -250,6 +285,7 @@ body {
 	max-width: 37em;
 }
 
+<<<<<<< HEAD
 .vaccine__column__left {
 	background-color: #61b6be;
 	border-radius: 8px;
@@ -301,6 +337,25 @@ body {
 .vaccine__container {
 	height: max-content;
 }
+=======
+.info__container {
+	margin: 15vh 0;
+}
+
+.user__logo {
+	position: absolute;
+	width: 15vh;
+	top: 5px;
+}
+
+.user__thumbnail {
+	margin-left: 5px;
+}
+
+.user__container {
+	margin: 5vh 15px;
+}
+>>>>>>> 5105730c9831bce5a5d93db1fac390b7cea74d60
 
 @media screen and (max-width: 768px) {
 	.table__container {
@@ -311,6 +366,7 @@ body {
 	.about__container {
 		margin-top: 5vh;
 	}
+<<<<<<< HEAD
 	.vaccine__column__left,
 	.vaccine__column__right {
 		width: 90% !important;
@@ -322,6 +378,8 @@ body {
 	.vaccine__button {
 		margin-bottom: 2% !important;
 	}
+=======
+>>>>>>> 5105730c9831bce5a5d93db1fac390b7cea74d60
 }
 
 @media screen and (max-height: 992px) {
