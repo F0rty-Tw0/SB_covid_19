@@ -9,6 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "booking")
+
 public class Booking {
   @Id
   private int bookingId;
@@ -23,9 +24,7 @@ public class Booking {
     this.bookingDate = bookingDate;
   }
 
-  public Booking() {
-
-  }
+  public Booking() {}
 
   @javax.persistence.Id
   public int getBookingId() {

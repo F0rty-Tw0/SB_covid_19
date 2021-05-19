@@ -2,7 +2,6 @@ package com.example.covid_19.Service.BookingService;
 
 import com.example.covid_19.Model.Booking;
 import com.example.covid_19.Repository.BookingRepo.BookingInterface;
-import com.example.covid_19.Repository.UserRepo.UserInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
