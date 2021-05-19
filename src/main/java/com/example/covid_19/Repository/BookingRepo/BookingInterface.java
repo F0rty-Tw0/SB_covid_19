@@ -1,4 +1,4 @@
-package com.example.covid_19.Controller.Repository.BookingRepo;
+package com.example.covid_19.Repository.BookingRepo;
 
 import java.sql.Date;
 import java.util.List;
