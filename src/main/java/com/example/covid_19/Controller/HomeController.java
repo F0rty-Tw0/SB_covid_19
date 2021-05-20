@@ -7,8 +7,9 @@ import com.example.covid_19.Model.Booking;
 import com.example.covid_19.Model.User;
 import com.example.covid_19.Service.UserService.UserServiceInterface;
 import com.example.covid_19.Service.BookingService.BookingServiceInterface;
+import com.example.covid_19.Service.PasswordService.PasswordServiceInterface;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,37 +19,33 @@ public class HomeController {
     @Autowired
     private UserServiceInterface users;
 
+    @Autowired
+    private BookingServiceInterface bookings;
 
-    User user = new User(85, "Nikolai Tofan", "password", "arti@gmail.com", 1234565,13131313, "testvej", 1,1);
+    @Autowired
+    private PasswordServiceInterface password;
 
     String str = "2015-03-31";
     Date date = Date.valueOf(str);// converting string into sql date
-
-    @Autowired
-    private BookingServiceInterface bookings;
 
     Booking booking = new Booking(2, "Nikolai", 2, date);
 
     @GetMapping("/")
     public String index() {
-        String password = "plainPassword";
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(10, new SecureRandom());
-        String encodedPassword = bCryptPasswordEncoder.encode(password);
-        System.out.println(encodedPassword);
-        System.out.println(bCryptPasswordEncoder.matches(password, encodedPassword));
+        // User user = new User(83, "Nikolai Tofan", password.encrypt("string"),
+        // "sart@gmail.com", 1934565, 9999999, "TESAT WAY", 1, 1) {
+        // };
 
-        try {
-            users.addUser(user);
-        } catch (RuntimeException e) {
-            System.out.println(e.getMessage());
-        }
+        // try {
+        // users.addUser(user);
+        // } catch (RuntimeException e) {
+        // System.out.println(e.getMessage());
+        // }
 
-       /* try {
-            users.addUser(user);
-        } catch (DataAccessException e) {
-            System.out.println("Please change the email and/or CPR");
-        }
-        */
+        User user = users.findUserById(111);
+
+        System.out.println(password.match("string", user.getUserPassword()));
+
         return "index";
     }
 

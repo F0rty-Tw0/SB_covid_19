@@ -1,7 +1,5 @@
 package com.example.covid_19.Repository.UserRepo;
 
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 import com.example.covid_19.Model.User;
@@ -22,17 +20,17 @@ public class UserCRUD implements UserInterface {
 
   @Override
   public int addUser(User user) {
-    User queryUser = findUserByEmail(user.getUserEmail());
-   
- if (queryUser.getUserEmail().equals(user.getUserEmail())) {
-      throw new RuntimeException(user.getUserEmail() + " already exists in the database");
-    } else if (queryUser.getUserCpr() == user.getUserCpr()) {
-      throw new RuntimeException(user.getUserCpr() + " already exists in the database");
-    } else {
-      String sql = "INSERT INTO " + table + " VALUES(?,?,?,?,?,?,?,?,?)";
+    String sql = "INSERT INTO " + table + " VALUES(?,?,?,?,?,?,?,?,?)";
+    try {
       return jdbc.update(sql, null, user.getUserName(), user.getUserPassword(), user.getUserEmail(), user.getUserCpr(),
-              user.getUserPhone(), user.getUserAddress(), 1, 1);
-
+          user.getUserPhone(), user.getUserAddress(), 1, 1);
+    } catch (RuntimeException e) {
+      if (e.getMessage().contains("userCpr_UNIQUE"))
+        throw new RuntimeException(user.getUserCpr() + " CPR already exists");
+      else if (e.getMessage().contains("userEmail_UNIQUE"))
+        throw new RuntimeException(user.getUserEmail() + " already exists");
+      else
+        throw new RuntimeException(e.getMessage());
     }
   };
 
