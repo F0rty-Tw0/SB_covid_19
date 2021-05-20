@@ -7,6 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "users")
+
 public class User {
   @Id
   private int userId;
@@ -18,6 +19,21 @@ public class User {
   private String userAddress;
   private int userStatusId;
   private int userRoleId;
+
+  public User(int userId, String userName, String userPassword, String userEmail, int userCpr, int userPhone,
+      String userAddress, int userStatusId, int userRoleId) {
+    this.userId = userId;
+    this.userName = userName;
+    this.userPassword = userPassword;
+    this.userEmail = userEmail;
+    this.userCpr = userCpr;
+    this.userPhone = userPhone;
+    this.userAddress = userAddress;
+    this.userStatusId = userStatusId;
+    this.userRoleId = userRoleId;
+  };
+
+  public User(){};
 
   @javax.persistence.Id
   public int getUserId() {
