@@ -23,10 +23,10 @@ public class UserCRUD implements UserInterface {
   @Override
   public int addUser(User user) {
     User queryUser = findUserByEmail(user.getUserEmail());
-    User CprUser = findUserByCpr(user.getUserCpr());
-    if (queryUser == CprUser) if (queryUser.getUserEmail().equals(user.getUserEmail())) {
+   
+ if (queryUser.getUserEmail().equals(user.getUserEmail())) {
       throw new RuntimeException(user.getUserEmail() + " already exists in the database");
-    } else if (CprUser.getUserCpr() == user.getUserCpr()) {
+    } else if (queryUser.getUserCpr() == user.getUserCpr()) {
       throw new RuntimeException(user.getUserCpr() + " already exists in the database");
     } else {
       String sql = "INSERT INTO " + table + " VALUES(?,?,?,?,?,?,?,?,?)";
@@ -34,7 +34,6 @@ public class UserCRUD implements UserInterface {
               user.getUserPhone(), user.getUserAddress(), 1, 1);
 
     }
-    return 0;
   };
 
   // READ
