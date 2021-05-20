@@ -34,7 +34,7 @@ public class UserCRUD implements UserInterface {
               user.getUserPhone(), user.getUserAddress(), 1, 1);
 
     }
-    return 1;
+    return 0;
   };
 
   // READ
