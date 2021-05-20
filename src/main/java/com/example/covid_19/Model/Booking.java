@@ -59,11 +59,6 @@ public class Booking {
     this.bookingDate = bookingDate;
   }
 
-  public Booking(int bookingId, String bookingName, int bookingTimeSlotId, Date bookingDate) {
-    this.bookingId = bookingId;
-    this.bookingName = bookingName;
-    this.bookingTimeSlotId = bookingTimeSlotId;
-    this.bookingDate = bookingDate;
-  }
+
 }
 

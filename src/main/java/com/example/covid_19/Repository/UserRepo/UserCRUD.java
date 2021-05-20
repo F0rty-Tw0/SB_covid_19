@@ -23,13 +23,18 @@ public class UserCRUD implements UserInterface {
   @Override
   public int addUser(User user) {
     User queryUser = findUserByEmail(user.getUserEmail());
-    if (queryUser.getUserEmail().equals(user.getUserEmail())) {
+    User CprUser = findUserByCpr(user.getUserCpr());
+    if (queryUser == CprUser) if (queryUser.getUserEmail().equals(user.getUserEmail())) {
       throw new RuntimeException(user.getUserEmail() + " already exists in the database");
+    } else if (CprUser.getUserCpr() == user.getUserCpr()) {
+      throw new RuntimeException(user.getUserCpr() + " already exists in the database");
     } else {
       String sql = "INSERT INTO " + table + " VALUES(?,?,?,?,?,?,?,?,?)";
       return jdbc.update(sql, null, user.getUserName(), user.getUserPassword(), user.getUserEmail(), user.getUserCpr(),
-          user.getUserPhone(), user.getUserAddress(), 1, 1);
+              user.getUserPhone(), user.getUserAddress(), 1, 1);
+
     }
+    return 1;
   };
 
   // READ

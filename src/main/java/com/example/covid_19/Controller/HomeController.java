@@ -8,6 +8,7 @@ import com.example.covid_19.Model.User;
 import com.example.covid_19.Service.UserService.UserServiceInterface;
 import com.example.covid_19.Service.BookingService.BookingServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +17,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
     @Autowired
     private UserServiceInterface users;
-    User user = new User(83, "Nikolai Tofan", "string", "art@gmail.com", 1234565, 9999999, "TESAT WAY", 1, 1) {
-    };
+
+
+    User user = new User(85, "Nikolai Tofan", "password", "arti@gmail.com", 1234565,13131313, "testvej", 1,1);
 
     String str = "2015-03-31";
     Date date = Date.valueOf(str);// converting string into sql date
@@ -40,7 +42,13 @@ public class HomeController {
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }
-        
+
+       /* try {
+            users.addUser(user);
+        } catch (DataAccessException e) {
+            System.out.println("Please change the email and/or CPR");
+        }
+        */
         return "index";
     }
 
