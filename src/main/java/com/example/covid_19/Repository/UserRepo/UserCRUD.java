@@ -1,5 +1,7 @@
 package com.example.covid_19.Repository.UserRepo;
 
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 import com.example.covid_19.Model.User;
@@ -20,9 +22,14 @@ public class UserCRUD implements UserInterface {
 
   @Override
   public int addUser(User user) {
-    String sql = "INSERT INTO " + table + " VALUES(?,?,?,?,?,?,?,?,?)";
-    return jdbc.update(sql, null, user.getUserName(), user.getUserPassword(), user.getUserEmail(), user.getUserCpr(),
-        user.getUserPhone(), user.getUserAddress(), 1, 1);
+    User queryUser = findUserByEmail(user.getUserEmail());
+    if (queryUser.getUserEmail().equals(user.getUserEmail())) {
+      throw new RuntimeException(user.getUserEmail() + " already exists in the database");
+    } else {
+      String sql = "INSERT INTO " + table + " VALUES(?,?,?,?,?,?,?,?,?)";
+      return jdbc.update(sql, null, user.getUserName(), user.getUserPassword(), user.getUserEmail(), user.getUserCpr(),
+          user.getUserPhone(), user.getUserAddress(), 1, 1);
+    }
   };
 
   // READ
@@ -39,6 +46,14 @@ public class UserCRUD implements UserInterface {
     String sql = "SELECT * FROM " + table + " WHERE userCpr = ?";
     RowMapper<User> rowMapper = new BeanPropertyRowMapper<>(User.class);
     User myUser = jdbc.queryForObject(sql, rowMapper, userCpr);
+    return myUser;
+  };
+
+  @Override
+  public User findUserByEmail(String userEmail) {
+    String sql = "SELECT * FROM " + table + " WHERE userEmail = ?";
+    RowMapper<User> rowMapper = new BeanPropertyRowMapper<>(User.class);
+    User myUser = jdbc.queryForObject(sql, rowMapper, userEmail);
     return myUser;
   };
 

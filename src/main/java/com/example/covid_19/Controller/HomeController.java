@@ -1,5 +1,6 @@
 package com.example.covid_19.Controller;
 
+import java.security.SecureRandom;
 import java.sql.Date;
 
 import com.example.covid_19.Model.Booking;
@@ -7,6 +8,7 @@ import com.example.covid_19.Model.User;
 import com.example.covid_19.Service.UserService.UserServiceInterface;
 import com.example.covid_19.Service.BookingService.BookingServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
     @Autowired
     private UserServiceInterface users;
-    User user = new User(83, "Nikolai Tofan", 1, "art@gmail.com", 1234565, 9999999, "TESAT WAY", 1, 1) {
+    User user = new User(83, "Nikolai Tofan", "string", "art@gmail.com", 1234565, 9999999, "TESAT WAY", 1, 1) {
     };
 
     String str = "2015-03-31";
@@ -27,6 +29,18 @@ public class HomeController {
 
     @GetMapping("/")
     public String index() {
+        String password = "plainPassword";
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(10, new SecureRandom());
+        String encodedPassword = bCryptPasswordEncoder.encode(password);
+        System.out.println(encodedPassword);
+        System.out.println(bCryptPasswordEncoder.matches(password, encodedPassword));
+
+        try {
+            users.addUser(user);
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
+        
         return "index";
     }
 

@@ -13,6 +13,8 @@ public interface UserInterface {
 
   public User findUserByCpr(int userCpr);
 
+  public User findUserByEmail(String userEmail);
+
   public List<User> findUserByRole(int userRoleId);
 
   public List<User> viewAllUsers();

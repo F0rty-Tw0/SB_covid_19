@@ -31,6 +31,11 @@ public class UserServiceCRUD implements UserServiceInterface {
   };
 
   @Override
+  public User findUserByEmail(String userEmail) {
+    return userInterface.findUserByEmail(userEmail);
+  };
+
+  @Override
   public List<User> findUserByRole(int userRoleId) {
     return userInterface.findUserByRole(userRoleId);
   };

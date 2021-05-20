@@ -12,7 +12,7 @@ public class User {
   @Id
   private int userId;
   private String userName;
-  private int userPasswordId;
+  private String userPassword;
   private String userEmail;
   private int userCpr;
   private int userPhone;
@@ -20,11 +20,11 @@ public class User {
   private int userStatusId;
   private int userRoleId;
 
-  public User(int userId, String userName, int userPasswordId, String userEmail, int userCpr, int userPhone,
+  public User(int userId, String userName, String userPassword, String userEmail, int userCpr, int userPhone,
       String userAddress, int userStatusId, int userRoleId) {
     this.userId = userId;
     this.userName = userName;
-    this.userPasswordId = userPasswordId;
+    this.userPassword = userPassword;
     this.userEmail = userEmail;
     this.userCpr = userCpr;
     this.userPhone = userPhone;
@@ -32,6 +32,8 @@ public class User {
     this.userStatusId = userStatusId;
     this.userRoleId = userRoleId;
   };
+
+  public User(){};
 
   @javax.persistence.Id
   public int getUserId() {
@@ -50,12 +52,12 @@ public class User {
     this.userName = userName;
   }
 
-  public int getUserPassword() {
-    return userPasswordId;
+  public String getUserPassword() {
+    return userPassword;
   }
 
-  public void setUserPassword(int userPasswordId) {
-    this.userPasswordId = userPasswordId;
+  public void setUserPassword(String userPassword) {
+    this.userPassword = userPassword;
   }
 
   public String getUserEmail() {
