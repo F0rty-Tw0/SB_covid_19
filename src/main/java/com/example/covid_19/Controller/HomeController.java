@@ -2,6 +2,7 @@ package com.example.covid_19.Controller;
 
 import java.security.SecureRandom;
 import java.sql.Date;
+import java.util.List;
 
 import com.example.covid_19.Model.Booking;
 import com.example.covid_19.Model.User;
@@ -25,11 +26,6 @@ public class HomeController {
     @Autowired
     private PasswordServiceInterface password;
 
-    String str = "2015-03-31";
-    Date date = Date.valueOf(str);// converting string into sql date
-
-    Booking booking = new Booking(2, "Nikolai", 2, date);
-
     @GetMapping("/")
     public String index() {
         // User user = new User(83, "Nikolai Tofan", password.encrypt("string"),
@@ -42,9 +38,22 @@ public class HomeController {
         // System.out.println(e.getMessage());
         // }
 
-        User user = users.findUserById(111);
+        // User user = users.findUserById(111);
 
-        System.out.println(password.match("string", user.getUserPassword()));
+        // System.out.println(password.match("string", user.getUserPassword()));
+
+        String str = "2015-03-31";
+        Date date = Date.valueOf(str);// converting string into sql date
+        // Booking booking = new Booking(0, "Nikolai", 3, date);
+        // bookings.addBooking(booking);
+        List<Booking> listOfBookings = bookings.findBookingByDate(date);
+
+        for (int i = 0; i < listOfBookings.size(); i++) {
+            System.out.println(listOfBookings.get(i).getBookingTimeSlotId());
+            int removingBooking = listOfBookings.get(i).getBookingTimeSlotId();        
+        }
+        System.out.println("remaining " + listOfBookings.get(0).getBookingTimeSlotId());
+
 
         return "index";
     }
