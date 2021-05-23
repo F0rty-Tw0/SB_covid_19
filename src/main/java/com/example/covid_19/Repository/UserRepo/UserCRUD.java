@@ -23,7 +23,7 @@ public class UserCRUD implements UserInterface {
   @Override
   public int addUser(User user) {
     User queryUser = findUserByEmail(user.getUserEmail());
-    if (queryUser.getUserEmail().equals(user.getUserEmail())) {
+    if (queryUser.getUserEmail().equals(user.getUserEmail()))  {
       throw new RuntimeException(user.getUserEmail() + " already exists in the database");
     } else {
       String sql = "INSERT INTO " + table + " VALUES(?,?,?,?,?,?,?,?,?)";
