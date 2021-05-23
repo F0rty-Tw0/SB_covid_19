@@ -32,8 +32,10 @@
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-12 table__booking">
-                        <div class="container text-center text--shadow" th:include="components/authentication"></div>
-                        <!-- <div class="container text-center text--shadow" th:include="components/booking"></div> -->
+                        <div th:if="!${session.isValidated}" class="container text-center text--shadow"
+                            th:include="components/authentication"></div>
+                        <div th:if="${session.isValidated}" class="container text-center text--shadow"
+                            th:include="components/booking"></div>
                     </div>
                     <div class="col-md-4 col-sm-12 table__hours">
                         <div class="container text--shadow">

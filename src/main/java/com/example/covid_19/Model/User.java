@@ -33,7 +33,8 @@ public class User {
     this.userRoleId = userRoleId;
   };
 
-  public User(){};
+  public User() {
+  };
 
   @javax.persistence.Id
   public int getUserId() {

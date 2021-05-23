@@ -304,6 +304,9 @@ body {
 }
 
 @media screen and (max-width: 768px) {
+	.nav__logout {
+		margin-top: 50px;
+	}
 	.table__container {
 		position: relative;
 		top: 15vh;

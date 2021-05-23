@@ -1,10 +1,9 @@
 package com.example.covid_19.Repository.UserRepo;
 
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 import com.example.covid_19.Model.User;
+import com.example.covid_19.Service.PasswordService.PasswordServiceInterface;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -17,18 +16,27 @@ public class UserCRUD implements UserInterface {
 
   @Autowired
   JdbcTemplate jdbc;
+
+  @Autowired
+  private PasswordServiceInterface password;
   private final String table = "users";
   // CREATE
 
   @Override
   public int addUser(User user) {
-    User queryUser = findUserByEmail(user.getUserEmail());
-    if (queryUser.getUserEmail().equals(user.getUserEmail()))  {
-      throw new RuntimeException(user.getUserEmail() + " already exists in the database");
-    } else {
-      String sql = "INSERT INTO " + table + " VALUES(?,?,?,?,?,?,?,?,?)";
-      return jdbc.update(sql, null, user.getUserName(), user.getUserPassword(), user.getUserEmail(), user.getUserCpr(),
+    String sql = "INSERT INTO " + table + " VALUES(?,?,?,?,?,?,?,?,?)";
+    String encryptedPassword = password.encrypt(user.getUserPassword());
+    
+    try {
+      return jdbc.update(sql, null, user.getUserName(), encryptedPassword, user.getUserEmail(), user.getUserCpr(),
           user.getUserPhone(), user.getUserAddress(), 1, 1);
+    } catch (RuntimeException e) {
+      if (e.getMessage().contains("userCpr_UNIQUE"))
+        throw new RuntimeException(user.getUserCpr() + " CPR already exists");
+      else if (e.getMessage().contains("userEmail_UNIQUE"))
+        throw new RuntimeException(user.getUserEmail() + " already exists");
+      else
+        throw new RuntimeException(e.getMessage());
     }
   };
 
