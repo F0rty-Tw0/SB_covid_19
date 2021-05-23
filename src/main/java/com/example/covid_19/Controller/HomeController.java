@@ -36,6 +36,13 @@ public class HomeController {
 
     @GetMapping("/")
     public String index() {
+
+        for (int i = 56; i < 75; i++) {
+            User user = users.findUserById(i);
+            user.setUserPassword("String");
+            users.updateUserPassword(user);
+        }
+
         // User user = new User(83, "Nikolai Tofan", password.encrypt("string"),
         // "sart@gmail.com", 1934565, 9999999, "TESAT WAY", 1, 1) {
         // };

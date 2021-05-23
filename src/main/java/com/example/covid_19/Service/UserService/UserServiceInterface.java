@@ -22,6 +22,8 @@ public interface UserServiceInterface {
     // UPDATE
     public int updateUser(User user);
 
+    public int updateUserPassword(User user);
+
     public int updateUserStatus(User user);
 
     public int updateUserRole(User user);

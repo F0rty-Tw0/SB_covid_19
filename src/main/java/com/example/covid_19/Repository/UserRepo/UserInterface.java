@@ -22,9 +22,12 @@ public interface UserInterface {
   // UPDATE
   public int updateUser(User user);
 
+  public int updateUserPassword(User user);
+
   public int updateUserStatus(User user);
 
   public int updateUserRole(User user);
+
 
   // DELETE
   public int deleteUser(int userId);

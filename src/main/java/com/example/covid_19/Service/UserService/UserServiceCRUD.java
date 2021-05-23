@@ -52,6 +52,9 @@ public class UserServiceCRUD implements UserServiceInterface {
   };
 
   @Override
+  public int updateUserPassword(User user) {return userInterface.updateUserPassword(user);}
+
+  @Override
   public int updateUserStatus(User user) {
     return userInterface.updateUserStatus(user);
   };

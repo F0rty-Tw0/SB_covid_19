@@ -83,10 +83,17 @@ public class UserCRUD implements UserInterface {
   @Override
   public int updateUser(User user) {
     String sql = "UPDATE " + table
-        + " SET userName = ?, userEmail = ?, userCpr = ?, userPhone = ?, userAddress = ? WHERE userId = ?";
-    return jdbc.update(sql, user.getUserName(), user.getUserEmail(), user.getUserCpr(), user.getUserPhone(),
+        + " SET userName = ?, userPassword = ?, userEmail = ?, userCpr = ?, userPhone = ?, userAddress = ? WHERE userId = ?";
+    return jdbc.update(sql, user.getUserName(), user.getUserPassword(), user.getUserEmail(), user.getUserCpr(), user.getUserPhone(),
         user.getUserAddress(), user.getUserId());
   };
+
+  @Override
+  public int updateUserPassword(User user) {
+    String sql = "UPDATE " + table + " SET userPassword = ? WHERE userId = ?";
+    String encryptedPassword = password.encrypt(user.getUserPassword());
+    return jdbc.update(sql, encryptedPassword, user.getUserId());
+  }
 
   @Override
   public int updateUserStatus(User user) {
