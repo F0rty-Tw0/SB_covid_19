@@ -7,7 +7,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "timeslots")
 
-
 public class TimeSlot {
     @Id
     private int timeSlotId;
@@ -21,6 +20,7 @@ public class TimeSlot {
         this.timeSlotName = timeSlotName;
     }
 
+    @javax.persistence.Id
     public int getTimeSlotId() {
         return timeSlotId;
     }

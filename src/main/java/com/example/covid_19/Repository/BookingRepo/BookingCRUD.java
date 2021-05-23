@@ -15,7 +15,7 @@ public class BookingCRUD implements BookingInterface {
 
     @Autowired
     JdbcTemplate jdbc;
-    private final String table = "booking";
+    private final String table = "bookings";
 
     @Override
     public int addBooking(Booking booking) {

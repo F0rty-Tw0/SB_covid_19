@@ -8,20 +8,18 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
 @Repository
-public class TimeSlotCRUD implements TimeSlotInterface{
+public class TimeSlotCRUD implements TimeSlotInterface {
 
     @Autowired
     JdbcTemplate jdbc;
     private final String table = "timeslots";
 
     @Override
-    public List<TimeSlot> viewAllTimeSlots(){
-        String sql = "SELECT * FROM" + table;
-        RowMapper <TimeSlot> rowMapper = new BeanPropertyRowMapper<>(TimeSlot.class);
+    public List<TimeSlot> viewAllTimeSlots() {
+        String sql = "SELECT * FROM " + table;
+        RowMapper<TimeSlot> rowMapper = new BeanPropertyRowMapper<>(TimeSlot.class);
         return jdbc.query(sql, rowMapper);
-
-
-
     };
 }
