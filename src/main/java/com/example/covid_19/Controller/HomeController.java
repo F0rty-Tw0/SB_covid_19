@@ -5,6 +5,8 @@ import java.sql.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpSession;
+
 import com.example.covid_19.Model.Booking;
 import com.example.covid_19.Model.TimeSlot;
 import com.example.covid_19.Model.User;
@@ -48,24 +50,24 @@ public class HomeController {
 
         // System.out.println(password.match("string", user.getUserPassword()));
 
-        String str = "2015-03-31";
-        Date date = Date.valueOf(str); // converting string into sql date
-        // Booking booking = new Booking(0, "Nikolai", 3, date);
-        // bookings.addBooking(booking);
-        List<Booking> listOfBookings = bookings.findBookingByDate(date);
-        List<TimeSlot> listOfTimeSlots = timeSlots.viewAllTimeSlots();
-        System.out.println(listOfTimeSlots.size());
+        // String str = "2015-03-31";
+        // Date date = Date.valueOf(str); // converting string into sql date
+        // // Booking booking = new Booking(0, "Nikolai", 3, date);
+        // // bookings.addBooking(booking);
+        // List<Booking> listOfBookings = bookings.findBookingByDate(date);
+        // List<TimeSlot> listOfTimeSlots = timeSlots.viewAllTimeSlots();
+        // System.out.println(listOfTimeSlots.size());
 
-        for (int i = 0; i < listOfBookings.size(); i++) {
-            System.out.println(listOfBookings.get(i).getBookingTimeSlotId());
-            int removingTimeSlot = listOfBookings.get(i).getBookingTimeSlotId();
+        // for (int i = 0; i < listOfBookings.size(); i++) {
+        //     System.out.println(listOfBookings.get(i).getBookingTimeSlotId());
+        //     int removingTimeSlot = listOfBookings.get(i).getBookingTimeSlotId();
 
-            listOfTimeSlots.removeIf(timeSlot -> timeSlot.getTimeSlotId() == removingTimeSlot);
-        }
+        //     listOfTimeSlots.removeIf(timeSlot -> timeSlot.getTimeSlotId() == removingTimeSlot);
+        // }
 
-        for (int i = 0; i < listOfTimeSlots.size(); i++) {
-            System.out.println(listOfTimeSlots.get(i).getTimeSlotId());
-        }
+        // for (int i = 0; i < listOfTimeSlots.size(); i++) {
+        //     System.out.println(listOfTimeSlots.get(i).getTimeSlotId());
+        // }
 
         return "index";
     }

@@ -1,10 +1,11 @@
 <h3 class="table__header">LOGIN</h3>
 <hr class="hr--dark">
-<form class="table__form">
-    <input required type="email" class="form-control box--shadow" placeholder="Email" id="inputEmail">
-    <input required type="password" class="form-control box--shadow" placeholder="Password" id="inputPassword">
+<form class="table__form" method="POST">
+    <input required type="login" name="login" class="form-control box--shadow" placeholder="Email or CPR" id="inputLogin">
+    <input required type="password" name="password" class="form-control box--shadow" placeholder="Password"
+        id="inputPassword">
 
-    <button type="submit" class="button--dark box--shadow">LOGIN</button>
+    <button type="submit" th:formaction="login" class="button--dark box--shadow">LOGIN</button>
 </form>
 
 <a class="float-start login__link no--shadow" data-bs-toggle="modal" data-bs-target="#registerModal">Register</a>

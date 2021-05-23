@@ -26,6 +26,7 @@ public class UserCRUD implements UserInterface {
   public int addUser(User user) {
     String sql = "INSERT INTO " + table + " VALUES(?,?,?,?,?,?,?,?,?)";
     String encryptedPassword = password.encrypt(user.getUserPassword());
+    
     try {
       return jdbc.update(sql, null, user.getUserName(), encryptedPassword, user.getUserEmail(), user.getUserCpr(),
           user.getUserPhone(), user.getUserAddress(), 1, 1);
