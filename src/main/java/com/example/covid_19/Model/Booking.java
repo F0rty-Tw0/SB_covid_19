@@ -13,18 +13,21 @@ import javax.persistence.Table;
 public class Booking {
   @Id
   private int bookingId;
+  private int bookingUserId;
   private String bookingName;
   private int bookingTimeSlotId;
   private Date bookingDate;
 
-  public Booking(int bookingId, String bookingName, int bookingTimeSlotId, Date bookingDate) {
+  public Booking(int bookingId, int bookingUserId, String bookingName, int bookingTimeSlotId, Date bookingDate) {
     this.bookingId = bookingId;
+    this.bookingUserId = bookingUserId;
     this.bookingName = bookingName;
     this.bookingTimeSlotId = bookingTimeSlotId;
     this.bookingDate = bookingDate;
   }
 
-  public Booking() {}
+  public Booking() {
+  }
 
   @javax.persistence.Id
   public int getBookingId() {
@@ -33,6 +36,14 @@ public class Booking {
 
   public void setBookingId(int bookingId) {
     this.bookingId = bookingId;
+  }
+
+  public int getBookingUserId() {
+    return bookingUserId;
+  }
+
+  public void setBookingUserId(int bookingUserId) {
+    this.bookingUserId = bookingUserId;
   }
 
   public String getBookingName() {
@@ -59,6 +70,4 @@ public class Booking {
     this.bookingDate = bookingDate;
   }
 
-
 }
-

@@ -4,6 +4,8 @@
 <form th:if="${bookingDate != null}" class="table__form" method="POST">
     <div class="row pb-3">
         <div class="col-xl-6">
+            <input readonly hidden="true" th:value="${session.loggedUser.getUserId}" required type="number" id="userId"
+                name="bookingUserId">
             <input readonly th:value="${bookingDate}" required class="form-control float-xl-start" type="date"
                 id="bookingDate" name="bookingDate">
         </div>
@@ -19,15 +21,21 @@
         <p>YOU WANT TO GET TESTED? OR GET A VACCINATED?</p>
         <div class="col-xl-6">
             <div class="form-check table__select float-xxl-start">
-                <input required class="form-check-input" type="radio" name="bookingName" value="Test" id="test"
-                    checked>
+                <input required class="form-check-input" type="radio" name="bookingName" value="Test" id="test" checked>
                 <label class="form-check-label" for="test">
                     TEST
                 </label>
             </div>
         </div>
         <div class="col-xl-6">
-            <div class="form-check table__select float-xxl-end">
+            <div th:if="${hasVaccine}" class="form-check table__select float-xxl-end">
+                <input disabled required class="form-check-input" type="radio" name="bookingName" value="Vaccine"
+                    id="vaccine">
+                <label class="form-check-label" for="vaccine">
+                    VACCINE
+                </label>
+            </div>
+            <div th:if="!${hasVaccine}" class="form-check table__select float-xxl-end">
                 <input required class="form-check-input" type="radio" name="bookingName" value="Vaccine" id="vaccine">
                 <label class="form-check-label" for="vaccine">
                     VACCINE

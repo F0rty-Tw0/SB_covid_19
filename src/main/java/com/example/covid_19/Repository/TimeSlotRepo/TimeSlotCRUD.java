@@ -22,4 +22,12 @@ public class TimeSlotCRUD implements TimeSlotInterface {
         RowMapper<TimeSlot> rowMapper = new BeanPropertyRowMapper<>(TimeSlot.class);
         return jdbc.query(sql, rowMapper);
     };
+
+    @Override
+    public String findTimeSlotById(int timeSlotId) {
+        String sql = "SELECT * FROM " + table + " WHERE timeSlotId = ?";
+        RowMapper<TimeSlot> rowMapper = new BeanPropertyRowMapper<>(TimeSlot.class);
+        TimeSlot myTimeSlot = jdbc.queryForObject(sql, rowMapper, timeSlotId);
+        return myTimeSlot.getTimeSlotName();
+    };
 }

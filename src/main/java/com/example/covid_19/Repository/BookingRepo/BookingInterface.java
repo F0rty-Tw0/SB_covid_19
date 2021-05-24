@@ -16,9 +16,12 @@ public interface BookingInterface {
 
     public List<Booking> findBookingByDate(Date bookingDate);
 
+    public List<Booking> findBookingByUserId(int bookingUserId);
+
     public List<Booking> viewAllBookings();
 
     public int findLatestBookingById();
+
     // UPDATE
     public int editBooking(Booking booking);
 

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PasswordService implements PasswordServiceInterface {
+public class PasswordServiceRepo implements PasswordServiceInterface {
 
   @Autowired
   PasswordInterface passwordInterface;

@@ -19,9 +19,9 @@ public class BookingCRUD implements BookingInterface {
 
     @Override
     public int addBooking(Booking booking) {
-        String sql = "INSERT INTO " + table + " VALUES(?,?,?,?)";
-        return jdbc.update(sql, null, booking.getBookingName(), booking.getBookingTimeSlotId(),
-                booking.getBookingDate());
+        String sql = "INSERT INTO " + table + " VALUES(?,?,?,?,?)";
+        return jdbc.update(sql, null, booking.getBookingUserId(), booking.getBookingName(),
+                booking.getBookingTimeSlotId(), booking.getBookingDate());
     }
 
     // READ
@@ -48,13 +48,21 @@ public class BookingCRUD implements BookingInterface {
     }
 
     @Override
+    public List<Booking> findBookingByUserId(int bookingUserId) {
+        String sql = "SELECT * FROM " + table + " WHERE bookingUserId = ?";
+        RowMapper<Booking> rowMapper = new BeanPropertyRowMapper<>(Booking.class);
+        return jdbc.query(sql, rowMapper, bookingUserId);
+    }
+
+    @Override
     public List<Booking> viewAllBookings() {
         String sql = "SELECT * FROM " + table;
         RowMapper<Booking> rowMapper = new BeanPropertyRowMapper<>(Booking.class);
         return jdbc.query(sql, rowMapper);
     }
+
     @Override
-    public int findLatestBookingById(){
+    public int findLatestBookingById() {
         String sql = "SELECT * FROM " + table + " ORDER BY bookingId DESC LIMIT 1";
         RowMapper<Booking> rowMapper = new BeanPropertyRowMapper<>(Booking.class);
         Booking myBooking = jdbc.queryForObject(sql, rowMapper);

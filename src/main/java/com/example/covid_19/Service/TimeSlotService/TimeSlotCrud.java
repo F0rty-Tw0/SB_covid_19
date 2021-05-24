@@ -17,4 +17,9 @@ public class TimeSlotCrud implements TimeSlotServiceInterface {
     public List<TimeSlot> viewAllTimeSlots() {
         return timeSlotInterface.viewAllTimeSlots();
     }
+
+    @Override
+    public String findTimeSlotById(int timeSlotId) {
+        return timeSlotInterface.findTimeSlotById(timeSlotId);
+    };
 }

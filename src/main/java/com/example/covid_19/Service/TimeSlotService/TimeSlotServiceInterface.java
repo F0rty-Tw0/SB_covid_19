@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface TimeSlotServiceInterface {
     public List<TimeSlot> viewAllTimeSlots();
+
+    public String findTimeSlotById(int timeSlotId);
 }

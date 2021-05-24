@@ -2,6 +2,7 @@ package com.example.covid_19.Controller;
 
 import java.security.SecureRandom;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,6 +10,7 @@ import java.util.stream.Collectors;
 import javax.servlet.http.HttpSession;
 
 import com.example.covid_19.Model.Booking;
+import com.example.covid_19.Model.History;
 import com.example.covid_19.Model.TimeSlot;
 import com.example.covid_19.Model.User;
 import com.example.covid_19.Service.UserService.UserServiceInterface;
@@ -41,12 +43,6 @@ public class HomeController {
 
     @GetMapping("/")
     public String index() {
-
-        for (int i = 56; i < 75; i++) {
-            User user = users.findUserById(i);
-            user.setUserPassword("String");
-            users.updateUserPassword(user);
-        }
 
         // User user = new User(83, "Nikolai Tofan", password.encrypt("string"),
         // "sart@gmail.com", 1934565, 9999999, "TESAT WAY", 1, 1) {
@@ -88,8 +84,23 @@ public class HomeController {
     }
 
     @GetMapping("/user")
-    public String user() {
+    public String user(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("loggedUser");
+        List<Booking> listOfUserBookings = bookings.findBookingByUserId(user.getUserId());
+
+        model.addAttribute("listOfUserBookings", listOfUserBookings);
+        model.addAttribute("timeSlots", timeSlots);
+
+        for (Booking booking : listOfUserBookings) {
+            if (booking.getBookingName().equals("Vaccine")) {
+                model.addAttribute("firstVaccine", booking.getBookingDate().toString());
+                model.addAttribute("secondVaccine", secondVaccine(booking.getBookingDate().toString()));
+            }
+        }
         return "user";
     }
 
+    public String secondVaccine(String firstVaccine) {
+        return LocalDate.parse(firstVaccine).plusDays(30).toString();
+    }
 }

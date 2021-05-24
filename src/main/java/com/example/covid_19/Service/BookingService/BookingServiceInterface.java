@@ -15,6 +15,8 @@ public interface BookingServiceInterface {
 
     public List<Booking> findBookingByDate(Date bookingDate);
 
+    public List<Booking> findBookingByUserId(int bookingUserId);
+
     public List<Booking> viewAllBookings();
 
     public int findLatestBookingById();

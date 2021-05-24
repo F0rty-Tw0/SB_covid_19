@@ -9,26 +9,46 @@ import java.sql.Date;
 import java.util.List;
 
 @Service
-public class BookingServiceCRUD implements BookingServiceInterface{
+public class BookingServiceCRUD implements BookingServiceInterface {
     @Autowired
     BookingInterface bookingInterface;
 
-    public int addBooking(Booking booking){return bookingInterface.addBooking(booking); }
+    public int addBooking(Booking booking) {
+        return bookingInterface.addBooking(booking);
+    }
 
     // READ
-    public Booking findBookingById(int bookingId){return bookingInterface.findBookingById(bookingId);}
+    public Booking findBookingById(int bookingId) {
+        return bookingInterface.findBookingById(bookingId);
+    }
 
-    public List<Booking> findBookingByTime(int bookingTimeSlotId){return bookingInterface.findBookingByTime(bookingTimeSlotId);}
+    public List<Booking> findBookingByTime(int bookingTimeSlotId) {
+        return bookingInterface.findBookingByTime(bookingTimeSlotId);
+    }
 
-    public List<Booking> findBookingByDate(Date bookingDate) {return bookingInterface.findBookingByDate(bookingDate);}
+    public List<Booking> findBookingByDate(Date bookingDate) {
+        return bookingInterface.findBookingByDate(bookingDate);
+    }
 
-    public List<Booking> viewAllBookings(){return bookingInterface.viewAllBookings();}
+    public List<Booking> findBookingByUserId(int bookingUserId) {
+        return bookingInterface.findBookingByUserId(bookingUserId);
+    }
 
-    public int findLatestBookingById() {return bookingInterface.findLatestBookingById();}
+    public List<Booking> viewAllBookings() {
+        return bookingInterface.viewAllBookings();
+    }
+
+    public int findLatestBookingById() {
+        return bookingInterface.findLatestBookingById();
+    }
 
     // UPDATE
-    public int editBooking(Booking booking){return bookingInterface.editBooking(booking);}
+    public int editBooking(Booking booking) {
+        return bookingInterface.editBooking(booking);
+    }
 
     // DELETE
-    public int deleteBooking(int bookingId){return bookingInterface.deleteBooking(bookingId);}
+    public int deleteBooking(int bookingId) {
+        return bookingInterface.deleteBooking(bookingId);
+    }
 }
