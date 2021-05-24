@@ -53,6 +53,13 @@ public class BookingCRUD implements BookingInterface {
         RowMapper<Booking> rowMapper = new BeanPropertyRowMapper<>(Booking.class);
         return jdbc.query(sql, rowMapper);
     }
+    @Override
+    public int findLatestBookingById(){
+        String sql = "SELECT * FROM " + table + " ORDER BY bookingId DESC LIMIT 1";
+        RowMapper<Booking> rowMapper = new BeanPropertyRowMapper<>(Booking.class);
+        Booking myBooking = jdbc.queryForObject(sql, rowMapper);
+        return myBooking.getBookingId();
+    }
 
     // UPDATE
     @Override

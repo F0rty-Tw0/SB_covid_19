@@ -17,6 +17,8 @@ public interface BookingServiceInterface {
 
     public List<Booking> viewAllBookings();
 
+    public int findLatestBookingById();
+
     // UPDATE
     public int editBooking(Booking booking);
 

@@ -24,6 +24,8 @@ public class BookingServiceCRUD implements BookingServiceInterface{
 
     public List<Booking> viewAllBookings(){return bookingInterface.viewAllBookings();}
 
+    public int findLatestBookingById() {return bookingInterface.findLatestBookingById();}
+
     // UPDATE
     public int editBooking(Booking booking){return bookingInterface.editBooking(booking);}
 

@@ -5,7 +5,9 @@ import java.util.List;
 
 import com.example.covid_19.Model.Booking;
 import com.example.covid_19.Model.TimeSlot;
+import com.example.covid_19.Model.User;
 import com.example.covid_19.Service.BookingService.BookingServiceInterface;
+import com.example.covid_19.Service.HistoryService.HistoryServiceInterface;
 import com.example.covid_19.Service.TimeSlotService.TimeSlotServiceInterface;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +17,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class BookingController {
 
+  @Autowired
+  HistoryServiceInterface history;
   @Autowired
   BookingServiceInterface bookings;
   @Autowired
@@ -42,8 +48,13 @@ public class BookingController {
   }
 
   @PostMapping("makeBooking")
-  public String makeBooking(@ModelAttribute Booking booking) {
+  public String makeBooking(@ModelAttribute Booking booking, HttpSession session) {
     bookings.addBooking(booking);
+    User user = (User) session.getAttribute("loggedUser");
+    System.out.println(user.getUserId());
+
+
+    history.addHistory(user.getUserId(),bookings.findLatestBookingById());
     return "redirect:/";
   }
 
