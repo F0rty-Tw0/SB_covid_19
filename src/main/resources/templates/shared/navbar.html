@@ -1,7 +1,8 @@
 <div th:if="${session.isValidated}" class="user__logo text-center">
     <a class="text-decoration-none" href="user"><img src="/images/loginThumbnail.png" class="user__thumbnail img-fluid"
             alt="Medical Logo">
-        <p th:text="${session.loggedUser.userName}" class="login__link d-none d-md-block">
+        <p th:if="${session.loggedUser != null}"
+            th:text="${session.loggedUser.userName}" class="login__link d-none d-md-block">
         </p>
     </a>
 </div>
