@@ -1,12 +1,25 @@
 <h3 class="table__header">BOOKING</h3>
 <hr class="hr--dark">
 
-<form class="table__form">
+<form th:if="${bookingDate != null}" class="table__form" method="POST">
     <div class="row pb-3">
-        <p>CHOOSE YOUR BOOKING</p>
+        <div class="col-xl-6">
+            <input readonly th:value="${bookingDate}" required class="form-control float-xl-start" type="date"
+                id="bookingDate" name="bookingDate">
+        </div>
+        <div class="col-xl-6">
+            <select required class="form-select float-xl-end" name="bookingTimeSlotId" aria-label="Choose Time">
+                <option value="" disabled selected>Choose Time</option>
+                <option th:each="timeSlot: ${listOfTimeSlots}" th:text="${timeSlot.getTimeSlotName()}"
+                    th:value="${timeSlot.getTimeSlotId()}"></option>
+            </select>
+        </div>
+    </div>
+    <div class="row pb-3">
+        <p>YOU WANT TO GET TESTED? OR GET A VACCINATED?</p>
         <div class="col-xl-6">
             <div class="form-check table__select float-xxl-start">
-                <input required class="form-check-input" type="radio" name="bookingCheck" value="test" id="test"
+                <input required class="form-check-input" type="radio" name="bookingName" value="Test" id="test"
                     checked>
                 <label class="form-check-label" for="test">
                     TEST
@@ -15,25 +28,23 @@
         </div>
         <div class="col-xl-6">
             <div class="form-check table__select float-xxl-end">
-                <input required class="form-check-input" type="radio" name="bookingCheck" value="vaccine" id="vaccine">
+                <input required class="form-check-input" type="radio" name="bookingName" value="Vaccine" id="vaccine">
                 <label class="form-check-label" for="vaccine">
                     VACCINE
                 </label>
             </div>
         </div>
     </div>
+    <button type="submit" th:formaction="makeBooking" class="button--dark box--shadow">BOOK NOW</button>
+</form>
+
+<form th:if="${bookingDate == null}" class="table__form" method="POST">
     <div class="row pb-3">
         <div class="col-xl-6">
             <input required class="form-control float-xl-start" type="date" id="bookingDate" name="bookingDate">
         </div>
         <div class="col-xl-6">
-            <select required class="form-select float-xl-end" name="time" aria-label="Choose Time">
-                <option value="" disabled selected>Choose Time</option>
-                <option value="14:30">14:30</option>
-                <option value="14:45">14:45</option>
-                <option value="15:00">15:00</option>
-            </select>
+            <button type="submit" th:formaction="selectedDate" class="button--dark box--shadow">BOOK NOW</button>
         </div>
     </div>
-    <button type="submit" class="button--dark box--shadow">BOOK NOW</button>
 </form>
