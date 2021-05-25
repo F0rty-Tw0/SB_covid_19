@@ -83,24 +83,5 @@ public class HomeController {
         return "vaccine";
     }
 
-    @GetMapping("/user")
-    public String user(Model model, HttpSession session) {
-        User user = (User) session.getAttribute("loggedUser");
-        List<Booking> listOfUserBookings = bookings.findBookingByUserId(user.getUserId());
 
-        model.addAttribute("listOfUserBookings", listOfUserBookings);
-        model.addAttribute("timeSlots", timeSlots);
-
-        for (Booking booking : listOfUserBookings) {
-            if (booking.getBookingName().equals("Vaccine")) {
-                model.addAttribute("firstVaccine", booking.getBookingDate().toString());
-                model.addAttribute("secondVaccine", secondVaccine(booking.getBookingDate().toString()));
-            }
-        }
-        return "user";
-    }
-
-    public String secondVaccine(String firstVaccine) {
-        return LocalDate.parse(firstVaccine).plusDays(30).toString();
-    }
 }

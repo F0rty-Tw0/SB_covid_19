@@ -5,57 +5,17 @@ const autoCompleteJS = new autoComplete({
 			// Loading placeholder text
 			document.querySelector('#autoComplete').setAttribute('placeholder', 'Loading...');
 			// Fetch External Data Source
-			const data = [
-				{
-					food: 'Sauce - Thousand Island',
-					cities: 'Soanindrariny',
-					animals: 'Common boubou shrike'
-				},
-				{
-					food: 'Wild Boar - Tenderloin',
-					cities: 'Luthu',
-					animals: 'Eastern diamondback rattlesnake'
-				},
-				{
-					food: 'Goat - Whole Cut',
-					cities: 'Kargowa',
-					animals: 'Sheep, red'
-				},
-				{
-					food: 'Cherries - Bing, Canned',
-					cities: 'Colonia Aurora',
-					animals: 'Sarus crane'
-				},
-				{
-					food: 'Table Cloth 62x120 Colour',
-					cities: 'Poykovskiy',
-					animals: 'Monster, gila'
-				},
-				{
-					food: 'Bag - Clear 7 Lb',
-					cities: 'Buenavista',
-					animals: 'Common genet'
-				},
-				{
-					food: 'Kippers - Smoked',
-					cities: 'Sypniewo',
-					animals: 'Weaver, red-billed buffalo'
-				}
-			];
+
+			const source = await fetch('/usersAutocomplete');
+			const data = await source.json();
+			console.log(data);
+
 			// Post Loading placeholder text
 			document.querySelector('#autoComplete').setAttribute('placeholder', autoCompleteJS.placeHolder);
 			// Returns Fetched data
 			return data;
 		},
-		key: [ 'food', 'cities', 'animals' ],
-		results: (list) => {
-			// Filter duplicates
-			const filteredResults = Array.from(new Set(list.map((value) => value.match))).map((food) => {
-				return list.find((value) => value.match === food);
-			});
-
-			return filteredResults;
-		}
+		key: [ 'food', 'cities', 'animals' ],		
 	},
 	trigger: {
 		event: [ 'input', 'focus' ]

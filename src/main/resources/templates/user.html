@@ -13,19 +13,34 @@
                             <div class="container">
                                 <h1 class="table__header text-center">PROFILE</h1>
                                 <hr class="hr--dark">
-                                <h3>Name</h3>
-                                <p th:text="${session.loggedUser.userName}"></p>
-                                <h3>Email</h3>
-                                <p th:text="${session.loggedUser.userEmail}"></p>
-                                <h3>Phone</h3>
-                                <p th:text="${session.loggedUser.userPhone}"></p>
-                                <h3>CPR</h3>
-                                <p th:text="${session.loggedUser.userCpr}"></p>
-                                <h3>Address</h3>
-                                <p th:text="${session.loggedUser.userAddress}"></p>
+                                <div th:if="${session.loggedUser.userRoleId != 2}">
+                                    <h3>Name</h3>
+                                    <p th:text="${session.loggedUser.userName}"></p>
+                                    <h3>Email</h3>
+                                    <p th:text="${session.loggedUser.userEmail}"></p>
+                                    <h3>Phone</h3>
+                                    <p th:text="${session.loggedUser.userPhone}"></p>
+                                    <h3>CPR</h3>
+                                    <p th:text="${session.loggedUser.userCpr}"></p>
+                                    <h3>Address</h3>
+                                    <p th:text="${session.loggedUser.userAddress}"></p>
 
-                                <div class="text-center pt-3">
-                                    <button type="submit" class="button--dark box--shadow">CORONA PASS</button>
+                                    <div class="text-center pt-3">
+                                        <button type="submit" class="button--dark box--shadow">CORONA PASS</button>
+                                    </div>
+                                </div>
+                                <div th:if="${session.loggedUser.userRoleId == 2}">
+                                    <div class="autoComplete_wrapper">
+                                        <input id="autoComplete" type="text" dir="ltr" spellcheck="false"
+                                            autocorrect="off" autocomplete="off" autocapitalize="off" maxlength="2048"
+                                            tabindex="1" role="combobox" aria-haspopup="true" aria-expanded="false"
+                                            aria-controls="autoComplete_list" aria-autocomplete="both"
+                                            placeholder="Search for a CPR &amp; or Email">
+                                        <div class="selection"></div>
+                                    </div>
+                                    <script
+                                        src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@9.1.1/dist/js/autoComplete.min.js"></script>
+                                    <script src="/js/script.js"></script>
                                 </div>
                             </div>
                         </div>
@@ -40,14 +55,31 @@
                                         APPOINTMENTS
                                     </h1>
                                     <hr class="hr--dark">
-                                    <p>
-                                        <strong> 25/05/2021</strong> at <strong>18:00</strong>
-                                        <br>
-                                        COVID-19 VACCINE, FIRST DOSE
-                                    </p>
-                                    <div class="text-center">
-                                        <button class="button--dark text-center box--shadow mx-5 mt-5">CANCEL
-                                            BOOKING</button>
+                                    <div th:if="${session.loggedUser.userRoleId != 2}">
+                                        <div th:if="${listOfUserBookings.size() != 0}">
+                                            <div th:each="booking : ${upcomingBookings}">
+                                                <p>
+                                                    <strong th:text="${booking.getBookingDate}"></strong> at <strong
+                                                        th:text="${timeSlots.findTimeSlotById(booking.getBookingTimeSlotId)}"></strong>
+                                                    <br>
+                                                    COVID19 <span class="text-uppercase"
+                                                        th:text="${booking.getBookingName}"></span>
+                                                </p>
+                                            </div>
+                                            <div class="text-center">
+                                                <button class="button--dark text-center box--shadow mx-5 mt-5">CANCEL
+                                                    BOOKING</button>
+                                            </div>
+                                        </div>
+                                        <div th:if="${upcomingBookings.size() == 0}">
+                                            <p class="text-center">
+                                                You have no upcoming appointments, <br>make sure to book one first.
+                                            </p>
+                                            <div class="text-center">
+                                                <button class="button--dark text-center box--shadow mx-5 mt-5">BOOK
+                                                    NOW</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -56,19 +88,32 @@
                             <div class="container text-center">
                                 <h1 class="table__header">VACCINATION STATUS</h1>
                                 <hr class="hr--dark">
-                                <p>
-                                    FIRST DOSE RECEIVED
-                                    <br>
-                                    <strong th:text="${firstVaccine}"></strong>
-                                </p>
-                                <br>
-                                <p>
-                                    SECOND DOSE RECEIVED
-                                    <br>
-                                    <strong th:text="${secondVaccine}"></strong>
-                                </p>
-                                <button class="button--dark text-center box--shadow mx-5 mt-2">VACCINE
-                                    PASS</button>
+                                <div th:if="${session.loggedUser.userRoleId != 2}">
+                                    <div th:if="${listOfUserBookings.size() != 0}">
+                                        <p>
+                                            FIRST DOSE DATE
+                                            <br>
+                                            <strong th:text="${firstVaccineDate}"></strong>
+                                        </p>
+                                        <br>
+                                        <p>
+                                            SECOND DOSE DATE
+                                            <br>
+                                            <strong th:text="${secondVaccineDate}"></strong>
+                                        </p>
+                                        <button class="button--dark text-center box--shadow mx-5 mt-2">VACCINE
+                                            PASS</button>
+                                    </div>
+                                    <div th:if="${listOfUserBookings.size() == 0}">
+                                        <p class="text-center">
+                                            You have no vaccinations, <br>make sure to book an appointment for it first.
+                                        </p>
+                                        <div class="text-center">
+                                            <button class="button--dark text-center box--shadow mx-5 mt-5">BOOK
+                                                NOW</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -80,20 +125,36 @@
                                     HISTORY
                                 </h1>
                                 <hr class="hr--dark">
-                                <ul class="list-unstyled">
-                                    <li th:each="booking : ${listOfUserBookings}" class="pb-2 pt-2">
-                                        <p> <strong th:text="${booking.getBookingDate}"></strong> at
-                                            <strong
-                                                th:text="${timeSlots.findTimeSlotById(booking.getBookingTimeSlotId)}"></strong>
-                                            <br>
-                                            COVID19 <span th:text="${booking.getBookingName}"></span><span
-                                                class="float-end fw-bold" th:text="${booking.getBookingName}"></span>
+                                <div th:if="${session.loggedUser.userRoleId != 2}">
+                                    <div th:if="${listOfUserBookings.size() != 0}">
+                                        <ul class="list-unstyled">
+                                            <li th:each="booking : ${listOfUserBookings}" class="pb-2 pt-2">
+                                                <p> <strong th:text="${booking.getBookingDate}"></strong> at
+                                                    <strong
+                                                        th:text="${timeSlots.findTimeSlotById(booking.getBookingTimeSlotId)}"></strong>
+                                                    <br>
+                                                    COVID19 <span th:text="${booking.getBookingName}"></span><span
+                                                        class="float-end fw-bold"
+                                                        th:text="${booking.getBookingName}"></span>
+                                                </p>
+                                            </li>
+                                        </ul>
+                                        <div class="text-center">
+                                            <button class="button--dark text-center box--shadow mx-5 mt-5">PRINT
+                                                HISTORY</button>
+                                        </div>
+                                    </div>
+                                    <div th:if="${listOfUserBookings.size() == 0}">
+                                        <p class="text-center">
+                                            You have no recent history of appointments, <br>make sure to book an
+                                            appointment
+                                            first.
                                         </p>
-                                    </li>
-                                </ul>
-                                <div class="text-center">
-                                    <button class="button--dark text-center box--shadow mx-5 mt-5">PRINT
-                                        HISTORY</button>
+                                        <div class="text-center">
+                                            <button class="button--dark text-center box--shadow mx-5 mt-5">BOOK
+                                                NOW</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
