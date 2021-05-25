@@ -15,7 +15,7 @@ const autoCompleteJS = new autoComplete({
 			// Returns Fetched data
 			return data;
 		},
-		key: [ 'food', 'cities', 'animals' ],		
+		key: [ 'userName', 'userEmail', 'userCpr' ]
 	},
 	trigger: {
 		event: [ 'input', 'focus' ]
@@ -52,11 +52,24 @@ const autoCompleteJS = new autoComplete({
 		document.querySelector('#autoComplete').blur();
 		// Prepare User's Selected Value
 		const selection = feedback.selection.value[feedback.selection.key];
-		// Render selected choice to selection div
-		document.querySelector('.selection').innerHTML = selection;
-		// Replace Input value with the selected value
-		document.querySelector('#autoComplete').value = selection;
-		// Console log autoComplete data feedback
-		console.log(feedback);
+		post('/findUser', selection, 'user');
 	}
 });
+
+function post(path, value, name, method = 'post') {
+	// The rest of this code assumes you are not using a library.
+	// It can be made less verbose if you use one.
+	const form = document.createElement('form');
+	form.method = method;
+	form.action = path;
+
+	const hiddenField = document.createElement('input');
+	hiddenField.type = 'hidden';
+	hiddenField.name = name;
+	hiddenField.value = value;
+
+	form.appendChild(hiddenField);
+
+	document.body.appendChild(form);
+	form.submit();
+}

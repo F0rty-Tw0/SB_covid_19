@@ -41,6 +41,22 @@
                                     <script
                                         src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@9.1.1/dist/js/autoComplete.min.js"></script>
                                     <script src="/js/script.js"></script>
+                                    <div th:if="${foundUser != null}">
+                                        <h3>Name</h3>
+                                        <p th:text="${foundUser.userName}"></p>
+                                        <h3>Email</h3>
+                                        <p th:text="${foundUser.userEmail}"></p>
+                                        <h3>Phone</h3>
+                                        <p th:text="${foundUser.userPhone}"></p>
+                                        <h3>CPR</h3>
+                                        <p th:text="${foundUser.userCpr}"></p>
+                                        <h3>Address</h3>
+                                        <p th:text="${foundUser.userAddress}"></p>
+
+                                        <div class="text-center pt-3">
+                                            <button type="submit" class="button--dark box--shadow">CORONA PASS</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
