@@ -15,6 +15,10 @@ body {
 	color: #4a8f92;
 }
 
+.color--red {
+	color: #f86060 !important;
+}
+
 .modal-title {
 	color: #5c5b5b;
 }

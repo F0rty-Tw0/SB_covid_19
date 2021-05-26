@@ -12,38 +12,100 @@ import com.example.covid_19.Model.User;
 import com.example.covid_19.Service.BookingService.BookingServiceInterface;
 import com.example.covid_19.Service.TimeSlotService.TimeSlotServiceInterface;
 import com.example.covid_19.Service.UserService.UserServiceInterface;
-import com.google.gson.Gson;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class UserController {
-  LocalDate date;
+  @Autowired
+  private BookingServiceInterface bookingService;
 
   @Autowired
-  private BookingServiceInterface bookings;
+  private TimeSlotServiceInterface timeSlotService;
 
   @Autowired
-  private TimeSlotServiceInterface timeSlots;
-
-  @Autowired
-  private UserServiceInterface users;
+  private UserServiceInterface userService;
 
   @GetMapping("/user")
   public String user(Model model, HttpSession session) {
     User user = (User) session.getAttribute("loggedUser");
-    List<Booking> listOfUserBookings = bookings.findBookingByUserId(user.getUserId());
+    fetchUser(model, user);
+    return "user";
+  }
+
+  @GetMapping("/usersAutocomplete")
+  @ResponseBody
+  public List<User> usersAutocomplete(HttpSession session) {
+    User user = (User) session.getAttribute("loggedUser");
+    if (!user.getUserRole().equals("User")) {
+      List<User> suggestions = userService.viewAllUsers();
+      return suggestions;
+    }
+    return null;
+  }
+
+  @PostMapping("/findUser")
+  public String findUser(Model model, HttpSession session, @ModelAttribute("userDetails") String userDetails) {
+    if (userDetails.contains("@")) {
+      try {
+        User foundUser = (User) userService.findUserByEmail(userDetails);
+        fetchUser(model, foundUser);
+      } catch (Exception e) {
+        System.out.println(e.getMessage());
+      }
+    } else {
+      try {
+        User foundUser = (User) userService.findUserByCpr(Integer.parseInt(userDetails));
+        fetchUser(model, foundUser);
+      } catch (Exception e) {
+        System.out.println(e.getMessage());
+      }
+    }
+    return "user";
+  }
+
+  @PostMapping("/deleteUser")
+  public String user(@ModelAttribute("userId") int userId, HttpSession session) {
+    User user = (User) session.getAttribute("loggedUser");
+    if (userId != user.getUserId()) {
+      userService.deleteUser(userId);
+    }
+    return "redirect:/user";
+  }
+
+  @PostMapping("/updateUser")
+  public String updateUser(@ModelAttribute User user, Model model) {
+    userService.updateUser(user);
+    fetchUser(model, user);
+    return "user";
+  }
+
+  @PostMapping("/updateStatus")
+  public String updateStatus(@ModelAttribute("userStatus") String userStatus, @ModelAttribute("userId") int userId,
+      Model model) {
+    userService.updateUserStatus(userStatus, userId);
+    User user = userService.findUserById(userId);
+    fetchUser(model, user);
+    return "user";
+  }
+
+  private void fetchUser(Model model, User user) {
+    List<Booking> listOfUserBookings = new ArrayList<Booking>();
     List<Booking> upcomingBookings = new ArrayList<Booking>();
+    listOfUserBookings.clear();
+    listOfUserBookings = bookingService.findBookingByUserId(user.getUserId());
 
     for (Booking booking : listOfUserBookings) {
       if (booking.getBookingName().equals("Vaccine")) {
         String firstVaccineDate = booking.getBookingDate().toString();
+        if (LocalDate.now().isAfter(LocalDate.parse(secondVaccine(firstVaccineDate)))) {
+          model.addAttribute("passAvailable", true);
+        }
         model.addAttribute("firstVaccineDate", firstVaccineDate);
         model.addAttribute("secondVaccineDate", secondVaccine(firstVaccineDate));
       }
@@ -55,36 +117,29 @@ public class UserController {
     sortBookings(listOfUserBookings);
     sortBookings(upcomingBookings);
 
+    model.addAttribute("user", user);
+    model.addAttribute("timeSlotService", timeSlotService);
     model.addAttribute("upcomingBookings", upcomingBookings);
     model.addAttribute("listOfUserBookings", listOfUserBookings);
-    model.addAttribute("timeSlots", timeSlots);
+    listOfUserBookings = bookingService.findBookingByUserId(user.getUserId());
+  }
+
+  @PostMapping("deleteBooking")
+  public String deleteBooking(@ModelAttribute("bookingId") int bookingId, @ModelAttribute("userId") int userId,
+      Model model) {
+    User user = userService.findUserById(userId);
+    bookingService.deleteBooking(bookingId);
+    fetchUser(model, user);
     return "user";
   }
 
-  public void sortBookings(List<Booking> listOfBookings) {
+  private void sortBookings(List<Booking> listOfBookings) {
     Collections.sort(listOfBookings,
         (booking1, booking2) -> booking1.getBookingDate().compareTo(booking2.getBookingDate()));
   }
 
-  public String secondVaccine(String firstVaccineDate) {
+  private String secondVaccine(String firstVaccineDate) {
     return LocalDate.parse(firstVaccineDate).plusDays(30).toString();
   }
 
-  @GetMapping("/usersAutocomplete")
-  @ResponseBody
-  public List<User> usersAutocomplete(HttpSession session) {
-    User user = (User) session.getAttribute("loggedUser");
-    if (user.getUserRoleId() == 2) {
-      List<User> suggestions = users.viewAllUsers();
-      return suggestions;
-    }
-    return null;
-  }
-
-  @PostMapping("/findUser")
-  public String findUser(@RequestParam(value = "user", required = true, defaultValue = "") String user, Model model) {
-    User foundUser = (User) users.findUserByEmail(user);
-    model.addAttribute("foundUser", foundUser);
-    return "user";
-  }
 }

@@ -26,10 +26,10 @@ public class UserCRUD implements UserInterface {
   public int addUser(User user) {
     String sql = "INSERT INTO " + table + " VALUES(?,?,?,?,?,?,?,?,?)";
     String encryptedPassword = password.encrypt(user.getUserPassword());
-    
+
     try {
       return jdbc.update(sql, null, user.getUserName(), encryptedPassword, user.getUserEmail(), user.getUserCpr(),
-          user.getUserPhone(), user.getUserAddress(), 1, 1);
+          user.getUserPhone(), user.getUserAddress(), "Unknown", "User");
     } catch (RuntimeException e) {
       if (e.getMessage().contains("userCpr_UNIQUE"))
         throw new RuntimeException(user.getUserCpr() + " CPR already exists");
@@ -66,10 +66,10 @@ public class UserCRUD implements UserInterface {
   };
 
   @Override
-  public List<User> findUserByRole(int userRoleId) {
-    String sql = "SELECT * FROM " + table + " WHERE userRoleId = ?";
+  public List<User> findUserByRole(String userRole) {
+    String sql = "SELECT * FROM " + table + " WHERE userRole = ?";
     RowMapper<User> rowMapper = new BeanPropertyRowMapper<>(User.class);
-    return jdbc.query(sql, rowMapper, userRoleId);
+    return jdbc.query(sql, rowMapper, userRole);
   };
 
   @Override
@@ -83,9 +83,9 @@ public class UserCRUD implements UserInterface {
   @Override
   public int updateUser(User user) {
     String sql = "UPDATE " + table
-        + " SET userName = ?, userPassword = ?, userEmail = ?, userCpr = ?, userPhone = ?, userAddress = ? WHERE userId = ?";
-    return jdbc.update(sql, user.getUserName(), user.getUserPassword(), user.getUserEmail(), user.getUserCpr(), user.getUserPhone(),
-        user.getUserAddress(), user.getUserId());
+        + " SET userName = ?, userEmail = ?, userCpr = ?, userPhone = ?, userAddress = ?, userRole = ? WHERE userId = ?";
+    return jdbc.update(sql, user.getUserName(), user.getUserEmail(), user.getUserCpr(), user.getUserPhone(),
+        user.getUserAddress(), user.getUserRole(), user.getUserId());
   };
 
   @Override
@@ -96,15 +96,15 @@ public class UserCRUD implements UserInterface {
   }
 
   @Override
-  public int updateUserStatus(User user) {
-    String sql = "UPDATE " + table + " SET userStatusId = ? WHERE userId = ?";
-    return jdbc.update(sql, user.getUserStatusId(), user.getUserId());
+  public int updateUserStatus(String userStatus, int userId) {
+    String sql = "UPDATE " + table + " SET userStatus = ? WHERE userId = ?";
+    return jdbc.update(sql, userStatus, userId);
   };
 
   @Override
   public int updateUserRole(User user) {
-    String sql = "UPDATE " + table + " SET userRoleId = ? WHERE userId = ?";
-    return jdbc.update(sql, user.getUserRoleId(), user.getUserId());
+    String sql = "UPDATE " + table + " SET userRole = ? WHERE userId = ?";
+    return jdbc.update(sql, user.getUserRole(), user.getUserId());
   };
 
   // DELETE

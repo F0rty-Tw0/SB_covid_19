@@ -8,19 +8,18 @@ const autoCompleteJS = new autoComplete({
 
 			const source = await fetch('/usersAutocomplete');
 			const data = await source.json();
-			console.log(data);
 
 			// Post Loading placeholder text
 			document.querySelector('#autoComplete').setAttribute('placeholder', autoCompleteJS.placeHolder);
 			// Returns Fetched data
 			return data;
 		},
-		key: [ 'userName', 'userEmail', 'userCpr' ]
+		key: [ 'userEmail', 'userCpr' ]
 	},
 	trigger: {
 		event: [ 'input', 'focus' ]
 	},
-	placeHolder: 'Search for Food & Drinks!',
+	placeHolder: 'Search for Email or CPR...',
 	searchEngine: 'strict',
 	resultsList: {
 		noResults: (list, query) => {
@@ -52,7 +51,7 @@ const autoCompleteJS = new autoComplete({
 		document.querySelector('#autoComplete').blur();
 		// Prepare User's Selected Value
 		const selection = feedback.selection.value[feedback.selection.key];
-		post('/findUser', selection, 'user');
+		post('/findUser', selection, 'userDetails');
 	}
 });
 

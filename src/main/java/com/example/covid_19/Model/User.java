@@ -17,11 +17,11 @@ public class User {
   private int userCpr;
   private int userPhone;
   private String userAddress;
-  private int userStatusId;
-  private int userRoleId;
+  private String userStatus;
+  private String userRole;
 
   public User(int userId, String userName, String userPassword, String userEmail, int userCpr, int userPhone,
-      String userAddress, int userStatusId, int userRoleId) {
+      String userAddress, String userStatus, String userRole) {
     this.userId = userId;
     this.userName = userName;
     this.userPassword = userPassword;
@@ -29,8 +29,8 @@ public class User {
     this.userCpr = userCpr;
     this.userPhone = userPhone;
     this.userAddress = userAddress;
-    this.userStatusId = userStatusId;
-    this.userRoleId = userRoleId;
+    this.userStatus = userStatus;
+    this.userRole = userRole;
   };
 
   public User() {
@@ -93,19 +93,19 @@ public class User {
     this.userAddress = userAddress;
   }
 
-  public int getUserStatusId() {
-    return userStatusId;
+  public String getUserStatus() {
+    return userStatus;
   }
 
-  public void setUserStatusId(int userStatusId) {
-    this.userStatusId = userStatusId;
+  public void setUserStatus(String userStatus) {
+    this.userStatus = userStatus;
   }
 
-  public int getUserRoleId() {
-    return userRoleId;
+  public String getUserRole() {
+    return userRole;
   }
 
-  public void setUserRoleId(int userRoleId) {
-    this.userRoleId = userRoleId;
+  public void setUserRole(String userRole) {
+    this.userRole = userRole;
   }
 }

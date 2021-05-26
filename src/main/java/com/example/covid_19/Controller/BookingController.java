@@ -22,18 +22,18 @@ import javax.servlet.http.HttpSession;
 public class BookingController {
 
   @Autowired
-  BookingServiceInterface bookings;
+  BookingServiceInterface bookingService;
   @Autowired
-  private TimeSlotServiceInterface timeSlots;
+  private TimeSlotServiceInterface timeSlotService;
 
   @PostMapping("selectedDate")
   public String selectDate(@RequestParam(value = "bookingDate", required = true, defaultValue = "") String bookingDate,
       Model model, HttpSession session) {
     Date date = Date.valueOf(bookingDate);
     User user = (User) session.getAttribute("loggedUser");
-    List<Booking> listOfBookings = bookings.findBookingByDate(date);
-    List<TimeSlot> listOfTimeSlots = timeSlots.viewAllTimeSlots();
-    List<Booking> listOfUserBookings = bookings.findBookingByUserId(user.getUserId());
+    List<Booking> listOfBookings = bookingService.findBookingByDate(date);
+    List<TimeSlot> listOfTimeSlots = timeSlotService.viewAllTimeSlots();
+    List<Booking> listOfUserBookings = bookingService.findBookingByUserId(user.getUserId());
 
     for (Booking booking : listOfBookings) {
       int removingTimeSlot = booking.getBookingTimeSlotId();
@@ -48,7 +48,7 @@ public class BookingController {
 
   @PostMapping("makeBooking")
   public String makeBooking(@ModelAttribute Booking booking) {
-    bookings.addBooking(booking);
+    bookingService.addBooking(booking);
     return "redirect:/";
   }
 

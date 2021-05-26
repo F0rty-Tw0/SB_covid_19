@@ -1,5 +1,7 @@
 package com.example.covid_19.Controller;
 
+import java.time.LocalDate;
+
 import javax.servlet.http.HttpSession;
 
 import com.example.covid_19.Model.User;
@@ -43,7 +45,6 @@ public class AuthenticationController {
       } catch (Exception e) {
         System.out.println(e.getMessage());
       }
-      System.out.println("Email: " + login);
     } else {
       try {
         user = users.findUserByCpr(Integer.parseInt(login));
@@ -51,10 +52,7 @@ public class AuthenticationController {
       } catch (Exception e) {
         System.out.println(e.getMessage());
       }
-      System.out.println("CPR: " + login);
     }
-
-    System.out.println(password);
     return "redirect:/";
   }
 
@@ -64,13 +62,14 @@ public class AuthenticationController {
     return "redirect:/";
   }
 
-  private void validateUser(String password, HttpSession session, User user) {
-    if (this.password.match(password, user.getUserPassword())) {
+  private void validateUser(String password, HttpSession session, User loggedUser) {
+    if (this.password.match(password, loggedUser.getUserPassword())) {
+      LocalDate date = LocalDate.now();
       session.setAttribute("isValidated", true);
-      session.setAttribute("loggedUser", user);
+      session.setAttribute("dateNow", date);
+      session.setAttribute("loggedUser", loggedUser);
     } else {
       session.setAttribute("isValidated", false);
     }
-    System.out.println(session.getAttribute("loggedUser"));
   }
 }

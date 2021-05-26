@@ -15,7 +15,7 @@ public interface UserServiceInterface {
 
     public User findUserByEmail(String userEmail);
 
-    public List<User> findUserByRole(int userRoleId);
+    public List<User> findUserByRole(String userRole);
 
     public List<User> viewAllUsers();
 
@@ -24,7 +24,7 @@ public interface UserServiceInterface {
 
     public int updateUserPassword(User user);
 
-    public int updateUserStatus(User user);
+    public int updateUserStatus(String userStatus, int userId);
 
     public int updateUserRole(User user);
 
