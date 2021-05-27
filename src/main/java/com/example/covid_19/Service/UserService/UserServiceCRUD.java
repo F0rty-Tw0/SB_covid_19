@@ -26,18 +26,13 @@ public class UserServiceCRUD implements UserServiceInterface {
   };
 
   @Override
-  public User findUserByCpr(int userCpr) {
+  public User findUserByCpr(long userCpr) {
     return userInterface.findUserByCpr(userCpr);
   };
 
   @Override
   public User findUserByEmail(String userEmail) {
     return userInterface.findUserByEmail(userEmail);
-  };
-
-  @Override
-  public List<User> findUserByRole(String userRole) {
-    return userInterface.findUserByRole(userRole);
   };
 
   @Override
@@ -52,18 +47,8 @@ public class UserServiceCRUD implements UserServiceInterface {
   };
 
   @Override
-  public int updateUserPassword(User user) {
-    return userInterface.updateUserPassword(user);
-  }
-
-  @Override
   public int updateUserStatus(String userStatus, int userId) {
     return userInterface.updateUserStatus(userStatus, userId);
-  };
-
-  @Override
-  public int updateUserRole(User user) {
-    return userInterface.updateUserRole(user);
   };
 
   // DELETE

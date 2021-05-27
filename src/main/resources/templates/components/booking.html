@@ -48,11 +48,13 @@
 
 <form th:if="${bookingDate == null}" class="table__form" method="POST">
     <div class="row pb-3">
-        <div class="col-xl-6">
-            <input required class="form-control float-xl-start" type="date" th:attr="min=${session.dateNow}" id="bookingDate" name="bookingDate">
+        <h2>Select your booking date:</h2>
+        <div class="col"></div>
+        <div class="col-md-7">
+            <input required class="form-control float-xl-start mb-5" type="date" th:attr="min=${session.dateNow}"
+                id="bookingDate" name="bookingDate">
+            <button type="submit" th:formaction="selectedDate" class="button--dark box--shadow">SELECT DATE</button>
         </div>
-        <div class="col-xl-6">
-            <button type="submit" th:formaction="selectedDate" class="button--dark box--shadow">BOOK NOW</button>
-        </div>
+        <div class="col"></div>
     </div>
 </form>

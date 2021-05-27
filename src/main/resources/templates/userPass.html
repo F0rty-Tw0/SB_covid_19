@@ -5,47 +5,60 @@
 
   <body>
     <div class="wrapper">
-      <div class="container body__pass">
-        <div class="container" id="vacPass">
-          <img src="/images/Danish_Police_Logo.png" class="logo__politi">
-          <img src="/images/sundhedsstyrelsen.png" class="float-end logo__sundhed">
-
-          <h3 class="text-center pass__header">VACCINE PASS</h3>
-          <table class="table-light table__pass">
+      <nav th:include="shared/navbar" class="navbar navbar-expand-lg navbar-dark text-uppercase" />
+      <script src="/js/print.js"></script>
+      <div class="body__pass about__box box--shadow">
+        <div class="container px-5 py-5" id="vacPass">
+          <img src="/images/police.png" width="100">
+          <img src="/images/health.png" width="200" class="float-end">
+          <h3 class="text-center about__header pt-5">COVID19 PASS</h3>
+          <br>
+          <table class="table-light">
             <tbody>
               <tr>
-                <th class="text__column__pass"> Name:</th>
-                <td th:text="${session.loggedUser.getUserName()}" class="text__credentials__pass"></td>
+                <th> Name:</th>
+                <td class="ml-5 float-end" th:text="${user.getUserName()}"></td>
               </tr>
               <tr>
-                <th class="text__column__pass"> Email:</th>
-                <td th:text="${session.loggedUser.getUserEmail()}" class="text__credentials__pass"></td>
+                <th> Email:</th>
+                <td class="float-end" th:text="${user.getUserEmail()}"></td>
               </tr>
               <tr>
-                <th class="text__column__pass"> Phone:</th>
-                <td th:text="${session.loggedUser.getUserPhone()}" class="text__credentials__pass"></td>
+                <th> Phone:</th>
+                <td class="float-end" th:text="${user.getUserPhone()}"></td>
               </tr>
               <tr>
-                <th class="text__column__pass"> CPR:</th>
-                <td th:text="${session.loggedUser.getUserCpr()}" class="text__credentials__pass"></td>
+                <th> CPR:</th>
+                <td class="float-end" th:text="${user.getUserCpr()}"></td>
               </tr>
               <tr>
-                <th class="text__column__pass"> Address:</th>
-                <td th:text="${session.loggedUser.getUserAddress()}" class="text__credentials__pass"></td>
+                <th> Address:</th>
+                <td class="float-end" th:text="${user.getUserAddress()}"></td>
               </tr>
-              <tr>
-                <th class="text__column__pass"> First dose:</th>
-                <td th:text="${firstVaccine}" class="text__credentials__pass"></td>
-              </tr>
-              <tr>
-                <th class="text__column__pass"> Second dose:</th>
-                <td th:text="${secondVaccine}" class="text__credentials__pass"></td>
-              </tr>
+              <span th:if="${!firstVaccineDate.equals('')}">
+                <tr>
+                  <th> First dose:</th>
+                  <td class="float-end" th:text="${firstVaccineDate}"></td>
+                </tr>
+                <tr>
+                  <th> Second dose:</th>
+                  <td class="float-end" th:text="${secondVaccineDate}"></td>
+                </tr>
+              </span>
             </tbody>
           </table>
+          <br>
+          <br>
+          <span th:if="${firstVaccineDate.equals('')}">
+            <h2 th:text="${'COVID19 Status: ' + user.getUserStatus}"></h2>
+          </span>
+          <img src="/images/stamp.jpg" width="100" class="float-end pass__stamp">
         </div>
-        <button onclick="history.go(-1);" class="button--dark text-center box--shadow mx-5 mt-5">BACK</button>
-        <button class="button--dark text-center box--shadow mx-5 mt-5 float-end" id="print">PRINT PASS</button>
+        <div class="pb-3">
+          <button onclick="history.go(-1);" class="button--dark text-center box--shadow mx-5 mt-5">BACK</button>
+          <button onclick="printDiv()" class="button--dark text-center box--shadow mx-5 mt-5 float-end" id="print">PRINT
+            PASS</button>
+        </div>
       </div>
     </div>
   </body>

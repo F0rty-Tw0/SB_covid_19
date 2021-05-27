@@ -39,7 +39,6 @@ public class BookingController {
       int removingTimeSlot = booking.getBookingTimeSlotId();
       listOfTimeSlots.removeIf(timeSlot -> timeSlot.getTimeSlotId() == removingTimeSlot);
     }
-    System.out.println(containsVaccine(listOfUserBookings));
     model.addAttribute("listOfTimeSlots", listOfTimeSlots);
     model.addAttribute("bookingDate", bookingDate);
     model.addAttribute("hasVaccine", containsVaccine(listOfUserBookings));
@@ -49,7 +48,7 @@ public class BookingController {
   @PostMapping("makeBooking")
   public String makeBooking(@ModelAttribute Booking booking) {
     bookingService.addBooking(booking);
-    return "redirect:/";
+    return "redirect:/success";
   }
 
   public boolean containsVaccine(final List<Booking> listOfUserBookings) {

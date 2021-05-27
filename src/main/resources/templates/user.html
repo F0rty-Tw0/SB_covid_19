@@ -6,6 +6,8 @@
     <body>
         <div class="wrapper">
             <nav th:include="shared/navbar" class="navbar navbar-expand-lg navbar-dark text-uppercase" />
+            <script src="/js/print.js"></script>
+
             <div class="user__container">
                 <div class="row">
                     <div class="col-lg-4 col-md-12">
@@ -15,16 +17,19 @@
                                 <hr class="hr--dark">
                                 <div th:if="!${session.loggedUser.userRole.equals('User')}">
                                     <div class="autoComplete_wrapper">
+                                        <h3 class="d-inline">Search: </h3>
                                         <input id="autoComplete" type="text" dir="ltr" spellcheck="false"
-                                            autocorrect="off" autocomplete="off" autocapitalize="off" maxlength="2048"
-                                            tabindex="1" role="combobox" aria-haspopup="true" aria-expanded="false"
-                                            aria-controls="autoComplete_list" aria-autocomplete="both"
-                                            placeholder="Search for a CPR &amp; or Email">
+                                            class="d-inline" autocorrect="off" autocomplete="off" autocapitalize="off"
+                                            maxlength="2048" tabindex="1" role="combobox" aria-haspopup="true"
+                                            aria-expanded="false" aria-controls="autoComplete_list"
+                                            aria-autocomplete="both" placeholder="Search for a CPR &amp; or Email">
                                         <div class="selection"></div>
                                     </div>
                                     <script
                                         src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@9.1.1/dist/js/autoComplete.min.js"></script>
                                     <script src="/js/autocomplete.js"></script>
+                                    <br>
+                                    <br>
                                 </div>
                                 <h3>Name</h3>
                                 <p th:text="${user.userName}"></p>
@@ -192,7 +197,10 @@
                                     <form method="GET">
                                         <input readonly hidden="true" type="hidden" name="passAvailable"
                                             th:value="true">
-                                        <button th:formaction="userPass" type="submit" class="button--dark box--shadow">CORONA PASS</button>
+                                        <input readonly hidden="true" type="hidden" name="userId"
+                                            th:value="${user.userId}">
+                                        <button th:formaction="userPass" type="submit"
+                                            class="button--dark box--shadow">COVID19 PASS</button>
                                     </form>
                                 </div>
                             </div>
@@ -255,8 +263,8 @@
                                                 You have no upcoming appointments, <br>make sure to book one first.
                                             </p>
                                             <div class="text-center">
-                                                <button class="button--dark text-center box--shadow mx-5 mt-5">BOOK
-                                                    NOW</button>
+                                                <a href='/' class="button--dark text-center box--shadow mx-5 mt-5">BOOK
+                                                    NOW</a>
                                             </div>
                                         </div>
                                         <div th:if="!${session.loggedUser.userRole.equals('User')}">
@@ -274,7 +282,7 @@
                             <div class="container text-center">
                                 <h1 class="table__header">VACCINATION STATUS</h1>
                                 <hr class="hr--dark">
-                                <div th:if="${listOfUserBookings.size() != 0}">
+                                <div th:if="${firstVaccineDate != null  && listOfUserBookings.size() != 0}">
                                     <p>
                                         FIRST DOSE DATE
                                         <br>
@@ -286,20 +294,25 @@
                                         <br>
                                         <strong th:text="${secondVaccineDate}"></strong>
                                     </p>
-                                    <form method="GET">
+                                    <form method="GET" th:if="${passAvailable}">
                                         <input readonly hidden="true" type="hidden" name="passAvailable"
                                             th:value="true">
-                                        <button th:formaction="userPass" type="submit" class="button--dark box--shadow">VACCINE PASS</button>
+                                        <input readonly hidden="true" type="hidden" name="userId"
+                                            th:value="${user.userId}">
+                                        <input readonly hidden="true" type="hidden" name="firstVaccineDate"
+                                            th:value="${firstVaccineDate}">
+                                        <button th:formaction="userPass" type="submit"
+                                            class="button--dark box--shadow">VACCINE PASS</button>
                                     </form>
                                 </div>
-                                <div th:if="${listOfUserBookings.size() == 0}">
+                                <div th:if="${firstVaccineDate == null}">
                                     <div th:if="${session.loggedUser.userRole.equals('User')}">
                                         <p class="text-center">
                                             You have no vaccinations, <br>make sure to book an appointment for it first.
                                         </p>
                                         <div class="text-center">
-                                            <button class="button--dark text-center box--shadow mx-5 mt-5">BOOK
-                                                NOW</button>
+                                            <a href='/' class="button--dark text-center box--shadow mx-5 mt-5">BOOK
+                                                NOW</a>
                                         </div>
                                     </div>
                                     <div th:if="!${session.loggedUser.userRole.equals('User')}">
@@ -322,7 +335,7 @@
                                 </h1>
                                 <hr class="hr--dark">
                                 <div th:if="${listOfUserBookings.size() != 0}">
-                                    <ul class="list-unstyled">
+                                    <ul class="list-unstyled" id="vacPass">
                                         <li th:each="booking : ${listOfUserBookings}" class="pb-2 pt-2">
                                             <p> <strong th:text="${booking.getBookingDate}"></strong> at
                                                 <strong
@@ -335,7 +348,8 @@
                                         </li>
                                     </ul>
                                     <div class="text-center">
-                                        <button class="button--dark text-center box--shadow mx-5 mt-5">PRINT
+                                        <button onclick="printDiv()"
+                                            class="button--dark text-center box--shadow mx-5 mt-5">PRINT
                                             HISTORY</button>
                                     </div>
                                 </div>
@@ -347,8 +361,8 @@
                                             first.
                                         </p>
                                         <div class="text-center">
-                                            <button class="button--dark text-center box--shadow mx-5 mt-5">BOOK
-                                                NOW</button>
+                                            <a href="/" class="button--dark text-center box--shadow mx-5 mt-5">BOOK
+                                                NOW</a>
                                         </div>
                                     </div>
                                     <div th:if="!${session.loggedUser.userRole.equals('User')}">

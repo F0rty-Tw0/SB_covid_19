@@ -12,14 +12,6 @@ public class TimeSlot {
     private int timeSlotId;
     private String timeSlotName;
 
-    public TimeSlot() {
-    }
-
-    public TimeSlot(int timeSlotId, String timeSlotName) {
-        this.timeSlotId = timeSlotId;
-        this.timeSlotName = timeSlotName;
-    }
-
     @javax.persistence.Id
     public int getTimeSlotId() {
         return timeSlotId;

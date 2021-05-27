@@ -50,7 +50,7 @@ public class UserCRUD implements UserInterface {
   };
 
   @Override
-  public User findUserByCpr(int userCpr) {
+  public User findUserByCpr(long userCpr) {
     String sql = "SELECT * FROM " + table + " WHERE userCpr = ?";
     RowMapper<User> rowMapper = new BeanPropertyRowMapper<>(User.class);
     User myUser = jdbc.queryForObject(sql, rowMapper, userCpr);
@@ -63,13 +63,6 @@ public class UserCRUD implements UserInterface {
     RowMapper<User> rowMapper = new BeanPropertyRowMapper<>(User.class);
     User myUser = jdbc.queryForObject(sql, rowMapper, userEmail);
     return myUser;
-  };
-
-  @Override
-  public List<User> findUserByRole(String userRole) {
-    String sql = "SELECT * FROM " + table + " WHERE userRole = ?";
-    RowMapper<User> rowMapper = new BeanPropertyRowMapper<>(User.class);
-    return jdbc.query(sql, rowMapper, userRole);
   };
 
   @Override
@@ -89,22 +82,9 @@ public class UserCRUD implements UserInterface {
   };
 
   @Override
-  public int updateUserPassword(User user) {
-    String sql = "UPDATE " + table + " SET userPassword = ? WHERE userId = ?";
-    String encryptedPassword = password.encrypt(user.getUserPassword());
-    return jdbc.update(sql, encryptedPassword, user.getUserId());
-  }
-
-  @Override
   public int updateUserStatus(String userStatus, int userId) {
     String sql = "UPDATE " + table + " SET userStatus = ? WHERE userId = ?";
     return jdbc.update(sql, userStatus, userId);
-  };
-
-  @Override
-  public int updateUserRole(User user) {
-    String sql = "UPDATE " + table + " SET userRole = ? WHERE userId = ?";
-    return jdbc.update(sql, user.getUserRole(), user.getUserId());
   };
 
   // DELETE

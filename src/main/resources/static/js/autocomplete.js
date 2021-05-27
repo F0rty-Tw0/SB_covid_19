@@ -26,7 +26,7 @@ const autoCompleteJS = new autoComplete({
 			// No Results List Message
 			const message = document.createElement('div');
 			message.setAttribute('class', 'no_result');
-			message.innerHTML = `<span style="display: flex; align-items: center; font-weight: 100; color: rgba(0,0,0,.2);">Found No Results for "${query}"</span>`;
+			message.innerHTML = `<span style="display: flex; align-items: center; font-weight: 100; color: rgba(0,0,0,.9); margin-left: 10px;">Found No Results for "${query}"</span>`;
 			list.appendChild(message);
 		}
 	},

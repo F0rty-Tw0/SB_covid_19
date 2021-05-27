@@ -18,13 +18,6 @@ public class BookingServiceCRUD implements BookingServiceInterface {
     }
 
     // READ
-    public Booking findBookingById(int bookingId) {
-        return bookingInterface.findBookingById(bookingId);
-    }
-
-    public List<Booking> findBookingByTime(int bookingTimeSlotId) {
-        return bookingInterface.findBookingByTime(bookingTimeSlotId);
-    }
 
     public List<Booking> findBookingByDate(Date bookingDate) {
         return bookingInterface.findBookingByDate(bookingDate);
@@ -32,19 +25,6 @@ public class BookingServiceCRUD implements BookingServiceInterface {
 
     public List<Booking> findBookingByUserId(int bookingUserId) {
         return bookingInterface.findBookingByUserId(bookingUserId);
-    }
-
-    public List<Booking> viewAllBookings() {
-        return bookingInterface.viewAllBookings();
-    }
-
-    public int findLatestBookingById() {
-        return bookingInterface.findLatestBookingById();
-    }
-
-    // UPDATE
-    public int editBooking(Booking booking) {
-        return bookingInterface.editBooking(booking);
     }
 
     // DELETE

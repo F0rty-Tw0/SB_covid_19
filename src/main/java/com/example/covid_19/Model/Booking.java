@@ -18,17 +18,6 @@ public class Booking {
   private int bookingTimeSlotId;
   private Date bookingDate;
 
-  public Booking(int bookingId, int bookingUserId, String bookingName, int bookingTimeSlotId, Date bookingDate) {
-    this.bookingId = bookingId;
-    this.bookingUserId = bookingUserId;
-    this.bookingName = bookingName;
-    this.bookingTimeSlotId = bookingTimeSlotId;
-    this.bookingDate = bookingDate;
-  }
-
-  public Booking() {
-  }
-
   @javax.persistence.Id
   public int getBookingId() {
     return bookingId;

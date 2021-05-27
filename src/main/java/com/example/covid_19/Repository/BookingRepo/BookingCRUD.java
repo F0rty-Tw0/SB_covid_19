@@ -26,21 +26,6 @@ public class BookingCRUD implements BookingInterface {
 
     // READ
     @Override
-    public Booking findBookingById(int bookingId) {
-        String sql = "SELECT * FROM " + table + " WHERE bookingId = ?";
-        RowMapper<Booking> rowMapper = new BeanPropertyRowMapper<>(Booking.class);
-        Booking myBooking = jdbc.queryForObject(sql, rowMapper, bookingId);
-        return myBooking;
-    }
-
-    @Override
-    public List<Booking> findBookingByTime(int bookingTimeSlotId) {
-        String sql = "SELECT * FROM " + table + " WHERE bookingTimeSlotId = ?";
-        RowMapper<Booking> rowMapper = new BeanPropertyRowMapper<>(Booking.class);
-        return jdbc.query(sql, rowMapper, bookingTimeSlotId);
-    }
-
-    @Override
     public List<Booking> findBookingByDate(Date bookingDate) {
         String sql = "SELECT * FROM " + table + " WHERE bookingDate = ?";
         RowMapper<Booking> rowMapper = new BeanPropertyRowMapper<>(Booking.class);
@@ -52,30 +37,6 @@ public class BookingCRUD implements BookingInterface {
         String sql = "SELECT * FROM " + table + " WHERE bookingUserId = ?";
         RowMapper<Booking> rowMapper = new BeanPropertyRowMapper<>(Booking.class);
         return jdbc.query(sql, rowMapper, bookingUserId);
-    }
-
-    @Override
-    public List<Booking> viewAllBookings() {
-        String sql = "SELECT * FROM " + table;
-        RowMapper<Booking> rowMapper = new BeanPropertyRowMapper<>(Booking.class);
-        return jdbc.query(sql, rowMapper);
-    }
-
-    @Override
-    public int findLatestBookingById() {
-        String sql = "SELECT * FROM " + table + " ORDER BY bookingId DESC LIMIT 1";
-        RowMapper<Booking> rowMapper = new BeanPropertyRowMapper<>(Booking.class);
-        Booking myBooking = jdbc.queryForObject(sql, rowMapper);
-        return myBooking.getBookingId();
-    }
-
-    // UPDATE
-    @Override
-    public int editBooking(Booking booking) {
-        String sql = "UPDATE " + table
-                + " SET bookingName = ?, bookingTimeSlotId = ?, bookingDate = ? WHERE bookingId = ?";
-        return jdbc.update(sql, booking.getBookingName(), booking.getBookingTimeSlotId(), booking.getBookingDate(),
-                booking.getBookingId());
     }
 
     // DELETE

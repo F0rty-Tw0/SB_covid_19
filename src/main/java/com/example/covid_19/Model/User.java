@@ -14,27 +14,11 @@ public class User {
   private String userName;
   private String userPassword;
   private String userEmail;
-  private int userCpr;
+  private long userCpr;
   private int userPhone;
   private String userAddress;
   private String userStatus;
   private String userRole;
-
-  public User(int userId, String userName, String userPassword, String userEmail, int userCpr, int userPhone,
-      String userAddress, String userStatus, String userRole) {
-    this.userId = userId;
-    this.userName = userName;
-    this.userPassword = userPassword;
-    this.userEmail = userEmail;
-    this.userCpr = userCpr;
-    this.userPhone = userPhone;
-    this.userAddress = userAddress;
-    this.userStatus = userStatus;
-    this.userRole = userRole;
-  };
-
-  public User() {
-  };
 
   @javax.persistence.Id
   public int getUserId() {
@@ -69,11 +53,11 @@ public class User {
     this.userEmail = userEmail;
   }
 
-  public int getUserCpr() {
+  public long getUserCpr() {
     return userCpr;
   }
 
-  public void setUserCpr(int userCpr) {
+  public void setUserCpr(long userCpr) {
     this.userCpr = userCpr;
   }
 

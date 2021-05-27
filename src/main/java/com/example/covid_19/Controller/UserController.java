@@ -18,7 +18,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -52,8 +51,15 @@ public class UserController {
   }
 
   @GetMapping("/userPass")
-  public String pass(@ModelAttribute("passAvailable") String passAvailable) {
+  public String pass(@ModelAttribute("passAvailable") String passAvailable, @ModelAttribute("userId") int userId,
+      @ModelAttribute("firstVaccineDate") String firstVaccineDate, Model model) {
     if (passAvailable.equals("true")) {
+      User user = userService.findUserById(userId);
+      if (!firstVaccineDate.equals("")) {
+        model.addAttribute("firstVaccineDate", firstVaccineDate);
+        model.addAttribute("secondVaccineDate", secondVaccine(firstVaccineDate));
+      }
+      fetchUser(model, user);
       return "userPass";
     }
     return "index";

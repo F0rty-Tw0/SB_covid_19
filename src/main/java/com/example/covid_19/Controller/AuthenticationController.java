@@ -23,14 +23,13 @@ public class AuthenticationController {
 
   @PostMapping("/register")
   public String register(@ModelAttribute User user) {
-    System.out.println(user.getUserPassword());
     try {
       users.addUser(user);
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }
 
-    return "redirect:/";
+    return "redirect:/success";
   }
 
   @PostMapping("/login")
