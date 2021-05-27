@@ -189,7 +189,11 @@
                                 </div>
                                 <div th:if="${session.loggedUser.userRole.equals('User') && session.loggedUser.userStatus.equals('Negative')}"
                                     class="text-center pt-3">
-                                    <button type="submit" class="button--dark box--shadow">CORONA PASS</button>
+                                    <form method="GET">
+                                        <input readonly hidden="true" type="hidden" name="passAvailable"
+                                            th:value="true">
+                                        <button th:formaction="userPass" type="submit" class="button--dark box--shadow">CORONA PASS</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -282,9 +286,11 @@
                                         <br>
                                         <strong th:text="${secondVaccineDate}"></strong>
                                     </p>
-                                    <button th:if="${passAvailable}"
-                                        class="button--dark text-center box--shadow mx-5 mt-2">VACCINE
-                                        PASS</button>
+                                    <form method="GET">
+                                        <input readonly hidden="true" type="hidden" name="passAvailable"
+                                            th:value="true">
+                                        <button th:formaction="userPass" type="submit" class="button--dark box--shadow">VACCINE PASS</button>
+                                    </form>
                                 </div>
                                 <div th:if="${listOfUserBookings.size() == 0}">
                                     <div th:if="${session.loggedUser.userRole.equals('User')}">

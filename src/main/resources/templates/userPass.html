@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+  <head th:include="shared/head" />
+
+  <body>
+    <div class="wrapper">
+      <div class="container body__pass">
+        <div class="container" id="vacPass">
+          <img src="/images/Danish_Police_Logo.png" class="logo__politi">
+          <img src="/images/sundhedsstyrelsen.png" class="float-end logo__sundhed">
+
+          <h3 class="text-center pass__header">VACCINE PASS</h3>
+          <table class="table-light table__pass">
+            <tbody>
+              <tr>
+                <th class="text__column__pass"> Name:</th>
+                <td th:text="${session.loggedUser.getUserName()}" class="text__credentials__pass"></td>
+              </tr>
+              <tr>
+                <th class="text__column__pass"> Email:</th>
+                <td th:text="${session.loggedUser.getUserEmail()}" class="text__credentials__pass"></td>
+              </tr>
+              <tr>
+                <th class="text__column__pass"> Phone:</th>
+                <td th:text="${session.loggedUser.getUserPhone()}" class="text__credentials__pass"></td>
+              </tr>
+              <tr>
+                <th class="text__column__pass"> CPR:</th>
+                <td th:text="${session.loggedUser.getUserCpr()}" class="text__credentials__pass"></td>
+              </tr>
+              <tr>
+                <th class="text__column__pass"> Address:</th>
+                <td th:text="${session.loggedUser.getUserAddress()}" class="text__credentials__pass"></td>
+              </tr>
+              <tr>
+                <th class="text__column__pass"> First dose:</th>
+                <td th:text="${firstVaccine}" class="text__credentials__pass"></td>
+              </tr>
+              <tr>
+                <th class="text__column__pass"> Second dose:</th>
+                <td th:text="${secondVaccine}" class="text__credentials__pass"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <button onclick="history.go(-1);" class="button--dark text-center box--shadow mx-5 mt-5">BACK</button>
+        <button class="button--dark text-center box--shadow mx-5 mt-5 float-end" id="print">PRINT PASS</button>
+      </div>
+    </div>
+  </body>
+
+</html>

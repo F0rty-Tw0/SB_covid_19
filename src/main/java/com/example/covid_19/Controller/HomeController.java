@@ -19,6 +19,8 @@ import com.example.covid_19.Service.PasswordService.PasswordServiceInterface;
 import com.example.covid_19.Service.TimeSlotService.TimeSlotServiceInterface;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -82,6 +84,5 @@ public class HomeController {
     public String vaccine() {
         return "vaccine";
     }
-
 
 }
