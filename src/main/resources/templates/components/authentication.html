@@ -1,3 +1,13 @@
+<script th:if="${error}">
+    function fireError() {
+        const error = "[[${error}]]";
+        Swal.fire({
+            icon: 'warning',
+            title: error
+        })
+    }
+    fireError();
+</script>
 <h3 class="table__header">LOGIN</h3>
 <hr class="hr--dark">
 <form class="table__form" method="POST">
@@ -8,6 +18,7 @@
 
     <button type="submit" th:formaction="login" class="button--dark box--shadow">LOGIN</button>
 </form>
+
 
 <a class="float-start login__link no--shadow" data-bs-toggle="modal" data-bs-target="#registerModal">Register</a>
 <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
-  <head th:include="shared/head" />
+  <head th:include="shared/head :: head (pageTitle='COVID19 VACCINE INFO')" />
 
   <body>
     <div class="wrapper">
-      <nav th:include="shared/navbar" class="navbar navbar-expand-lg navbar-dark text-uppercase" />
+      <nav th:include="shared/navbar :: navbar (active='vaccine')" class="navbar navbar-expand-lg navbar-dark text-uppercase" />
       <div class="container info__container">
         <div class="row">
           <div class="col-md-6 col-sm-12">

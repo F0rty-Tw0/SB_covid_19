@@ -96,7 +96,12 @@ public class UserController {
 
   @PostMapping("/updateUser")
   public String updateUser(@ModelAttribute User user, Model model) {
-    userService.updateUser(user);
+    try {
+      userService.updateUser(user);
+    } catch (Exception e) {
+      System.out.println(e);
+      model.addAttribute("error", e.getMessage());
+    }
     fetchUser(model, user);
     return "user";
   }

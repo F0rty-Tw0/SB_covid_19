@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
-    <head th:include="shared/head" />
+    <head th:include="shared/head :: head (pageTitle='COVID19 TEST INFO')" />
 
     <body>
 
         <div class="wrapper">
-            <nav th:include="shared/navbar" class="navbar navbar-expand-lg navbar-dark text-uppercase" />
+            <nav th:include="shared/navbar :: navbar (active='test')" class="navbar navbar-expand-lg navbar-dark text-uppercase" />
             <div class="container info__container">
                 <div class="row">
                     <div class="col-lg-4">
@@ -25,6 +25,10 @@
                                 </ul>
                                 <div class="text-center pb-3">
                                     <img src="/images/pcrTest.png" class="img-fluid box--shadow" alt="pcrTest">
+                                </div>
+                                <div class="text-center vaccine__button mt-5">
+                                    <a href="/" type="button" class="button--red box--shadow">BOOK YOUR TEST
+                                        NOW!</a>
                                 </div>
                             </div>
                         </div>

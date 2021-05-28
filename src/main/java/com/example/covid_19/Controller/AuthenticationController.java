@@ -9,9 +9,11 @@ import com.example.covid_19.Service.PasswordService.PasswordServiceInterface;
 import com.example.covid_19.Service.UserService.UserServiceInterface;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class AuthenticationController {
@@ -22,11 +24,12 @@ public class AuthenticationController {
   private PasswordServiceInterface password;
 
   @PostMapping("/register")
-  public String register(@ModelAttribute User user) {
+  public String register(@ModelAttribute User user, RedirectAttributes redirectAttributes) {
     try {
       users.addUser(user);
     } catch (Exception e) {
-      System.out.println(e.getMessage());
+      redirectAttributes.addFlashAttribute("error", e.getMessage());
+      return "redirect:/";
     }
 
     return "redirect:/success";
@@ -34,22 +37,32 @@ public class AuthenticationController {
 
   @PostMapping("/login")
   public String logIn(@ModelAttribute("login") String login, @ModelAttribute("password") String password,
-      HttpSession session) {
+      HttpSession session, RedirectAttributes redirectAttributes) {
     User user;
-
     if (login.contains("@")) {
       try {
         user = users.findUserByEmail(login);
         validateUser(password, session, user);
       } catch (Exception e) {
-        System.out.println(e.getMessage());
+        if (e instanceof EmptyResultDataAccessException) {
+          redirectAttributes.addFlashAttribute("error", "There is no such user with this Email");
+        } else {
+          redirectAttributes.addFlashAttribute("error", e.getMessage());
+        }
       }
     } else {
       try {
-        user = users.findUserByCpr(Integer.parseInt(login));
+        user = users.findUserByCpr(Long.parseLong(login));
         validateUser(password, session, user);
       } catch (Exception e) {
-        System.out.println(e.getMessage());
+        System.out.println(e);
+        if (e instanceof NumberFormatException)
+          redirectAttributes.addFlashAttribute("error", "Your CPR must contain only numbers!");
+        else if (e instanceof EmptyResultDataAccessException) {
+          redirectAttributes.addFlashAttribute("error", "There is no such user with this CPR");
+        } else {
+          redirectAttributes.addFlashAttribute("error", e.getMessage());
+        }
       }
     }
     return "redirect:/";
@@ -69,6 +82,7 @@ public class AuthenticationController {
       session.setAttribute("loggedUser", loggedUser);
     } else {
       session.setAttribute("isValidated", false);
+      throw new UnsupportedOperationException("Password doesn't match!");
     }
   }
 }

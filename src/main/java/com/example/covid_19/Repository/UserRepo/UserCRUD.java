@@ -32,9 +32,9 @@ public class UserCRUD implements UserInterface {
           user.getUserPhone(), user.getUserAddress(), "Unknown", "User");
     } catch (RuntimeException e) {
       if (e.getMessage().contains("userCpr_UNIQUE"))
-        throw new RuntimeException(user.getUserCpr() + " CPR already exists");
+        throw new RuntimeException(user.getUserCpr() + " CPR already exists!");
       else if (e.getMessage().contains("userEmail_UNIQUE"))
-        throw new RuntimeException(user.getUserEmail() + " already exists");
+        throw new RuntimeException(user.getUserEmail() + " already exists!");
       else
         throw new RuntimeException(e.getMessage());
     }
@@ -77,8 +77,17 @@ public class UserCRUD implements UserInterface {
   public int updateUser(User user) {
     String sql = "UPDATE " + table
         + " SET userName = ?, userEmail = ?, userCpr = ?, userPhone = ?, userAddress = ?, userRole = ? WHERE userId = ?";
-    return jdbc.update(sql, user.getUserName(), user.getUserEmail(), user.getUserCpr(), user.getUserPhone(),
-        user.getUserAddress(), user.getUserRole(), user.getUserId());
+    try {
+      return jdbc.update(sql, user.getUserName(), user.getUserEmail(), user.getUserCpr(), user.getUserPhone(),
+          user.getUserAddress(), user.getUserRole(), user.getUserId());
+    } catch (RuntimeException e) {
+      if (e.getMessage().contains("userCpr_UNIQUE"))
+        throw new RuntimeException(user.getUserCpr() + " CPR already exists!");
+      else if (e.getMessage().contains("userEmail_UNIQUE"))
+        throw new RuntimeException(user.getUserEmail() + " already exists!");
+      else
+        throw new RuntimeException(e.getMessage());
+    }
   };
 
   @Override

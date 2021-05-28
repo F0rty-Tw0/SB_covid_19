@@ -127,6 +127,9 @@ body {
 	margin-bottom: 0;
 }
 
+.swal2-popup {
+	width: 40em !important;
+}
 .button--white:hover,
 .button--dark:hover,
 .button--green:hover,

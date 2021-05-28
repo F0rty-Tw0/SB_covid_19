@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
-    <head th:include="shared/head" />
-
+    <head th:include="shared/head :: head (pageTitle='USER INFO')" />
     <body>
+    <script th:if="${error}">
+        function fireError() {
+            const error = "[[${error}]]";
+            Swal.fire({
+                icon: 'warning',
+                title: error
+            })
+        }
+        fireError();
+    </script>
         <div class="wrapper">
-            <nav th:include="shared/navbar" class="navbar navbar-expand-lg navbar-dark text-uppercase" />
+            <nav th:include="shared/navbar :: navbar (active='home')"
+                class="navbar navbar-expand-lg navbar-dark text-uppercase" />
             <script src="/js/print.js"></script>
-
+          
             <div class="user__container">
                 <div class="row">
                     <div class="col-lg-4 col-md-12">
