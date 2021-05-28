@@ -24,15 +24,15 @@ public class AuthenticationController {
   private PasswordServiceInterface password;
 
   @PostMapping("/register")
-  public String register(@ModelAttribute User user, RedirectAttributes redirectAttributes) {
+  public String register(@ModelAttribute User user, RedirectAttributes redirectAttributes, HttpSession session) {
     try {
       users.addUser(user);
     } catch (Exception e) {
       redirectAttributes.addFlashAttribute("error", e.getMessage());
       return "redirect:/";
     }
-
-    return "redirect:/success";
+    logIn(user.getUserEmail(), user.getUserPassword(), session, redirectAttributes);
+    return "redirect:/user";
   }
 
   @PostMapping("/login")

@@ -13,8 +13,9 @@
           <h3 class="text-center about__header pt-5">Success</h3>
           <div th:if="${session.isValidated}" class="pt-3">
             <h5 class="about__text">Go back or navigate to your account,<br> where you can see your appointments.</h5>
-            <button onclick="history.go(-1);" class="button--dark text-center box--shadow mx-5 mt-3">BACK</button>
-            <a href="user" class="button--red text-center box--shadow mx-5 mt-3 float-end" id="print">ACCOUNT</a>
+            <br>
+            <a href="/" class="button--dark text-center box--shadow mx-5 mt-3">BACK</a>
+            <a href="user" class="button--red text-center box--shadow mx-5 float-end mb-3" id="print">ACCOUNT</a>
           </div>
           <div th:if="${!session.isValidated}" class="pt-3">
             <h5 class="about__text">Go back or navigate to the login page,<br> where you can log in and access your

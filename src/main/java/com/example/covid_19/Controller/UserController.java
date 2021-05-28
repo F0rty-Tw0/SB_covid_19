@@ -130,7 +130,7 @@ public class UserController {
         model.addAttribute("firstVaccineDate", firstVaccineDate);
         model.addAttribute("secondVaccineDate", secondVaccine(firstVaccineDate));
       }
-      if (LocalDate.now().plusDays(1).isBefore(LocalDate.parse(booking.getBookingDate().toString()))) {
+      if (LocalDate.now().minusDays(1).isBefore(LocalDate.parse(booking.getBookingDate().toString()))) {
         upcomingBookings.add(booking);
       }
     }

@@ -30,6 +30,9 @@
                 <li class="nav-item">
                     <a th:attr="class=${active.equals('test')? 'active' : ''} + ' nav-link'" href='test'>TEST</a>
                 </li>
+                <li th:if="${session.isValidated}" class="nav-item">
+                    <a th:attr="class=${active.equals('account')? 'active' : ''} + ' nav-link'" href='user'>ACCOUNT</a>
+                </li>
             </ul>
             <form class="navbar-nav ms-auto text-right nav__logout"
                 th:if="${(session.isValidated != null && session.isValidated)}" th:action="@{/logout}" method="POST">

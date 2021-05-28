@@ -48,12 +48,12 @@
 
 <form th:if="${bookingDate == null}" class="table__form" method="POST">
     <div class="row pb-3">
-        <h2>Select your booking date:</h2>
+        <h2>Select your booking date:<br>for VACCINE or TEST</h2>
         <div class="col"></div>
         <div class="col-md-7">
             <input required class="form-control float-xl-start mb-5" type="date" th:attr="min=${session.dateNow}"
                 id="bookingDate" name="bookingDate">
-            <button type="submit" th:formaction="selectedDate" class="button--dark box--shadow">SELECT DATE</button>
+            <button type="submit" th:formaction="selectedDate" class="button--dark box--shadow">NEXT</button>
         </div>
         <div class="col"></div>
     </div>
