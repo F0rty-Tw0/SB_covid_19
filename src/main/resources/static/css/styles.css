@@ -44,6 +44,8 @@ body {
 	margin-bottom: 2em;
 }
 .wrapper {
+	position: absolute;
+	width: 100%;
 	min-height: 100vh;
 	background-image: url("/images/background.jpg");
 	background-size: cover;
@@ -370,5 +372,18 @@ body {
 @media screen and (max-height: 830px) {
 	.about__container {
 		margin-top: 1vh;
+	}
+}
+
+@media screen and (max-width: 1400px) {
+	.button--red {
+		font-size: 1em;
+	}
+}
+
+@media screen and (max-width: 992px) {
+	.wrapper {
+		background-size: auto;
+		background-position: right top;
 	}
 }

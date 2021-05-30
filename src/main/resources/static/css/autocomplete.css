@@ -1,7 +1,7 @@
 .autoComplete_wrapper {
 	position: relative;
 	display: inline-block;
-  margin: 0 5vw;
+	margin: 0 5vw;
 }
 
 #autoComplete {
@@ -102,6 +102,19 @@
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
 	#autoComplete {
 		border-width: 1px;
+	}
+}
+
+@media screen and (max-width: 1600px) {
+	.autoComplete_wrapper {
+		margin: 0;
+	}
+}
+
+@media screen and (max-width: 1300px) {
+	#autoComplete {
+		font-size: 1em;
+		width: 260px;
 	}
 }
 @-moz-document url-prefix() {
