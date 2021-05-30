@@ -14,7 +14,7 @@
 	<name>covid_19</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>15git add README.md</java.version>
+		<java.version>15</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -39,8 +39,26 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>     
+			<groupId>org.springframework.security</groupId>     
+			<artifactId>spring-security-crypto</artifactId>     
+		</dependency>
+		<dependency>
+    	<groupId>org.webjars.npm</groupId>
+    	<artifactId>sweetalert2</artifactId>
+    	<version>10.15.5</version>
 		</dependency>
 	</dependencies>
 

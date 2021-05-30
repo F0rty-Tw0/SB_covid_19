@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
-    <head th:include="shared/head" />
+    <head th:include="shared/head :: head (pageTitle='WELCOME TO COVID19 TEST')" />
 
     <body>
         <div class="wrapper">
-            <nav th:include="shared/navbar" class="navbar navbar-expand-lg navbar-dark text-uppercase" />
+            <nav th:include="shared/navbar :: navbar (active='home')"
+                class="navbar navbar-expand-lg navbar-dark text-uppercase" />
             <div class="container">
-                <div class="header text--shadow">
+                <div class="header__container text--shadow">
                     <div class="header__textbox box--shadow">
                         <h1>MEDICAL CENTER</h1>
                     </div>
@@ -15,21 +16,47 @@
                         YOUR HEALTH<br>
                         <span class="text--bold">IS OUR PRIORITY</span>
                     </h2>
-                    <button type="button" class="button--white box--shadow">BOOK NOW</button>
+                    <a href="/about" type="button" class="button--white box--shadow">CHECK US NOW</a>
                 </div>
-
             </div>
 
             <div class="container table__container">
                 <div class="row">
-                    <div class="col-sm-12 col-md-4 col_contact">
-                        Column
+                    <div class="col-md-4 col-sm-12 table__contact">
+                        <div class="container text-center text--shadow">
+                            <h3 class="table__header">OUR CONTACT</h3>
+                            <hr class="hr--bright">
+                            <p class="table__text">Amagerbrogade 8, KBH S<br>
+                                +4528384768<br>
+                                contact@medicalcenter.com</p>
+                        </div>
                     </div>
-                    <div class="col-sm-12 col-md-4 col_booking">
-                        Column
+                    <div class="col-md-4 col-sm-12 table__booking">
+                        <div th:if="!${session.isValidated}" class="container text-center text--shadow"
+                            th:include="components/authentication"></div>
+                        <div th:if="${session.isValidated}" class="container text-center text--shadow"
+                            th:include="components/booking"></div>
                     </div>
-                    <div class="col-sm-12 col-md-4 col_hours">
-                        Column
+                    <div class="col-md-4 col-sm-12 table__hours">
+                        <div class="container text--shadow">
+                            <h3 class="table__header text-center">OPENING HOURS</h3>
+                            <hr class="hr--bright">
+                            <ul class="list-unstyled">
+                                <li class="pb-2 pt-2">
+                                    <p>MONDAY-THURSDAY<span class="float-end">08:00 - 15:00</span></p>
+                                </li>
+                                <li class="pb-2">
+                                    <p>FRIDAY<span class="float-end">08:00 - 15:00</span>
+                                    </p>
+                                </li>
+                                <li class="pb-2">
+                                    <p>SATURDAY <span class="float-end">08:00 - 15:00</span></p>
+                                </li>
+                                <li class="pb-2">
+                                    <p>SUNDAY<span class="float-end">08:00 - 15:00</span></p>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

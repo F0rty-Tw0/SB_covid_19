@@ -1,23 +1,50 @@
-<div class="container">
-    <div class="navbar-brand"></div>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav text--shadow text--bold">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/">HOME</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/">ABOUT</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/">VACCINE</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/">TEST</a>
-            </li>
-        </ul>
+<span th:fragment="navbar (active)">
+
+    <div th:if="${session.isValidated}" class="user__logo text-center">
+        <a class="text-decoration-none" href="user"><img src="/images/loginThumbnail.png"
+                class="user__thumbnail img-fluid" alt="Medical Logo">
+            <p th:if="${session.loggedUser != null}" th:text="${session.loggedUser.userName}"
+                class="login__link d-none d-md-block">
+            </p>
+        </a>
     </div>
-</div>
+
+    <div class="container">
+        <div class="navbar-brand"></div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav text--shadow text--bold float-end text-right">
+                <li class="nav-item">
+                    <a th:attr="class=${active.equals('home')? 'active' : ''} + ' nav-link'" aria-current="page"
+                        href="/">HOME</a>
+                </li>
+                <li class="nav-item">
+                    <a th:attr="class=${active.equals('about')? 'active' : ''} + ' nav-link'" href='about'>ABOUT</a>
+                </li>
+                <li class="nav-item">
+                    <a th:attr="class=${active.equals('vaccine')? 'active' : ''} + ' nav-link'"
+                        href="vaccine">VACCINE</a>
+                </li>
+                <li class="nav-item">
+                    <a th:attr="class=${active.equals('test')? 'active' : ''} + ' nav-link'" href='test'>TEST</a>
+                </li>
+                <li th:if="${session.isValidated}" class="nav-item">
+                    <a th:attr="class=${active.equals('account')? 'active' : ''} + ' nav-link'" href='user'>ACCOUNT</a>
+                </li>
+            </ul>
+            <form class="navbar-nav ms-auto text-right nav__logout"
+                th:if="${(session.isValidated != null && session.isValidated)}" th:action="@{/logout}" method="POST">
+                <li class="nav-item">
+                    <button type="submit" th:formaction="logout" name="logout"
+                        class="active button--white box--shadow">Log
+                        Out</button>
+                </li>
+            </form>
+            </ul>
+        </div>
+    </div>
+    <div id="loading"></div>
+</span>

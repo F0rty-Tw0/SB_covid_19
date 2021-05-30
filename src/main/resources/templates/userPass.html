@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+  <head th:include="shared/head :: head (pageTitle='COVID19 PASS')" />
+
+  <body>
+    <div class="wrapper">
+      <nav th:include="shared/navbar :: navbar (active='home')"
+        class="navbar navbar-expand-lg navbar-dark text-uppercase" />
+      <script src="/js/print.js"></script>
+      <div class="body__pass about__box box--shadow">
+        <div class="container px-5 py-5" id="vacPass">
+          <img src="/images/police.png" width="100">
+          <img src="/images/health.png" width="200" class="float-end">
+          <h3 class="text-center about__header pt-5">COVID19 PASS</h3>
+          <br>
+          <table class="table-light">
+            <tbody>
+              <tr>
+                <th> Name:</th>
+                <td class="ml-5 float-end" th:text="${user.getUserName()}"></td>
+              </tr>
+              <tr>
+                <th> Email:</th>
+                <td class="float-end" th:text="${user.getUserEmail()}"></td>
+              </tr>
+              <tr>
+                <th> Phone:</th>
+                <td class="float-end" th:text="${user.getUserPhone()}"></td>
+              </tr>
+              <tr>
+                <th> CPR:</th>
+                <td class="float-end" th:text="${user.getUserCpr()}"></td>
+              </tr>
+              <tr>
+                <th> Address:</th>
+                <td class="float-end" th:text="${user.getUserAddress()}"></td>
+              </tr>
+              <span th:if="${!firstVaccineDate.equals('')}">
+                <tr>
+                  <th> First dose:</th>
+                  <td class="float-end" th:text="${firstVaccineDate}"></td>
+                </tr>
+                <tr>
+                  <th> Second dose:</th>
+                  <td class="float-end" th:text="${secondVaccineDate}"></td>
+                </tr>
+              </span>
+            </tbody>
+          </table>
+          <br>
+          <br>
+          <span th:if="${firstVaccineDate.equals('')}">
+            <h2 th:text="${'COVID19 Status: ' + user.getUserStatus}"></h2>
+          </span>
+          <img src="/images/stamp.jpg" width="100" class="float-end pass__stamp">
+        </div>
+        <div class="pb-3">
+          <button onclick="history.go(-1);" class="button--dark text-center box--shadow mx-5 mt-5">BACK</button>
+          <button onclick="printDiv()" class="button--dark text-center box--shadow mx-5 mt-5 float-end" id="print">PRINT
+            PASS</button>
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>

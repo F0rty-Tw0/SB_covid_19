@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+  <head th:include="shared/head :: head (pageTitle='SUCCESS')" />
+
+  <body>
+    <div class="wrapper">
+      <nav th:include="shared/navbar :: navbar (active='home')"
+        class="navbar navbar-expand-lg navbar-dark text-uppercase" />
+      <div class="body__pass about__box box--shadow">
+        <div class="container px-5 pt-5 text-center" id="vacPass">
+          <img src="/images/check.png" width="200">
+          <h3 class="text-center about__header pt-5">Success</h3>
+          <!-- Different messages based on the action -->
+          <div th:if="${session.isValidated}" class="pt-3">
+            <h5 class="about__text">Go back or navigate to your account,<br> where you can see your appointments.</h5>
+            <br>
+            <a href="/" class="button--dark text-center box--shadow mx-5 mt-3">BACK</a>
+            <a href="user" class="button--red text-center box--shadow mx-5 float-end mb-3" id="print">ACCOUNT</a>
+          </div>
+          <div th:if="${!session.isValidated}" class="pt-3">
+            <h5 class="about__text">Go back or navigate to the login page,<br> where you can log in and access your
+              account.</h5>
+            <button onclick="history.go(-1);" class="button--dark text-center box--shadow mx-5 mt-3">BACK</button>
+            <a href="/" class="button--red text-center box--shadow mx-5 mt-3 float-end" id="print">LOGIN</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </body>
+
+</html>

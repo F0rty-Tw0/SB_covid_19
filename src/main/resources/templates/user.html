@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+    <head th:include="shared/head :: head (pageTitle='USER INFO')" />
+
+    <body>
+        <!-- Script to launch the error popup -->
+        <script th:if="${error}">
+            function fireError() {
+                const error = "[[${error}]]";
+                Swal.fire({
+                    icon: 'warning',
+                    title: error
+                })
+            }
+            fireError();
+        </script>
+        <div class="wrapper">
+            <nav th:include="shared/navbar :: navbar (active='account')"
+                class="navbar navbar-expand-lg navbar-dark text-uppercase" />
+            <script src="/js/print.js"></script>
+
+            <div class="user__container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-12">
+                        <div class="col-md-12 table__info table--full">
+                            <div class="container">
+                                <h1 class="table__header text-center">PROFILE</h1>
+                                <hr class="hr--dark">
+                                <div th:if="!${session.loggedUser.userRole.equals('User')}">
+                                    <div class="autoComplete_wrapper">
+                                        <h3 class="d-inline">Search: </h3>
+                                        <input id="autoComplete" type="text" dir="ltr" spellcheck="false"
+                                            class="d-inline" autocorrect="off" autocomplete="off" autocapitalize="off"
+                                            maxlength="2048" tabindex="1" role="combobox" aria-haspopup="true"
+                                            aria-expanded="false" aria-controls="autoComplete_list"
+                                            aria-autocomplete="both" placeholder="Search for a CPR &amp; or Email">
+                                        <div class="selection"></div>
+                                    </div>
+                                    <script
+                                        src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@9.1.1/dist/js/autoComplete.min.js"></script>
+                                    <script src="/js/autocomplete.js"></script>
+                                    <br>
+                                    <br>
+                                </div>
+                                <h3>Name</h3>
+                                <p th:text="${user.userName}"></p>
+                                <h3>Email</h3>
+                                <p th:text="${user.userEmail}"></p>
+                                <h3>Phone</h3>
+                                <p th:text="${user.userPhone}"></p>
+                                <h3>CPR</h3>
+                                <p th:text="${user.userCpr}"></p>
+                                <h3>Address</h3>
+                                <p th:text="${user.userAddress}"></p>
+                                <br>
+                                <h3>COVID19 Status: <strong th:text="${user.userStatus}"></strong>
+                                </h3>
+                                <div th:if="${session.loggedUser.userRole.equals('Admin')}">
+                                    <hr class="hr--dark">
+                                    <h3>Role</h3>
+                                    <p th:text="${user.userRole}"></p>
+                                </div>
+
+                                <div th:if="${session.loggedUser.userRole.equals('Admin')}">
+
+                                    <div class="text-center pt-3">
+                                        <button data-bs-toggle="modal" data-bs-target="#editUserModal" type="button"
+                                            class="button--dark box--shadow">EDIT USER</button>
+                                    </div>
+
+                                    <div class="modal fade" id="editUserModal" tabindex="-1"
+                                        aria-labelledby="editUserModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title no--shadow fw-bold">Please type in your
+                                                        information to
+                                                        register</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form class="table__form" method="POST">
+                                                        <input readonly hidden="true" type="hidden" name="userId"
+                                                            id="inputUserId" th:value="${user.userId}">
+                                                        <label for="name"
+                                                            class="form-label no--shadow float-start pt-3">Name</label>
+                                                        <input required type="name" name="userName"
+                                                            class="form-control box--shadow" th:value="${user.userName}"
+                                                            id="inputName">
+                                                        <label for="address"
+                                                            class="form-label no--shadow float-start pt-3">Address</label>
+                                                        <input required type="address" name="userAddress"
+                                                            class="form-control box--shadow"
+                                                            th:value="${user.userAddress}" id="inputAddress">
+                                                        <label for="cpr"
+                                                            class="form-label no--shadow float-start pt-3">CPR</label>
+                                                        <input required type="number" name="userCpr"
+                                                            class="form-control box--shadow" th:value="${user.userCpr}"
+                                                            id="inputCPR" pattern="[0-9]{10}">
+                                                        <label for="phoneNR"
+                                                            class="form-label no--shadow float-start pt-3">Phone</label>
+                                                        <input required type="tel" name="userPhone"
+                                                            class="form-control box--shadow"
+                                                            th:value="${user.userPhone}" id="inputPhoneNR"
+                                                            pattern="[0-9]{8}">
+                                                        <label for="email"
+                                                            class="form-label no--shadow float-start pt-3">Email</label>
+                                                        <input required type="email" name="userEmail"
+                                                            class="form-control box--shadow"
+                                                            th:value="${user.userEmail}" id="inputEmail">
+                                                        <hr class="hr--dark mt-5">
+                                                        <label for="role"
+                                                            class="form-label no--shadow float-start pt-3">Role</label>
+                                                        <select id="role" name="userRole" required class="form-select"
+                                                            aria-label="Role selection">
+                                                            <option value="" disabled selected>Choose a Role
+                                                            </option>
+                                                            <option value="User">User</option>
+                                                            <option value="Admin">Admin</option>
+                                                            <option value="Secretary">Secretary</option>
+                                                        </select>
+
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary box--shadow"
+                                                                data-bs-dismiss="modal">Close</button>
+                                                            <button type="submit" th:formaction="updateUser"
+                                                                class="btn button--green box--shadow">Confirm</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <form method="POST">
+                                        <input readonly hidden="true" type="hidden" name="userId" id="userId"
+                                            th:value="${user.userId}">
+                                        <div class="text-center pb-3">
+                                            <button data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal"
+                                                type="button" class="button--red box--shadow">REMOVE USER</button>
+                                        </div>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="deleteConfirmationModal" tabindex="-1"
+                                            aria-labelledby="deleteConfirmationModal" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="deleteConfirmationModalLabel">
+                                                            Confirm Removal
+                                                        </h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p class="about__header">
+                                                            Are sure you want to delete: <strong class="color--red"
+                                                                th:text="${user.userName}"></strong> from the database?
+                                                        </p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary box--shadow"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                        <button th:formaction="deleteUser" type="submit"
+                                                            class="btn button--green box--shadow">Confirm</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div th:if="${session.loggedUser.userRole.equals('Secretary')}">
+                                    <div class="text-center pt-3">
+                                        <div class="dropdown">
+                                            <button class="button--dark box--shadow dropdown-toggle" type="button"
+                                                id="dropdownChangeStatus" data-bs-toggle="dropdown"
+                                                aria-expanded="false">
+                                                CHANGE STATUS
+                                            </button>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownChangeStatus">
+                                                <li>
+                                                    <form method="POST">
+                                                        <input readonly hidden="true" type="hidden" name="userId"
+                                                            th:value="${user.userId}">
+                                                        <input readonly hidden="true" type="hidden" name="userStatus"
+                                                            th:value="Negative">
+                                                        <button th:formaction="updateStatus" type="submit"
+                                                            class="dropdown-item">Negative</button>
+                                                    </form>
+                                                </li>
+                                                <li>
+                                                    <form method="POST">
+                                                        <input readonly hidden="true" type="hidden" name="userId"
+                                                            th:value="${user.userId}">
+                                                        <input readonly hidden="true" type="hidden" name="userStatus"
+                                                            th:value="Positive">
+                                                        <button th:formaction="updateStatus" type="submit"
+                                                            class="dropdown-item">Positive</button>
+                                                    </form>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div th:if="${session.loggedUser.userRole.equals('User') && session.loggedUser.userStatus.equals('Negative')}"
+                                    class="text-center pt-3">
+                                    <form method="GET">
+                                        <input readonly hidden="true" type="hidden" name="passAvailable"
+                                            th:value="true">
+                                        <input readonly hidden="true" type="hidden" name="userId"
+                                            th:value="${user.userId}">
+                                        <button th:formaction="userPass" type="submit"
+                                            class="button--dark box--shadow">COVID19 PASS</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-12">
+                        <div class="col-md-12 table__info table--half">
+                            <div class="col-md-12 ">
+                                <div class="container">
+                                    <h1 class="table__header text-center">UPCOMING
+                                        <br>
+                                        APPOINTMENTS
+                                    </h1>
+                                    <hr class="hr--dark">
+                                    <!-- Checking if the list of user bookings is not empty -->
+                                    <div th:if="${listOfUserBookings.size() != 0}">
+                                        <div th:each="booking : ${upcomingBookings}">
+                                            <p>
+                                                <strong th:text="${booking.getBookingDate}"></strong> at <strong
+                                                    th:text="${timeSlotService.findTimeSlotById(booking.getBookingTimeSlotId)}"></strong>
+                                                <br>
+                                                COVID19 <span class="text-uppercase"
+                                                    th:text="${booking.getBookingName}"></span>
+                                            </p>
+                                        </div>
+                                        <!-- Checking if the list of user bookings is not empty -->
+                                        <div th:if="${upcomingBookings.size() != 0}" class="text-center pb-5">
+                                            <div class="dropdown">
+                                                <button class="button--red text-center box--shadow dropdown-toggle"
+                                                    type="button" id="dropdownUpcomingBookings"
+                                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                                    CANCEL
+                                                    BOOKING
+                                                </button>
+                                                <br>
+                                                <br>
+                                                <a href="/" class="button--dark text-center box--shadow ">BOOK NOW
+                                                </a>
+                                                <ul class="dropdown-menu" aria-labelledby="dropdownUpcomingBookings">
+                                                    <li th:each="booking : ${upcomingBookings}">
+                                                        <form method="POST">
+                                                            <div>
+                                                                <input readonly hidden="true" type="hidden"
+                                                                    name="userId" th:value="${user.userId}">
+                                                                <input readonly hidden="true" type="hidden"
+                                                                    name="bookingId" th:value="${booking.bookingId}">
+                                                                <div class="dropdown-item">
+                                                                    <span
+                                                                        th:text="${'COVID19 ' + booking.getBookingName +' on: ' + booking.getBookingDate + ' - ' + timeSlotService.findTimeSlotById(booking.getBookingTimeSlotId)}"></span>
+                                                                    &nbsp;&nbsp;
+                                                                    <button th:formaction="deleteBooking" type="submit"
+                                                                        class="btn-danger float-end">CANCEL
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Checking if the list of user bookings is empty -->
+                                    <div th:if="${upcomingBookings.size() == 0}">
+                                        <div th:if="${session.loggedUser.userRole.equals('User')}">
+                                            <p class="text-center">
+                                                You have no upcoming appointments, <br>make sure to book one first.
+                                            </p>
+                                            <div class="text-center">
+                                                <a href='/' class="button--dark text-center box--shadow mx-5 mt-5">BOOK
+                                                    NOW</a>
+                                            </div>
+                                        </div>
+                                        <div th:if="!${session.loggedUser.userRole.equals('User')}">
+                                            <p class="text-center">
+                                                This user has no future appointments, <br>make sure he books an
+                                                appointment
+                                                first.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 table__info table--half">
+                            <div class="container text-center">
+                                <h1 class="table__header">VACCINATION STATUS</h1>
+                                <hr class="hr--dark">
+                                <!-- Checking if the user has bookings and he has first date for vaccine -->
+                                <div th:if="${firstVaccineDate != null  && listOfUserBookings.size() != 0}">
+                                    <p>
+                                        FIRST DOSE DATE
+                                        <br>
+                                        <strong th:text="${firstVaccineDate}"></strong>
+                                    </p>
+                                    <br>
+                                    <p>
+                                        SECOND DOSE DATE
+                                        <br>
+                                        <strong th:text="${secondVaccineDate}"></strong>
+                                    </p>
+                                    <!-- Checking if the user can print his pass -->
+                                    <form method="GET" th:if="${passAvailable}">
+                                        <input readonly hidden="true" type="hidden" name="passAvailable"
+                                            th:value="true">
+                                        <input readonly hidden="true" type="hidden" name="userId"
+                                            th:value="${user.userId}">
+                                        <input readonly hidden="true" type="hidden" name="firstVaccineDate"
+                                            th:value="${firstVaccineDate}">
+                                        <button th:formaction="userPass" type="submit"
+                                            class="button--dark box--shadow">VACCINE PASS</button>
+                                    </form>
+                                </div>
+                                <!-- Checking if the there is vaccine date -->
+                                <div th:if="${firstVaccineDate == null}">
+                                    <div th:if="${session.loggedUser.userRole.equals('User')}">
+                                        <p class="text-center">
+                                            You have no vaccinations, <br>make sure to book an appointment for it first.
+                                        </p>
+                                        <div class="text-center">
+                                            <a href='/' class="button--dark text-center box--shadow mx-5 mt-5">BOOK
+                                                NOW</a>
+                                        </div>
+                                    </div>
+                                    <div th:if="!${session.loggedUser.userRole.equals('User')}">
+                                        <p class="text-center">
+                                            This user has no recent vaccination appointments, <br>make sure he books an
+                                            appointment
+                                            first.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5 col-md-12">
+                        <div class="col-md-12 table__info table--full">
+                            <div class="container">
+                                <h1 class="table__header text-center">
+                                    HISTORY
+                                </h1>
+                                <hr class="hr--dark">
+                                <!-- Checking if the list of user bookings is not empty -->
+                                <div th:if="${listOfUserBookings.size() != 0}">
+                                    <ul class="list-unstyled" id="vacPass">
+                                        <li th:each="booking : ${listOfUserBookings}" class="pb-2 pt-2">
+                                            <p> <strong th:text="${booking.getBookingDate}"></strong> at
+                                                <strong
+                                                    th:text="${timeSlotService.findTimeSlotById(booking.getBookingTimeSlotId)}"></strong>
+                                                <br>
+                                                COVID19 <span th:text="${booking.getBookingName}"></span><span
+                                                    class="float-end fw-bold"
+                                                    th:text="${booking.getBookingName}"></span>
+                                            </p>
+                                        </li>
+                                    </ul>
+                                    <div class="text-center">
+                                        <button onclick="printDiv()"
+                                            class="button--dark text-center box--shadow mx-5 mt-5">PRINT
+                                            HISTORY</button>
+                                    </div>
+                                </div>
+                                <!-- Checking if the list of user bookings is empty -->
+                                <div th:if="${listOfUserBookings.size() == 0}">
+                                    <div th:if="${session.loggedUser.userRole.equals('User')}">
+                                        <p class="text-center">
+                                            You have no recent history of appointments, <br>make sure to book an
+                                            appointment
+                                            first.
+                                        </p>
+                                        <div class="text-center">
+                                            <a href="/" class="button--dark text-center box--shadow mx-5 mt-5">BOOK
+                                                NOW</a>
+                                        </div>
+                                    </div>
+                                    <div th:if="!${session.loggedUser.userRole.equals('User')}">
+                                        <p class="text-center">
+                                            This user has no recent history of appointments, <br>make sure he books an
+                                            appointment
+                                            first.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>
