@@ -33,6 +33,7 @@ public class BookingController {
     User user = (User) session.getAttribute("loggedUser");
     List<Booking> listOfBookings = bookingService.findBookingByDate(date);
     List<TimeSlot> listOfTimeSlots = timeSlotService.viewAllTimeSlots();
+    // We make a List of bookings available for the corresponding user
     List<Booking> listOfUserBookings = bookingService.findBookingByUserId(user.getUserId());
 
     for (Booking booking : listOfBookings) {

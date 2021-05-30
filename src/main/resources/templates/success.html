@@ -11,6 +11,7 @@
         <div class="container px-5 pt-5 text-center" id="vacPass">
           <img src="/images/check.png" width="200">
           <h3 class="text-center about__header pt-5">Success</h3>
+          <!-- Different messages based on the action -->
           <div th:if="${session.isValidated}" class="pt-3">
             <h5 class="about__text">Go back or navigate to your account,<br> where you can see your appointments.</h5>
             <br>

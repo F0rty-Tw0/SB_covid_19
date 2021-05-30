@@ -1,3 +1,4 @@
+<!-- Script to launch the error popup -->
 <script th:if="${error}">
     function fireError() {
         const error = "[[${error}]]";
@@ -10,6 +11,7 @@
 </script>
 <h3 class="table__header">LOGIN</h3>
 <hr class="hr--dark">
+<!-- Login Form -->
 <form class="table__form" method="POST">
     <input required type="login" name="login" class="form-control box--shadow" placeholder="Email or CPR"
         id="inputLogin">
@@ -21,6 +23,8 @@
 
 
 <a class="float-start login__link no--shadow" data-bs-toggle="modal" data-bs-target="#registerModal">Register</a>
+
+<!-- Register Modal -->
 <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -31,7 +35,7 @@
             </div>
             <div class="modal-body">
                 <form class="table__form" method="POST">
-                    <label for="name" class="form-label no--shadow float-start pt-3">Name</label>
+                    <label for="name" class="form-label no--shadow float-start pt-3">Name and Surname</label>
                     <input required type="name" name="userName" class="form-control box--shadow" placeholder="John Doe"
                         id="inputName">
                     <label for="address" class="form-label no--shadow float-start pt-3">Address</label>
@@ -42,7 +46,7 @@
                         placeholder="2546884411" id="inputCPR" pattern="[0-9]{10}" max="3112999999">
                     <label for="phoneNR" class="form-label no--shadow float-start pt-3">Phone</label>
                     <input required type="tel" name="userPhone" class="form-control box--shadow"
-                        placeholder="+4512345678" id="inputPhoneNR" pattern="[0-9]{8}">
+                        placeholder="12345678" id="inputPhoneNR" pattern="[0-9]{8}">
                     <label for="email" class="form-label no--shadow float-start pt-3">Email</label>
                     <input required type="email" name="userEmail" class="form-control box--shadow"
                         placeholder="johndoe@gmail.com" id="inputEmail">
@@ -61,5 +65,5 @@
         </div>
     </div>
 </div>
-
+<!-- Doesn't Work, not required in the project -->
 <a class="float-end login__link no--shadow">Forgot Password?</a>

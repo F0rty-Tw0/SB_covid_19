@@ -4,6 +4,7 @@
     <head th:include="shared/head :: head (pageTitle='USER INFO')" />
 
     <body>
+        <!-- Script to launch the error popup -->
         <script th:if="${error}">
             function fireError() {
                 const error = "[[${error}]]";
@@ -227,6 +228,7 @@
                                         APPOINTMENTS
                                     </h1>
                                     <hr class="hr--dark">
+                                    <!-- Checking if the list of user bookings is not empty -->
                                     <div th:if="${listOfUserBookings.size() != 0}">
                                         <div th:each="booking : ${upcomingBookings}">
                                             <p>
@@ -237,6 +239,7 @@
                                                     th:text="${booking.getBookingName}"></span>
                                             </p>
                                         </div>
+                                        <!-- Checking if the list of user bookings is not empty -->
                                         <div th:if="${upcomingBookings.size() != 0}" class="text-center pb-5">
                                             <div class="dropdown">
                                                 <button class="button--red text-center box--shadow mx-5 dropdown-toggle"
@@ -272,6 +275,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- Checking if the list of user bookings is empty -->
                                     <div th:if="${upcomingBookings.size() == 0}">
                                         <div th:if="${session.loggedUser.userRole.equals('User')}">
                                             <p class="text-center">
@@ -297,6 +301,7 @@
                             <div class="container text-center">
                                 <h1 class="table__header">VACCINATION STATUS</h1>
                                 <hr class="hr--dark">
+                                <!-- Checking if the user has bookings and he has first date for vaccine -->
                                 <div th:if="${firstVaccineDate != null  && listOfUserBookings.size() != 0}">
                                     <p>
                                         FIRST DOSE DATE
@@ -309,6 +314,7 @@
                                         <br>
                                         <strong th:text="${secondVaccineDate}"></strong>
                                     </p>
+                                    <!-- Checking if the user can print his pass -->
                                     <form method="GET" th:if="${passAvailable}">
                                         <input readonly hidden="true" type="hidden" name="passAvailable"
                                             th:value="true">
@@ -320,6 +326,7 @@
                                             class="button--dark box--shadow">VACCINE PASS</button>
                                     </form>
                                 </div>
+                                <!-- Checking if the there is vaccine date -->
                                 <div th:if="${firstVaccineDate == null}">
                                     <div th:if="${session.loggedUser.userRole.equals('User')}">
                                         <p class="text-center">
@@ -349,6 +356,7 @@
                                     HISTORY
                                 </h1>
                                 <hr class="hr--dark">
+                                <!-- Checking if the list of user bookings is not empty -->
                                 <div th:if="${listOfUserBookings.size() != 0}">
                                     <ul class="list-unstyled" id="vacPass">
                                         <li th:each="booking : ${listOfUserBookings}" class="pb-2 pt-2">
@@ -368,6 +376,7 @@
                                             HISTORY</button>
                                     </div>
                                 </div>
+                                <!-- Checking if the list of user bookings is empty -->
                                 <div th:if="${listOfUserBookings.size() == 0}">
                                     <div th:if="${session.loggedUser.userRole.equals('User')}">
                                         <p class="text-center">

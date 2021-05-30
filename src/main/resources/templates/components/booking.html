@@ -9,9 +9,12 @@
             <input readonly th:value="${bookingDate}" required class="form-control float-xl-start" type="date"
                 id="bookingDate" name="bookingDate">
         </div>
+        <!-- Checking if there are time slots available -->
         <div class="col-xl-6">
             <select required class="form-select float-xl-end" name="bookingTimeSlotId" aria-label="Choose Time">
-                <option value="" disabled selected>Choose Time</option>
+                <option th:if="${listOfTimeSlots.size() > 0}" value="" disabled selected>Choose Time</option>
+                <option th:if="${listOfTimeSlots.size() == 0}" value="" disabled selected>There are no time slots
+                    available</option>
                 <option th:each="timeSlot: ${listOfTimeSlots}" th:text="${timeSlot.getTimeSlotName()}"
                     th:value="${timeSlot.getTimeSlotId()}"></option>
             </select>
@@ -27,14 +30,16 @@
                 </label>
             </div>
         </div>
+        <!-- Checking if the user have no vaccine dates -->
         <div class="col-xl-6">
             <div th:if="${hasVaccine}" class="form-check table__select float-xxl-end">
                 <input disabled required class="form-check-input" type="radio" name="bookingName" value="Vaccine"
                     id="vaccine">
                 <label class="form-check-label" for="vaccine">
-                    VACCINE
+                    VACCINE <br>(Already Booked)
                 </label>
             </div>
+
             <div th:if="!${hasVaccine}" class="form-check table__select float-xxl-end">
                 <input required class="form-check-input" type="radio" name="bookingName" value="Vaccine" id="vaccine">
                 <label class="form-check-label" for="vaccine">
@@ -43,7 +48,9 @@
             </div>
         </div>
     </div>
-    <button type="submit" th:formaction="makeBooking" class="button--dark box--shadow">BOOK NOW</button>
+    <button type="button" onclick="history.go(-1);" class="button--dark box--shadow">BACK</button>
+    <button th:if="${listOfTimeSlots.size() > 0}" type="submit" th:formaction="makeBooking"
+        class="button--dark box--shadow">BOOK NOW</button>
 </form>
 
 <form th:if="${bookingDate == null}" class="table__form" method="POST">

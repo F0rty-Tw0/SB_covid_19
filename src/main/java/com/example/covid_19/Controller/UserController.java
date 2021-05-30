@@ -1,9 +1,13 @@
 package com.example.covid_19.Controller;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -41,10 +45,11 @@ public class UserController {
 
   @GetMapping("/usersAutocomplete")
   @ResponseBody
-  public List<User> usersAutocomplete(HttpSession session) {
+  public Set<User> usersAutocomplete(HttpSession session) {
     User user = (User) session.getAttribute("loggedUser");
     if (!user.getUserRole().equals("User")) {
-      List<User> suggestions = userService.viewAllUsers();
+      // Using a set to make sure we have no duplicate users in search
+      Set<User> suggestions = new HashSet<User>(userService.viewAllUsers());
       return suggestions;
     }
     return null;
@@ -55,6 +60,7 @@ public class UserController {
       @ModelAttribute("firstVaccineDate") String firstVaccineDate, Model model) {
     if (passAvailable.equals("true")) {
       User user = userService.findUserById(userId);
+      // We check if uses have vaccine date
       if (!firstVaccineDate.equals("")) {
         model.addAttribute("firstVaccineDate", firstVaccineDate);
         model.addAttribute("secondVaccineDate", secondVaccine(firstVaccineDate));
@@ -67,19 +73,22 @@ public class UserController {
 
   @PostMapping("/findUser")
   public String findUser(Model model, HttpSession session, @ModelAttribute("userDetails") String userDetails) {
+    // We can find the user by his email or CPR
     if (userDetails.contains("@")) {
       try {
         User foundUser = (User) userService.findUserByEmail(userDetails);
         fetchUser(model, foundUser);
       } catch (Exception e) {
         System.out.println(e.getMessage());
+        errorLog("findUser", e);
       }
     } else {
       try {
-        User foundUser = (User) userService.findUserByCpr(Integer.parseInt(userDetails));
+        User foundUser = (User) userService.findUserByCpr(Long.parseLong(userDetails));
         fetchUser(model, foundUser);
       } catch (Exception e) {
         System.out.println(e.getMessage());
+        errorLog("findUser", e);
       }
     }
     return "user";
@@ -88,6 +97,7 @@ public class UserController {
   @PostMapping("/deleteUser")
   public String user(@ModelAttribute("userId") int userId, HttpSession session) {
     User user = (User) session.getAttribute("loggedUser");
+    // We make sure you cannot delete yourself.
     if (userId != user.getUserId()) {
       userService.deleteUser(userId);
     }
@@ -100,6 +110,7 @@ public class UserController {
       userService.updateUser(user);
     } catch (Exception e) {
       System.out.println(e);
+      errorLog("updateUser", e);
       model.addAttribute("error", e.getMessage());
     }
     fetchUser(model, user);
@@ -115,13 +126,16 @@ public class UserController {
     return "user";
   }
 
+  // Method to fetch the current searched user
   private void fetchUser(Model model, User user) {
     List<Booking> listOfUserBookings = new ArrayList<Booking>();
     List<Booking> upcomingBookings = new ArrayList<Booking>();
+    // Clearing the list if we want to search for someone else
     listOfUserBookings.clear();
     listOfUserBookings = bookingService.findBookingByUserId(user.getUserId());
 
     for (Booking booking : listOfUserBookings) {
+      // We check if there are vaccine bookings
       if (booking.getBookingName().equals("Vaccine")) {
         String firstVaccineDate = booking.getBookingDate().toString();
         if (LocalDate.now().isAfter(LocalDate.parse(secondVaccine(firstVaccineDate)))) {
@@ -130,11 +144,13 @@ public class UserController {
         model.addAttribute("firstVaccineDate", firstVaccineDate);
         model.addAttribute("secondVaccineDate", secondVaccine(firstVaccineDate));
       }
+      // Defining the upcoming bookings
       if (LocalDate.now().minusDays(1).isBefore(LocalDate.parse(booking.getBookingDate().toString()))) {
         upcomingBookings.add(booking);
       }
     }
 
+    // Sorting our bookings by date
     sortBookings(listOfUserBookings);
     sortBookings(upcomingBookings);
 
@@ -154,13 +170,27 @@ public class UserController {
     return "user";
   }
 
+  // Method for sorting bookings by date
   private void sortBookings(List<Booking> listOfBookings) {
     Collections.sort(listOfBookings,
         (booking1, booking2) -> booking1.getBookingDate().compareTo(booking2.getBookingDate()));
   }
 
+  // Second Vaccine date calculation
   private String secondVaccine(String firstVaccineDate) {
     return LocalDate.parse(firstVaccineDate).plusDays(30).toString();
   }
 
+  // Printing error messages to errorLog file
+  private void errorLog(String location, Exception error) {
+    try {
+      FileWriter myWriter = new FileWriter("errorLog.txt");
+      myWriter.write(location + " Error: " + error.getMessage());
+      myWriter.close();
+      System.out.println("Successfully wrote error to the errorLog.");
+    } catch (IOException fileError) {
+      System.out.println("An error occurred.");
+      fileError.printStackTrace();
+    }
+  }
 }
