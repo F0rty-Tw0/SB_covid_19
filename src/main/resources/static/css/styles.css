@@ -371,7 +371,11 @@ body {
 }
 @media screen and (max-height: 830px) {
 	.about__container {
+		padding: 5px;
 		margin-top: 1vh;
+	}
+	.button--dark {
+		margin-bottom: 1vh;
 	}
 }
 
