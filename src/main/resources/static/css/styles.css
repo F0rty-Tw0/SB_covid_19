@@ -296,7 +296,7 @@ body {
 .about__header {
 	font-weight: bold;
 	color: #333333;
-	font-size: 1.5em; 
+	font-size: 1.5em;
 }
 .about__text {
 	color: #7e7e7e;
@@ -324,6 +324,7 @@ body {
 	position: absolute;
 	width: 15vh;
 	top: 5px;
+	left: -20px;
 }
 
 .user__thumbnail {
