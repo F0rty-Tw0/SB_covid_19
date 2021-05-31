@@ -3,8 +3,6 @@ package com.example.covid_19.Controller;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import java.io.File; // Import the File class
-import java.io.IOException; // Import the IOException class to handle errors
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,20 +11,6 @@ public class HomeController {
     @GetMapping("/")
     public String index() {
         // minimumRequirements();
-        // This code exists here only because it was asked in assignment.
-        // We wouldn't store our logs inside a file otherwise.
-        try {
-            File myObj = new File("errorLog.txt");
-
-            if (myObj.createNewFile()) {
-                System.out.println("File created: " + myObj.getName());
-            } else {
-                System.out.println("File already exists.");
-            }
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
         return "index";
     }
 
