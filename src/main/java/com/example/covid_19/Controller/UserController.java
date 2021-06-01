@@ -130,6 +130,7 @@ public class UserController {
   private void fetchUser(Model model, User user) {
     List<Booking> listOfUserBookings = new ArrayList<Booking>();
     List<Booking> upcomingBookings = new ArrayList<Booking>();
+    List<Booking> historyBookings = new ArrayList<Booking>();
     // Clearing the list if we want to search for someone else
     listOfUserBookings.clear();
     listOfUserBookings = bookingService.findBookingByUserId(user.getUserId());
@@ -147,18 +148,21 @@ public class UserController {
       // Defining the upcoming bookings
       if (LocalDate.now().minusDays(1).isBefore(LocalDate.parse(booking.getBookingDate().toString()))) {
         upcomingBookings.add(booking);
-      }
+      } else
+        // Defining the History
+        historyBookings.add(booking);
     }
 
     // Sorting our bookings by date
     sortBookings(listOfUserBookings);
     sortBookings(upcomingBookings);
+    sortBookings(historyBookings);
 
     model.addAttribute("user", user);
     model.addAttribute("timeSlotService", timeSlotService);
+    model.addAttribute("historyBookings", historyBookings);
     model.addAttribute("upcomingBookings", upcomingBookings);
     model.addAttribute("listOfUserBookings", listOfUserBookings);
-    listOfUserBookings = bookingService.findBookingByUserId(user.getUserId());
   }
 
   @PostMapping("deleteBooking")

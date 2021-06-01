@@ -357,9 +357,9 @@
                                 </h1>
                                 <hr class="hr--dark">
                                 <!-- Checking if the list of user bookings is not empty -->
-                                <div th:if="${listOfUserBookings.size() != 0}">
+                                <div th:if="${historyBookings.size() != 0}">
                                     <ul class="list-unstyled" id="vacPass">
-                                        <li th:each="booking : ${listOfUserBookings}" class="pb-2 pt-2">
+                                        <li th:each="booking : ${historyBookings}" class="pb-2 pt-2">
                                             <p> <strong th:text="${booking.getBookingDate}"></strong> at
                                                 <strong
                                                     th:text="${timeSlotService.findTimeSlotById(booking.getBookingTimeSlotId)}"></strong>
