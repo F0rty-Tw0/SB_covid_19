@@ -377,7 +377,7 @@
                                     </div>
                                 </div>
                                 <!-- Checking if the list of user bookings is empty -->
-                                <div th:if="${listOfUserBookings.size() == 0}">
+                                <div th:if="${historyBookings.size() == 0}">
                                     <div th:if="${session.loggedUser.userRole.equals('User')}">
                                         <p class="text-center">
                                             You have no recent history of appointments, <br>make sure to book an
